@@ -1,0 +1,176 @@
+.awards-section{
+  width: 100%;
+
+  padding: 100px 5%;
+
+  margin-top: 40px;
+
+  background:
+    radial-gradient(
+      circle at top center,
+      rgba(241,191,47,0.25) 0%,
+      rgba(241,191,47,0.12) 30%,
+      transparent 60%
+    ),
+    linear-gradient(
+      180deg,
+      #f8f6eb 0%,
+      #f6f4e6 50%,
+      #f3f1e4 100%
+    );
+}
+/* ================= HEADING ================= */
+
+.awards-heading{
+  position: relative;
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+.awards-heading::after{
+  content: "";
+
+  position: absolute;
+
+  width: 500px;
+  height: 220px;
+
+  left: 50%;
+  top: 50%;
+
+  transform: translate(-50%, -50%);
+
+  background: rgba(241,191,47,0.12);
+
+  filter: blur(80px);
+
+  border-radius: 50%;
+
+  z-index: -1;
+}
+
+.awards-heading h1{
+  font-size: 100px;
+  font-weight: 800;
+  line-height: 1.1;
+
+  background: linear-gradient(
+    90deg,
+    #f1bf2f 0%,
+    #ef9d2f 25%,
+    #eb5a2f 55%,
+    #7a4a25 75%,
+    #20362f 100%
+  );
+
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  color: transparent;
+}
+
+/* ================= GRID ================= */
+
+.awards-grid{
+  display:grid;
+
+  grid-template-columns:repeat(2,1fr);
+
+  gap:30px;
+}
+
+/* ================= CARD ================= */
+
+.award-card{
+  background:#fff;
+
+  border-radius:35px;
+
+  padding:50px;
+
+  min-height:260px;
+
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+
+  transition:0.35s ease;
+}
+
+.award-card:hover{
+  transform:translateY(-8px);
+}
+
+.award-card h3{
+  font-size:20px;
+  font-weight:700;
+
+  line-height:1.4;
+
+  text-align:center;
+
+  color:#111;
+}
+
+/* ================= BOTTOM ================= */
+
+.award-bottom{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+
+  margin-top:30px;
+}
+
+.award-logo{
+  width:220px;
+
+  object-fit:contain;
+}
+
+.award-icon{
+  width:70px;
+  height:70px;
+
+  object-fit:contain;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:1100px){
+
+  .awards-heading h1{
+    font-size:80px;
+  }
+
+  .awards-grid{
+    grid-template-columns:1fr;
+  }
+
+}
+
+@media(max-width:768px){
+
+  .awards-heading h1{
+    font-size:55px;
+  }
+
+  .award-card{
+    padding:30px;
+  }
+
+  .award-card h3{
+    font-size:20px;
+  }
+
+  .award-logo{
+    width:160px;
+  }
+
+  .award-icon{
+    width:50px;
+    height:50px;
+  }
+
+}

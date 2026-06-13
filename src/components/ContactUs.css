@@ -1,0 +1,355 @@
+.contact-page-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  max-width: 1540px;
+  margin: 0px auto 60px;
+  padding: 0 20px;
+  gap: 80px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  /* ✨ Vibrant glowing background matching design file */
+  background: radial-gradient(circle at -5% 15%, rgba(251, 191, 36, 0.45) 0%, rgba(254, 240, 138, 0.15) 35%, transparent 70%);
+}
+
+/* Left Section Layout */
+.contact-left-section {
+  flex: 1;
+  padding-top: 70px;
+  padding-left: 30px;
+}
+
+.contact-main-heading {
+  font-size: 80px;
+  font-weight: 800;
+  line-height: 1.2;
+  margin: 0 0 25px 0;
+  letter-spacing: -1.5px;
+}
+
+/* 🎨 Vibrant Golden Gradient Text for "Let's Build" */
+.gradient-text {
+  background: linear-gradient(90deg, #f59e0b 0%, #dfa511 60%);
+  display: inline-block;
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+/* 🎨 Deep Black Text for "Something Great Together!" */
+.black-text-bold {
+  color: #111111;
+  display: inline-block;
+  margin-top: 5px;
+}
+
+.contact-subtext {
+  font-size: 20px;
+  color: #111111;
+  line-height: 1.6;
+  margin-bottom: 40px;
+  max-width: 520px;
+}
+
+/* Book Call Widget styling */
+.direct-call-widget {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: fit-content;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.02);
+  border: 1px solid #f3f4f6;
+  margin-bottom: 50px;
+}
+
+.phone-black-icon {
+  background: #000000;
+  width: 84px;
+  height: 84px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.custom-widget-icon {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+
+.not-interested-text {
+  font-size: 20px;
+  color: #9ca3af;
+  font-weight: 600;
+  margin: 0 0 2px 0;
+}
+
+.book-call-link {
+  font-size: 20px;
+  font-weight: 700;
+  color: #111111;
+  text-decoration: none;
+  border-bottom: 2px solid #eab308;
+  padding-bottom: 1px;
+}
+
+/* White Bottom Info Block Card wrapper */
+.contact-info-card-wrapper {
+  background: #ffffff;
+  border-radius: 24px;
+  padding: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 580px;
+  border: 1px solid #f1f5f9;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.01);
+}
+
+.contact-info-text-side {
+  display: flex;
+  flex-direction: column;
+}
+
+.info-block-item h4 {
+  font-size: 26px;
+  color: #111111;
+  margin: 0 0 12px 0;
+  font-weight: 800;
+}
+
+.info-block-item p {
+  font-size: 20px;
+  color: #111111;
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+
+/* Custom Local Icons Adjustments */
+.custom-flag-icon {
+  width: 28px;
+  height: 20px;
+  object-fit: cover;
+  margin-right: 12px;
+  border-radius: 2px;
+}
+
+.custom-mail-icon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  margin-right: 12px;
+}
+
+/* Globe Container Graphics Right Side */
+.contact-globe-graphic-side {
+  width: 160px;
+  height: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.globe-asset-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Right Side Form Card Styling */
+.contact-right-card {
+  width: 660px;
+  height: 900px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 24px;
+  padding: 36px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.015);
+  margin-top: 50px;
+}
+
+.contact-main-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  padding-bottom: 10px;
+  font-size: 19px;
+  font-weight: 700;
+  color: #111111;
+}
+
+.required-star {
+  color: #ef4444;
+  margin-left: 2px;
+}
+
+/* Inputs, Selects & Textarea Fields Formatting */
+.form-group input, 
+.form-group select, 
+.form-group textarea {
+  width: 100%;
+  height: 75px;
+  padding: 14px 26px;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  font-size: 14px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  color: #111111;
+  background-color: #ffffff;
+  box-sizing: border-box;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: #9ca3af;
+}
+
+.form-group input:focus, 
+.form-group select:focus, 
+.form-group textarea:focus {
+  border-color: #eab308;
+  box-shadow: 0 0 0 4px rgba(234, 179, 8, 0.05);
+}
+
+/* Side-by-side Dropdowns layout Grid */
+.form-row-grid {
+  display: flex;
+  gap: 16px;
+}
+
+.form-row-grid .form-group {
+  flex: 1;
+}
+
+/* Form Indian Flag Prefix Styling */
+.phone-input-wrapper {
+  display: flex;
+  align-items: center;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  background: #ffffff;
+}
+
+.phone-input-wrapper .country-code {
+  padding-left: 16px;
+  padding-right: 10px;
+  font-size: 14px;
+  color: #111111;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+}
+
+.form-flag-icon {
+  width: 22px;
+  height: 15px;
+  object-fit: cover;
+  margin-right: 6px;
+  border-radius: 2px;
+}
+
+.phone-input-wrapper input {
+  border: none !important;
+  box-shadow: none !important;
+  padding-left: 4px;
+}
+
+/* Bottom Actions Submit Row */
+.form-actions-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.attach-doc-btn {
+  border: 1px dashed #eab308;
+  padding: 12px 20px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 700;
+  color: #111111;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #fffbeb;
+  transition: background 0.2s ease;
+}
+
+.attach-doc-btn:hover {
+  background: #fef3c7;
+}
+
+.form-submit-btn {
+  background: #fcd34d;
+  color: #111111;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  border: none;
+  padding: 14px 48px;
+  border-radius: 30px;
+  font-size: 14px;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(252, 211, 77, 0.4);
+  transition: all 0.2s ease;
+}
+
+.form-submit-btn:hover {
+  background: #fbbf24;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(252, 211, 77, 0.5);
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 1024px) {
+  .contact-page-container {
+    flex-direction: column;
+    margin-top: 100px;
+    align-items: center;
+  }
+  .contact-left-section {
+    max-width: 100%;
+    width: 100%;
+  }
+  .contact-right-card {
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .contact-info-card-wrapper {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 640px) {
+  .contact-main-heading {
+    font-size: 40px;
+  }
+  .form-row-grid {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .form-actions-footer {
+    flex-direction: column;
+    gap: 16px;
+    align-items: stretch;
+  }
+  .form-submit-btn {
+    text-align: center;
+  }
+}

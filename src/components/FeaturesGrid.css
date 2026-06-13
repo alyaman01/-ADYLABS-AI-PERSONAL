@@ -1,0 +1,190 @@
+/* Master Container Setup - Integrated seamless map blend transition */
+.features-grid-section {
+  margin-top: -220px;
+  width: 100vw;
+  padding: 0 0 120px 0; 
+  /* 🎯 Exact Screenshot soft golden-yellow radial background mesh */
+  background: radial-gradient(circle at 50% 30%, #fff6cf 0%, #fffdf2 50%, #ffffff 100%);
+  display: flex;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.features-main-wrapper {
+  max-width: 1300px; /* Thoda container width stretch kiya hai crisp visual space ke liye */
+  width: 92%;
+  display: flex;
+  flex-direction: column;
+  gap: 80px; 
+}
+
+/* ================= 📈 STATS ACCENT HEADER BLOCK ================= */
+.stats-top-split-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  gap: 50px;
+  padding-top: 10px;
+}
+
+.stats-brand-branding-box {
+  flex: 1;
+}
+
+.collab-main-heading {
+  font-family: 'Playfair Display', 'Georgia', serif;
+  font-size: 50px; /* Bada and bold heading text layout */
+  font-weight: 800;
+  color: #0f1115;
+  line-height: 1.15;
+  margin: 0;
+}
+
+.collab-brand-identity {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 14px;
+}
+
+/* 🏷️ ADYLABS LOGO BOOSTED SIZE */
+.collab-brand-logo-img {
+  height: 70px; /* Logo ka scale bada kiya hai focus badhane ke liye */
+  width: auto;
+  object-fit: contain;
+}
+
+.collab-brand-name-gold {
+  font-family: 'Playfair Display', 'Georgia', serif;
+  font-size: 60px;
+  font-weight: 800;
+  color: #c98a3b; /* Premium high contrast luxury gold shader */
+  letter-spacing: -0.5px;
+}
+
+/* 🔢 1st Image Counters Grid Framework */
+.stats-numerical-quad-grid {
+  flex: 1.3;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px; /* Badha diya hai padding and gaps taaki size bada lage */
+}
+
+/* 🎯 BIGGER STATS CARDS CONFIGURATION */
+.stat-counter-mini-card {
+  background: #ffffff;
+  border: 1px solid rgba(228, 228, 231, 0.8);
+  border-radius: 28px; /* Clean rounded card framework */
+  padding: 45px 35px; /* Spacing badha kar heavy format create kiya hai */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+}
+
+.stat-counter-mini-card h3 {
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 74px; /* Big heavy display numbers typography */
+  font-weight: 700;
+  color: #c98a3b; 
+  margin: 0 0 8px 0;
+  letter-spacing: -1px;
+}
+
+.stat-counter-mini-card p {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  font-weight: 800;
+  color: #0f1115;
+  letter-spacing: 0.8px;
+  margin: 0;
+}
+
+/* ================= 📊 2nd IMAGE: 6 FEATURES LOWER GRID ================= */
+.features-inner-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); 
+  gap: 32px; /* Bigger block margins spacing layout */
+}
+
+.feature-premium-card {
+  background: #ffffff;
+  border: 1px solid rgba(228, 228, 231, 0.8);
+  border-radius: 28px;
+  padding: 50px 45px; /* Size heavily optimized to look premium and spacious */
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.02);
+}
+
+/* 🛍️ ICON SIZE BOOSTED UP */
+.feature-icon-wrapper {
+  width: 90px;  /* Icons ko chote se bada kiya hai clear visibility ke liye */
+  height: 90px; 
+  margin-bottom: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.feature-actual-icon {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.feature-card-title {
+  font-family: 'Playfair Display', 'Georgia', serif;
+  font-size: 28px; /* Extra 2px bump for rich header identity */
+  font-weight: 700;
+  color: #0f1115;
+  margin: 0 0 14px 0;
+}
+
+.feature-card-desc {
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 16px;
+  color: #52525b;
+  line-height: 1.65;
+  margin: 0;
+}
+
+/* ================= ✨ UNIVERSAL PREMIUM COLORED HOVER MIXIN ================= */
+.dynamic-hover-card {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+              box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+              border-color 0.4s ease;
+}
+
+/* ⚡ Gold glow matrix color transition style on card hovers */
+.dynamic-hover-card:hover {
+  transform: translateY(-8px); /* Lift distance amplified */
+  border-color: rgba(196, 134, 59, 0.3);
+  /* Pure warm gold radial shadow backdrop trace aura */
+  box-shadow: 0 20px 40px rgba(196, 134, 59, 0.09), 
+              0 1px 3px rgba(196, 134, 59, 0.04);
+}
+
+/* ================= RESPONSIVE VIEWPORT STYLES ================= */
+@media (max-width: 992px) {
+  .stats-top-split-row {
+    flex-direction: column;
+    text-align: center;
+    gap: 40px;
+  }
+  .collab-brand-identity {
+    justify-content: center;
+  }
+  .stats-numerical-quad-grid {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .stats-numerical-quad-grid,
+  .features-inner-container {
+    grid-template-columns: 1fr; /* Stack elements perfectly flat on mobile screen */
+  }
+  .feature-premium-card,
+  .stat-counter-mini-card {
+    padding: 35px 25px;
+  }
+}

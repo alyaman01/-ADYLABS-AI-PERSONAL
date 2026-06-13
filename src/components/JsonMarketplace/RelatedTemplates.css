@@ -1,0 +1,205 @@
+/* ==========================================================================
+   🎯 SCOPE: RELATED TEMPLATES LOWER GRID STYLES WITH FIXED ASSET BUTTON
+   ========================================================================== */
+.related-templates-section {
+  width: 100%;
+  margin-top: 40px;
+  box-sizing: border-box;
+  background: transparent !important; /* 🎯 BACKGROUND OVERRIDE CLEAR AWAY */
+  background-color: transparent !important;
+}
+
+.related-market-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 34px;
+  padding: 40px 0;
+  width: 100%;
+  background: transparent !important; /* 🎯 GRID CONTAINER BACKGROUND REMOVED */
+  background-color: transparent !important;
+}
+
+/* CARDS STRUCTURE */
+.related-market-card {
+  background: #f8f8f8;
+  border-radius: 28px;
+  padding: 32px;
+  min-height: 340px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  box-sizing: border-box;
+  border: 1px solid #eaeaea;
+}
+
+.related-market-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
+}
+
+.related-market-card h3 {
+  font-size: 22px;
+  line-height: 1.6;
+  margin-top: 30px;
+  font-weight: 700;
+  color: #111111;
+  font-family: Arial, sans-serif;
+  text-align: left;
+}
+
+/* TOOL ICONS HEAD */
+.related-tool-icons {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.related-tool-box {
+  width: 54px;
+  height: 54px;
+  border-radius: 14px;
+  border: 1px solid #d5d5d5;
+  background: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.related-tool-icon-img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+}
+
+/* CARD BOTTOM TRACKS */
+.related-card-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 40px;
+}
+
+.related-author {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.related-profile-img {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.related-author-name {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.related-author-name span {
+  font-size: 18px;
+  font-weight: 700;
+  color: #111111;
+}
+
+.related-verify-icon {
+  width: 20px !important;
+  height: 20px !important;
+  object-fit: contain !important;
+}
+
+/* UTILITY ACTION ACTION BUTTONS */
+.related-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.rel-btn {
+  width: 40px !important;
+  height: 40px !important;
+  border-radius: 50% !important;
+  border: none !important;
+  background: #ffffff !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  transition: transform 0.2s ease !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  box-shadow: none !important;
+}
+
+.rel-btn:hover {
+  transform: scale(1.08) !important;
+}
+
+.rel-btn img {
+  width: 20px !important;
+  height: 20px !important;
+  object-fit: contain !important;
+}
+
+.rel-download {
+  background: #f0b82f !important;
+}
+
+/* ==========================================================================
+   🎯 NEW: MOCKUP DESIGN ACCURATE LOAD MORE BUTTON STYLES
+   ========================================================================== */
+.related-load-more-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 20px;
+  padding-bottom: 50px;
+}
+
+.related-load-more-btn {
+  width: 320px;
+  height: 85px;
+  border-radius: 50px;
+  border: none;
+  
+  /* 🎯 IMPORTED ASSET BUTTON ATTACHED (Peeche waala image block perfectly background load karega) */
+  background-image: url('../../assets/illustration/buttonbg.jpg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  font-size: 24px;
+  font-weight: 800;
+  color: #111111;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  
+  /* Mockup glow blur boundaries shadow */
+  box-shadow: 
+    0 0 0 8px #fdf3bbf2, 
+    0 12px 30px rgba(241,187,51,0.25);
+}
+
+.related-load-more-btn:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 
+    0 0 0 12px #fdf3bbf2, 
+    0 16px 35px rgba(241,187,51,0.35);
+}
+
+/* RESPONSIVE SCALING */
+@media (max-width: 1024px) {
+  .related-market-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .related-market-grid {
+    grid-template-columns: 1fr;
+  }
+}

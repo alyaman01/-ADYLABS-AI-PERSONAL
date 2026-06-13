@@ -1,0 +1,152 @@
+/* Base Section Framework */
+.industry-expertise-section {
+    margin-top: -150px;
+  width: 100vw;
+  padding: 100px 0;
+  background: #ffffff;
+  display: flex;
+  justify-content: center;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.expertise-container {
+  width: 100%;
+  max-width: 1440px;
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+
+/* ================= 📝 HEADERS DESIGN ================= */
+.expertise-header-center {
+  text-align: center;
+  padding: 0 20px;
+}
+
+.expertise-title {
+  font-family: 'Playfair Display', 'Georgia', serif;
+  font-size: 70px;
+  font-weight: 800;
+  color: #111827;
+  margin: 0 0 24px 0;
+  letter-spacing: -1px;
+}
+
+.gold-text-accent {
+  color: #f59e0b;
+}
+
+.expertise-desc {
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 22px;
+  font-weight: 600;
+  color: #1f2937;
+  line-height: 1.6;
+  max-width: 950px;
+  margin: 0 auto;
+}
+
+/* ================= 🎚️ MARQUEE SLIDER SPEED SETUP ================= */
+.expertise-slider-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  padding: 20px 0;
+  box-sizing: border-box;
+  scrollbar-width: none;
+}
+
+.expertise-slider-wrapper::-webkit-scrollbar {
+  display: none;
+}
+
+.expertise-cards-track {
+  display: flex;
+  gap: 30px;
+  width: max-content;
+  /* 6 cards ke liye duration 35s kiya hai taaki sliding jhatke se na ho, ekdum smooth chale */
+  animation: slideTrackInfinite 35s linear infinite;
+}
+
+/* Mouse hover par cards scroll ruk jayega responsive check karne ke liye */
+.expertise-slider-wrapper:hover .expertise-cards-track {
+  animation-play-state: paused;
+}
+
+/* ================= 🎴 IMAGE OVERLAY CARDS GEOMETRY ================= */
+.expertise-slide-card {
+  width: 380px; 
+  height: 480px;
+  border-radius: 24px;
+  position: relative; /* Crucial: Taaki iske andar text layer absolute position ho sake */
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+}
+
+/* Tumhara poora full-colored card image jo background handle karega */
+.card-bg-full-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Pure card space ko perfectly capture karega */
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1; /* Background layer */
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ✍️ Iske upar dynamic text-heading position kiya hai */
+.card-industry-title {
+  position: absolute;
+  top: 40px; /* Screenshot ke accurate index positioning padding */
+  left: 40px;
+  font-family: 'Playfair Display', serif;
+  font-size: 38px;
+  font-weight: 800;
+  color: #ffffff; /* Contrast sharp white color */
+  margin: 0;
+  z-index: 2; /* Text upar float karega image ke */
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.15); /* Padhne me aasan rhega light backgrounds pr bhi */
+}
+
+/* ⚡ Interactive Card + BG Image Zoom Hover Effect */
+.expertise-slide-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.18);
+}
+
+.expertise-slide-card:hover .card-bg-full-image {
+  transform: scale(1.05); /* Card ke andar ka art hilega bas */
+}
+
+/* ================= 🔄 INFINITE SCROLL KEYFRAMES ================= */
+@keyframes slideTrackInfinite {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    /* Exact half track translate taaki loop break na ho */
+    transform: translateX(calc(-50% - 15px));
+  }
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 768px) {
+  .expertise-title {
+    font-size: 40px;
+  }
+  .expertise-desc {
+    font-size: 15px;
+  }
+  .expertise-slide-card {
+    width: 310px;
+    height: 410px;
+  }
+  .card-industry-title {
+    top: 30px;
+    left: 30px;
+    font-size: 28px;
+  }
+}

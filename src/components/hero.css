@@ -1,0 +1,88 @@
+.hero {
+
+  width: 100%;
+  min-height: 100vh;
+
+  position: relative;
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+
+  background-image: url("../assets/home/home bg.png");
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  padding: 120px 40px;
+}
+
+/* ================= HEADING ================= */
+
+.hero h1 {
+
+  font-size: 170px;
+
+  font-weight: 700;
+
+  line-height: 1;
+
+  color: black;
+}
+
+/* ================= TEXT ================= */
+
+.hero p {
+
+  margin-top: 35px;
+
+  font-size: 32px;
+
+  line-height: 1.4;
+
+  color: #5a5a5a;
+
+  font-weight: 600;
+
+  max-width: 900px;
+
+  text-align: center;
+}
+
+/* ================= BUTTON ================= */
+
+.hero button {
+
+  margin-top: 55px;
+
+  padding: 28px 90px;
+
+  border-radius: 70px;
+
+  border: 2px solid #d89d00;
+
+  background: rgba(255,255,255,0.15);
+
+  backdrop-filter: blur(10px);
+
+  font-size: 30px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: 0.3s ease;
+}
+
+.hero button:hover {
+
+  transform: scale(1.03);
+
+  background: rgba(255,255,255,0.25);
+}

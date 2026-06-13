@@ -1,0 +1,50 @@
+.floating-container {
+  position: fixed;
+  bottom: 30px; /* Screen ke bottom se gap */
+  right: 30px;  /* Screen ke right corner se gap */
+  z-index: 9999; /* Taaki yeh poori website par sabse upar float kare */
+}
+
+/* Base style for floating button */
+.floating-btn {
+  width: 60px;  /* Single button hai toh thoda sa bada (60px) responsive lagega */
+  height: 60px;
+  border-radius: 50%; /* Perfect Circle */
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background: transparent; /* Taaki image ke piche koi extra color block na dikhe */
+  padding: 0;
+  
+  /* Soft shadow depth ke liye */
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2); 
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Smooth bounce effect */
+}
+
+/* Image alignment within button */
+.floating-icon {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* Image stretch nahi hogi */
+  border-radius: 50%;
+}
+
+/* Hover dynamic effect (Halka sa upar bounce aur halka scale) */
+.floating-btn:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+/* Mobile Screens ke liye adjust */
+@media (max-width: 768px) {
+  .floating-container {
+    bottom: 20px;
+    right: 20px;
+  }
+  .floating-btn {
+    width: 50px;
+    height: 50px;
+  }
+}

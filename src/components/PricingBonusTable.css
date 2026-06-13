@@ -1,0 +1,126 @@
+/* ==========================================================================
+   🎯 FIX: MARKETPLACE OVERLAP KO HATANE AUR DONO PAGES KO SAME KARNE KE LIYE
+   ========================================================================== */
+.marketplace-container .bonus-section {
+  width: 100% !important;
+  margin-top: 20px !important;
+  padding-top: 80px !important;
+  position: relative !important;
+  z-index: 5 !important;
+}
+
+/* Container Background Matching Image Exactly */
+.bonus-section {
+  background-color: #fffec4; /* Perfect background color matching your mockup image */
+  padding: 80px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: Arial, sans-serif;
+  width: 100%; /* Ensure full width on both pages */
+  box-sizing: border-box;
+}
+
+/* Header Text Styles */
+.bonus-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 45px;
+}
+
+/* FIX: Free Badge ko ekdum sidha (Straight) karne ke liye property */
+.bonus-free-badge {
+  height: 80px;
+  object-fit: contain;
+  margin-bottom: 12px;
+  /* Counter rotation agar asset file tilted ho (Aap angle thoda adjust kar sakte ho) */
+  transform: rotate(45deg) !important; 
+}
+
+.bonus-title {
+  font-size: 55px;
+  font-weight: 800;
+  color: #111;
+  margin: 0 0 15px 0;
+}
+
+.highlight-yellow {
+  color: #efbe2f;
+}
+
+.bonus-subtitle {
+  font-size: 28px;
+  font-weight: 700;
+  color: #666;
+  margin: 0;
+}
+
+/* ==========================================================================
+   WIDER TABLE CONFIGURATION
+   ========================================================================== */
+.table-wrapper {
+  width: 95%; /* Responsive screens par stretch hone ke liye width badha di */
+  max-width: 1350px; /* Table ki overall width ko kafi bada kar diya hai */
+  background: #ffffff;
+  border-radius: 35px; 
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.02);
+  overflow: hidden; 
+  padding: 15px 40px; /* Left-Right spacing badha di columns ke liye */
+  box-sizing: border-box;
+}
+
+.bonus-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+/* Table Headers Configuration */
+.bonus-table th {
+  font-size: 26px;
+  font-weight: 800;
+  color: #111;
+  padding: 35px 20px;
+  border-bottom: 2px solid #eaeaea;
+}
+
+/* Column specific spacing alignments */
+.bonus-table th:nth-child(2),
+.bonus-table td:nth-child(2) {
+  text-align: center; 
+}
+
+.bonus-table th:last-child,
+.bonus-table td:last-child {
+  text-align: right;
+  padding-right: 40px; 
+}
+
+/* Table Body Rows */
+.bonus-table td {
+  font-size: 24px;
+  color: #111;
+  padding: 35px 20px;
+  border-bottom: 1.5px solid #e0e0e0; /* Clean light separator border lines */
+}
+
+/* Last Row ke niche se line hatane ke liye */
+.bonus-table tr:last-child td {
+  border-bottom: none;
+}
+
+/* Helper Text Weights */
+.font-bold {
+  font-weight: 700;
+}
+
+/* Smooth Interactive Zoom Row Hover */
+.bonus-table tbody tr {
+  transition: background-color 0.25s ease;
+}
+
+.bonus-table tbody tr:hover {
+  background-color: #faf9f5; 
+}

@@ -1,0 +1,308 @@
+/* ================= MASTER LAYOUT BLOCK ================= */
+.connect-scheduler-section {
+  width: 100vw;
+  padding: 120px 0; /* Top/Bottom space ko thoda aur open kiya */
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+/* Heading Typography Style */
+.scheduler-main-heading {
+  font-family: 'Playfair Display', 'Georgia', serif;
+  font-size: 65px;
+  font-weight: 700;
+  color: #111111;
+  margin-bottom: 60px;
+  text-align: center;
+}
+
+/* 🎯 3-COLUMN MASTER CONTAINER GRID (Bigger & Broader Version) */
+.scheduler-three-column-container {
+  /* Pehle max-width 1140px thi, ise badha kar 1320px kiya taaki wide screen par khul kar aaye */
+  max-width: 1320px; 
+  width: 94%; /* Outer container padding space balance karne ke liye */
+  
+  /* Height ko 650px se badha kar 740px kiya taaki vertical dimension bada lage */
+  min-height: 740px; 
+  
+  background: #ffffff;
+  border: 1px solid #e4e4e7;
+  border-radius: 16px; /* Edges thode aur smooth premium lagenge */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04); /* Drop shadow ko thoda visually rich kiya */
+  
+  /* Columns ratio ko responsive broad proportions ke sath align kiya */
+  display: grid;
+  grid-template-columns: 1.1fr 1.5fr 1fr; 
+  overflow: hidden;
+}
+
+/* ================= COLUMN 1: LEFT PANEL STYLES ================= */
+.scheduler-left-panel {
+  padding: 50px 40px; /* Padding badha di taaki andar ka text rigid na lage */
+  border-right: 1px solid #f4f4f5;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.scheduler-mock-logo {
+  font-weight: 800;
+  color: #2563eb;
+  font-size: 28px; /* Logo thoda scale up kiya */
+  border: 2px solid #2563eb;
+  padding: 6px 12px;
+  border-radius: 8px;
+  width: fit-content;
+}
+
+.scheduler-company-name {
+  color: #71717a;
+  font-size: 15px;
+  font-weight: 600;
+  margin-top: 35px;
+  margin-bottom: 8px;
+}
+
+.scheduler-event-title {
+  font-size: 32px; /* Title size increased from 28px */
+  font-weight: 700;
+  color: #18181b;
+  margin: 0 0 20px 0;
+}
+
+.scheduler-duration-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #52525b;
+  font-weight: 600;
+  margin-bottom: 25px;
+  font-size: 16px;
+}
+
+.scheduler-event-description {
+  color: #52525b;
+  font-size: 16px; /* 15px se 16px kiya high readability ke liye */
+  line-height: 1.6;
+}
+
+.scheduler-cookie-settings {
+  margin-top: auto;
+  color: #6366f1;
+  font-size: 14px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+/* ================= COLUMN 2: MIDDLE PANEL (CALENDAR) ================= */
+.scheduler-middle-panel {
+  padding: 50px 40px; /* Padding badha kar spacing broad ki */
+  border-right: 1px solid #f4f4f5;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.scheduler-panel-title {
+  font-size: 22px; /* Sub-heading text thoda bada kiya */
+  font-weight: 700;
+  color: #18181b;
+  margin: 0 0 35px 0;
+}
+
+.scheduler-month-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.scheduler-current-month {
+  font-weight: 700;
+  font-size: 17px;
+  color: #3f3f46;
+}
+
+.scheduler-arrow-btn {
+  background: none;
+  border: none;
+  color: #2563eb; /* Primary theme clear color arrow buttons */
+  font-size: 22px;
+  cursor: pointer;
+  padding: 5px 12px;
+  transition: transform 0.2s;
+}
+.scheduler-arrow-btn:hover {
+  transform: scale(1.15);
+}
+
+/* Week Days Row Layout */
+.scheduler-calendar-days-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+  font-size: 13px; /* Week names headings size up */
+  font-weight: 700;
+  color: #71717a;
+  margin-bottom: 20px;
+  letter-spacing: 0.5px;
+}
+
+/* 🗓️ 7-Column Dynamic Dates Grid Setup */
+.scheduler-calendar-dates-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  row-gap: 16px; /* Rows ke beech ka vertical gap badhaya */
+  text-align: center;
+}
+
+.calendar-date-num {
+  height: 46px; /* Date cells thode bade aur airy kiye */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  font-weight: 600;
+  color: #18181b;
+}
+
+/* Active Clickable Style Wrapper */
+.active-clickable-slot {
+  color: #2563eb;
+  background-color: #eff6ff;
+  border-radius: 50%;
+  cursor: pointer;
+  font-weight: 600;
+  width: 44px; /* Circle shape size broad kiya */
+  height: 44px;
+  margin: 0 auto;
+  transition: all 0.2s ease-in-out;
+}
+
+.active-clickable-slot:hover {
+  background-color: #dbeafe;
+  transform: scale(1.05);
+}
+
+/* Blue Circle selection background override */
+.selected-slot-blue {
+  color: #ffffff !important;
+  background-color: #2563eb !important;
+}
+
+/* Empty grid slots handling */
+.empty-day {
+  height: 46px;
+}
+
+/* Timezone position custom dynamic drop container */
+.scheduler-timezone-block {
+  margin-top: auto;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-top: 30px;
+}
+
+.timezone-dropdown-trigger p {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.timezone-custom-dropdown {
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  background: #ffffff;
+  border: 1px solid #e4e4e7;
+  border-radius: 8px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  width: 290px;
+  max-height: 220px;
+  overflow-y: auto;
+  z-index: 50;
+  margin-bottom: 8px;
+}
+
+/* ================= COLUMN 3: RIGHT PANEL (TIME LIST) ================= */
+.scheduler-right-panel {
+  padding: 50px 30px; /* Spacing broad setup */
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.scheduler-selected-day-label {
+  font-size: 16px;
+  font-weight: 700;
+  color: #18181b;
+  margin-bottom: 30px;
+}
+
+/* 📜 Scrollable slots window */
+.scheduler-slots-scroll-box {
+  display: flex;
+  flex-direction: column;
+  gap: 14px; /* Buttons ke beech ka spacing badhaya */
+  overflow-y: auto;
+  max-height: 480px; /* List box view height badha di taaki zyada slots dikhein ek sath */
+  padding-right: 10px;
+}
+
+/* Styled Time Slot Buttons */
+.scheduler-time-slot-button {
+  width: 100%;
+  padding: 16px; /* Buttons ko thick aur clean broad feel diya */
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  color: #2563eb;
+  font-weight: 700;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.scheduler-time-slot-button:hover {
+  border-color: #2563eb;
+  background-color: #eff6ff;
+  transform: translateY(-1px);
+}
+
+/* Click Active highlights for time slots on right area */
+.active-slot-selected {
+  background-color: #2563eb !important;
+  color: #ffffff !important;
+  border-color: #2563eb !important;
+}
+
+/* Custom Webkit scrollbar formatting */
+.scheduler-slots-scroll-box::-webkit-scrollbar {
+  width: 6px;
+}
+.scheduler-slots-scroll-box::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+/* Responsive Handling */
+@media (max-width: 1024px) {
+  .scheduler-three-column-container {
+    grid-template-columns: 1fr;
+    max-width: 700px;
+  }
+  .scheduler-left-panel, .scheduler-middle-panel {
+    border-right: none;
+    border-bottom: 1px solid #f4f4f5;
+  }
+  .scheduler-main-heading {
+    font-size: 45px;
+  }
+}

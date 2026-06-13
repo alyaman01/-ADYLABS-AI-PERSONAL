@@ -1,0 +1,233 @@
+/* Container framework maintaining the fluid yellow palette */
+.trust-showcase-section {
+  width: 100vw;
+  padding: 20px 0 100px 0;
+  background: #ffffff;
+  display: flex;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+/* Internal clean display panel wrapper card */
+.trust-inner-card-board {
+  max-width: 1500px;
+  width: 92%;
+  background: #fffdf4; /* Light ivory cream card fill */
+  border: 24px solid #fef3c7; /* Inner framing yellow tint stroke border */
+  border-radius: 60px; /* Highly curved rounded edge panel */
+  padding: 80px 70px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 70px;
+}
+
+/* ================= UPPER SECTION STYLING ================= */
+.trust-upper-split {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 40px;
+  width: 100%;
+}
+
+.trust-left-content {
+  flex: 1.2;
+}
+
+.trust-main-heading {
+  font-family: 'Playfair Display', 'Georgia', serif;
+  font-size: 58px;
+  font-weight: 800;
+  color: #df9e28; /* Solid gold statement typeface color */
+  margin: 0 0 20px 0;
+  letter-spacing: -0.5px;
+}
+
+.trust-sub-paragraph {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: #4b5563;
+  line-height: 1.5;
+  margin: 0 0 45px 0;
+}
+
+/* Why Section Inline Numbers Metrics */
+.trust-why-metric-box {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.trust-here-is-why-lbl {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px;
+  font-weight: 800;
+  color: #1f2937;
+  margin: 0 0 5px 0;
+}
+
+.inline-metric-item {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.metric-gold-num {
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 32px;
+  font-weight: 800;
+  color: #b4781e;
+  min-width: 110px; /* Retains numerical grid column spacing flat */
+}
+
+.metric-dark-text {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  font-weight: 800;
+  color: #1f2937;
+}
+
+/* Right Brands Grid 3x2 Matrix Box */
+.trust-brands-gold-matrix {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  padding-top: 20px;
+}
+
+.brand-matrix-icon-slot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+}
+
+.brand-matrix-icon-slot img {
+  width: 80px; /* Big explicit monochrome brand image logos */
+  height: 80px;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.brand-matrix-icon-slot img:hover {
+  transform: scale(1.12);
+}
+
+/* ================= LOWER STATS CARDS ================= */
+.trust-lower-stats-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+  width: 100%;
+}
+
+.stat-pill-outline-box {
+  background: #ffffff;
+  border: 3px solid #fde047; /* Bright warm clear yellow stroke lines */
+  border-radius: 32px;
+  padding: 35px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.stat-pill-label {
+  font-family: 'Playfair Display', 'Georgia', serif;
+  font-size: 26px;
+  font-weight: 700;
+  color: #6b7280;
+}
+
+.stat-pill-big-number {
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 52px;
+  font-weight: 800;
+  color: #000000;
+  margin: 0;
+}
+
+/* ================= ⚡ INTERACTIVE HOVER CONFIGURATIONS ================= */
+.dynamic-trust-hover {
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+              box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.3s ease;
+}
+
+.dynamic-trust-hover:hover {
+  transform: translateY(-6px);
+  border-color: #df9e28;
+  box-shadow: 0 15px 35px rgba(223, 158, 40, 0.12);
+}
+
+/* ================= ➔ BOOK A CALL CTA BUTTON ================= */
+.trust-cta-action-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.trust-book-call-btn {
+  background: #fef08a; /* Clean smooth yellow center layout */
+  border: 2px solid #eab308;
+  border-radius: 50px; /* Fluid pill container */
+  padding: 22px 70px;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 22px;
+  font-weight: 800;
+  color: #000000;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 8px 24px rgba(234, 179, 8, 0.15);
+  transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.trust-book-call-btn:hover {
+  background: #fde047;
+  transform: scale(1.03);
+  box-shadow: 0 12px 30px rgba(234, 179, 8, 0.25);
+}
+
+.arrow-icon-shift {
+  transition: transform 0.2s ease;
+}
+
+.trust-book-call-btn:hover .arrow-icon-shift {
+  transform: translateX(4px);
+}
+
+/* ================= RESPONSIVE VIEWPORTS ================= */
+@media (max-width: 1100px) {
+  .trust-upper-split {
+    flex-direction: column;
+    gap: 50px;
+  }
+  .trust-brands-gold-matrix {
+    width: 100%;
+    max-width: 500px;
+  }
+}
+
+@media (max-width: 768px) {
+  .trust-inner-card-board {
+    padding: 40px 25px;
+    border: 12px solid #fef3c7;
+  }
+  .trust-main-heading {
+    font-size: 38px;
+  }
+  .trust-lower-stats-row {
+    grid-template-columns: 1fr;
+  }
+  .trust-book-call-btn {
+    width: 100%;
+    justify-content: center;
+    padding: 18px 30px;
+    font-size: 18px;
+  }
+}

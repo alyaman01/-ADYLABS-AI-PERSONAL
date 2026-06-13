@@ -1,0 +1,112 @@
+.demo-videos{
+  width: 100%;
+  padding: 10px 70px 100px;
+  background: #f3f3f3;
+}
+
+.demo-videos h1{
+  text-align: center;
+
+  font-size: 72px;
+  font-weight: 700;
+
+  margin-bottom: 30px;
+
+  color: black;
+}
+
+.demo-videos h1 span{
+  color: #e5b129;
+}
+
+.videos-grid{
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 40px;
+}
+
+.video-card{
+  position: relative;
+
+  border-radius: 16px;
+
+  overflow: hidden;
+
+  cursor: pointer;
+
+  transition: 0.3s;
+}
+
+.video-card img{
+  width: 100%;
+
+  display: block;
+
+  border-radius: 16px;
+}
+
+.video-card:hover{
+  transform: translateY(-8px);
+}
+
+.play-btn{
+  position: absolute;
+
+  top: 50%;
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+
+  width: 80px;
+  height: 80px;
+
+  border-radius: 50%;
+
+  background: #f4be27;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 32px;
+
+  color: black;
+}
+
+.project-btn-wrapper{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+
+  margin-top: 35px;
+}
+
+.project-btn{
+  background-color: #efb52d;
+
+  color: black;
+
+  border: none;
+
+  padding: 28px 65px;
+
+  border-radius: 30px;
+
+  font-size: 26px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  outline: none;
+
+  transition: 0.3s;
+}
+
+.project-btn:hover{
+  transform: translateY(-5px);
+}

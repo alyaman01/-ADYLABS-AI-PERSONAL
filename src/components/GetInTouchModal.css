@@ -1,0 +1,248 @@
+/* Dark Blurred background behind the pop-up card */
+.modal-blur-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  
+  /* 🎯 FIX 3: Iska z-index badha kar 1000000 kar diya taaki ye navbar ke upar render ho */
+  z-index: 1000000; 
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+/* Modal Box Main Card Container */
+.get-in-touch-modal-card {
+  background: #ffffff;
+  width: 100%;
+  max-width: 620px;
+  border-radius: 35px;
+  padding: 40px;
+  position: relative;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+  animation: modalScalePopIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  border: 1px solid rgba(256,256,256,0.1);
+}
+
+@keyframes modalScalePopIn {
+  0% { transform: scale(0.85); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* Absolute Positioning for Close X button */
+.modal-close-cross {
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  background: #f5f5f7;
+  border: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  font-size: 14px;
+  font-weight: bold;
+  color: #444;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.2s ease;
+}
+
+.modal-close-cross:hover {
+  background: #e2e2e5;
+  color: #111;
+  transform: rotate(90deg);
+}
+
+/* Header Text Alignments */
+.modal-header-block {
+  text-align: left;
+  margin-bottom: 25px;
+  border-bottom: 2px solid #f2f2f2;
+  padding-bottom: 15px;
+}
+
+.modal-header-block h2 {
+  font-size: 28px;
+  font-weight: 800;
+  color: #111111;
+  margin: 0 0 6px 0;
+  letter-spacing: -0.4px;
+}
+
+.modal-header-block p {
+  font-size: 14px;
+  color: #666666;
+  margin: 0;
+}
+
+/* Form Styles */
+.modal-lead-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.form-input-group {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  gap: 6px;
+}
+
+.form-input-group label {
+  font-size: 13px;
+  font-weight: 700;
+  color: #222222;
+}
+
+.required-star {
+  color: #d93025;
+  margin-left: 3px;
+}
+
+/* Form Inputs, Select options fields and textareas */
+.modal-lead-form input[type="text"],
+.modal-lead-form input[type="email"],
+.modal-lead-form select,
+.modal-lead-form textarea {
+  width: 100%;
+  height: 48px;
+  border: 1px solid #dcdcdc;
+  border-radius: 12px;
+  padding: 0 16px;
+  font-size: 14px;
+  color: #333;
+  background: #ffffff;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.modal-lead-form textarea {
+  height: auto;
+  padding: 12px 16px;
+  resize: none;
+}
+
+.modal-lead-form input:focus,
+.modal-lead-form select:focus,
+.modal-lead-form textarea:focus {
+  border-color: #efbe2f; 
+}
+
+/* Combined Country Code Flags Layout inside input wrappers */
+.phone-input-wrapper {
+  display: flex;
+  align-items: center;
+  border: 1px solid #dcdcdc;
+  border-radius: 12px;
+  overflow: hidden;
+  height: 48px;
+  background: #ffffff;
+}
+
+.phone-input-wrapper .country-code-flag {
+  padding: 0 12px 0 16px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+  border-right: 1px solid #eaeaea;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: #fcfcfc;
+  height: 100%;
+}
+
+.phone-input-wrapper input {
+  border: none !important;
+  outline: none;
+  padding: 0 16px;
+  height: 100%;
+  width: 100%;
+  font-size: 14px;
+}
+
+/* Dual Column Split Layout inside inline rows grid */
+.form-row-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+/* Action Control Bottom Buttons Panel Footer Alignment */
+.modal-action-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.attach-document-btn {
+  background: transparent;
+  border: 1px dashed #adadad;
+  border-radius: 12px;
+  padding: 12px 18px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #444444;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+}
+
+.attach-document-btn:hover {
+  border-color: #efbe2f;
+  background: #fffdf5;
+  color: #efbe2f;
+}
+
+/* Submission CTA Yellow Banner Button rules */
+.modal-submit-cta {
+  background: #efbe2f;
+  color: #111111;
+  border: none;
+  border-radius: 12px;
+  padding: 0 40px;
+  height: 48px;
+  font-size: 14px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  letter-spacing: 0.5px;
+}
+
+.modal-submit-cta:hover {
+  background: #e4ad0d;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(239, 190, 47, 0.3);
+}
+
+/* Responsive Handling logic for ultra small screens devices */
+@media (max-width: 540px) {
+  .form-row-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  .modal-action-footer {
+    flex-direction: column-reverse;
+    gap: 14px;
+    align-items: stretch;
+  }
+  .modal-submit-cta {
+    width: 100%;
+  }
+  .get-in-touch-modal-card {
+    padding: 25px 20px;
+  }
+}

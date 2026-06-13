@@ -1,0 +1,43 @@
+/* Container framework - FIXED: Padding-top 0 to stick with the upper section */
+.office-locations-section {
+  width: 100vw;
+  padding: 0 0 80px 0; /* 🎯 Top padding 0 kar di hai taaki upar wale section se chipak jaye */
+  margin-top: 0;       /* Kisi bhi default space ko hatane ke liye */
+  background: radial-gradient(circle at center, #fffdf0 0%, #ffffff 70%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.map-inner-wrapper {
+  max-width: 1800px;
+  width: 100%;
+  height: auto; /* Height ko auto kiya taaki image scale ke hisab se responsive rahe */
+  position: relative;
+}
+
+/* 🗺️ Map Background Layer Styling */
+.world-map-bg-graphics {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.map-actual-vector-img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  opacity: 1; /* 🎯 Opacity 1 ki taaki tumhare asset ke bne-bnae cards ekdum clear visible hon */
+  pointer-events: none;
+}
+
+/* Mobile devices responsive configurations */
+@media (max-width: 768px) {
+  .office-locations-section {
+    padding-bottom: 40px;
+  }
+}

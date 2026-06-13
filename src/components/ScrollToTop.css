@@ -1,0 +1,64 @@
+.scroll-to-top-btn {
+  position: fixed;
+  /* 🎯 FIX: Isko 40px se badha kar 110px kar diya taaki ye WhatsApp icon ke upar clean dikhe */
+  bottom: 110px; 
+  right: 40px;
+  width: 56px;
+  height: 56px;
+  background-color: #0b1325; /* Dark navy/black color */
+  color: #ffffff;
+  border: none;
+  border-radius: 50%; /* Perfect circle */
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+  z-index: 9999; /* Humesha content ke upar rahega */
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  animation: scrollBtnFadeIn 0.3s ease-in-out;
+}
+
+/* Jab button screen par aaye toh smooth transition ho */
+@keyframes scrollBtnFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.arrow-up-icon {
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1;
+  transition: transform 0.2s ease; 
+}
+
+/* Hover effects */
+.scroll-to-top-btn:hover {
+  background-color: #1a263f; 
+  transform: translateY(-5px); /* Hover pe halka sa upar bounce */
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
+.scroll-to-top-btn:hover .arrow-up-icon {
+  transform: translateY(-2px); 
+}
+
+/* 📱 Mobile devices ke liye settings */
+@media (max-width: 768px) {
+  .scroll-to-top-btn {
+    /* Mobile par bhi WhatsApp icon ke upar stack rahega */
+    bottom: 95px;
+    right: 25px;
+    width: 48px;
+    height: 48px;
+  }
+  .arrow-up-icon {
+    font-size: 20px;
+  }
+}

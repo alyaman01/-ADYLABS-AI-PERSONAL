@@ -1,0 +1,136 @@
+.connect-experts-section {
+  width: 100vw; /* Pure window par stretch karne ke liye */
+  min-height: 650px; /* Container ki height thodi badhaye taaki bada robot space le sake */
+  
+  /* Waves asset setup (Light opacity enabled) */
+  background: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)), url('../assets/connect/wave3.png');
+  
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  padding: 80px 0;
+  margin-top: 40px;
+  box-sizing: border-box;
+}
+
+.connect-content-container {
+  max-width: 1540px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 40px;
+  box-sizing: border-box;
+  position: relative; /* Robot ke scale ko measure karne ke liye */
+}
+
+.connect-text-block {
+  flex: 1.2; /* Text block ko flex space thoda control kiya */
+}
+
+/* Designer Typography Styles (Tumhara as-it-is code) */
+.connect-title-heading {
+  font-size: 90px;
+  font-weight: 800;
+  line-height: 1.05;
+  padding-left: 60px;
+  margin: 0;
+  letter-spacing: -3px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+/* 🎨 UPDATED: Exact Neon-Pastel Gradient Color from your Screenshot */
+.multi-color-gradient-text {
+  /* Yellow (#fcd34d) -> Coral Pink (#ff8da1) -> Soft Lime Green (#a3e635) */
+  background: linear-gradient(90deg, #fcd34d 0%, #ff8da1 45%, #a3e635 100%);
+  display: inline-block;
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.connect-dark-subhead {
+  color: #374151;
+  font-size: 60px;
+  font-weight: 700;
+  padding-left: 70px;
+  letter-spacing: -1px;
+}
+
+.connect-serif-highlight {
+  font-family: 'Playfair Display', 'Georgia', serif;
+  color: #111111;
+  font-size: 60px;
+  font-weight: 700;
+  letter-spacing: -1px;
+}
+
+/* 🛠️ FIX 1: Right Side Container ko pure flex layout mein full stretch space diya */
+.connect-robot-graphic-block {
+  flex: 1.5; 
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: 100%;
+}
+
+/* 🛠️ UPDATED: Robot Image ko scale(1.15) se badha kar scale(1.4) kar diya hai ekdum giant look ke liye */
+.floating-robot-img {
+  width: 160%; /* Container se bahar push karne ke liye thoda aur badhaya */
+  max-width: 1200px; /* Bounding box ko badha diya taaki zoom cut na ho */
+  height: auto;
+  padding-left: 500px;
+  object-fit: contain;
+  transform: scale(1.4); /* 👈 Robot ka size yahan se poora bada kar diya hai */
+  transform-origin: right center;
+  animation: smoothFloat 4s ease-in-out infinite;
+}
+
+/* Animation backup wrapper with updated giant scaling */
+@keyframes smoothFloat {
+  0% { transform: scale(1.4) translateY(0px); }
+  50% { transform: scale(1.4) translateY(-25px); }
+  100% { transform: scale(1.4) translateY(0px); }
+}
+
+/* Responsive Handling */
+@media (max-width: 1024px) {
+  .connect-content-container {
+    flex-direction: column;
+    text-align: center;
+    gap: 50px;
+    padding: 0 20px;
+  }
+  .connect-title-heading {
+    font-size: 70px;
+    padding-left: 0;
+  }
+  .connect-dark-subhead {
+    font-size: 45px;
+    padding-left: 0;
+  }
+  .connect-serif-highlight {
+    font-size: 45px;
+  }
+  .connect-robot-graphic-block {
+    justify-content: center;
+    width: 100%;
+  }
+  .floating-robot-img {
+    width: 100%;
+    max-width: 500px;
+    transform: scale(1);
+    animation: smoothFloatMobile 4s ease-in-out infinite;
+  }
+}
+
+@keyframes smoothFloatMobile {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-15px); }
+  100% { transform: translateY(0px); }
+}

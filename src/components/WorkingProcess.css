@@ -1,0 +1,252 @@
+.working-process-section{
+  width: 100%;
+  padding: 110px 5%;
+
+  /* UPPER SECTION KE SAATH MATCHING */
+  background: linear-gradient(
+  to bottom,
+  #f8f7ef 0%,
+  #f4f0d9 40%,
+  #ece4bb 75%,
+  #e2d39a 100%
+);
+
+  overflow: hidden;
+}
+
+/* ================= HEADING ================= */
+
+.working-heading{
+  text-align: center;
+}
+
+.working-heading h1{
+  font-size: 64px;
+  font-weight: 700;
+
+  color: #17120d;
+}
+
+.heading-line{
+  width: 230px;
+  height: 7px;
+
+  margin: 16px auto 0;
+
+  border-radius: 20px;
+
+  background: #f0c133;
+}
+
+/* ================= WRAPPER ================= */
+
+.process-wrapper{
+  margin-top: 10px;
+
+  display: grid;
+  grid-template-columns: 1fr 320px 1fr;
+
+  align-items: center;
+
+  gap: 40px;
+}
+
+/* ================= LEFT / RIGHT ================= */
+
+.process-left,
+.process-right{
+  display: flex;
+  flex-direction: column;
+}
+
+/* ================= CARD ================= */
+
+.process-card{
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+
+  transition: 0.35s ease;
+}
+
+.process-card:hover{
+  transform: translateY(-5px);
+}
+
+/* ================= ICON ================= */
+
+.process-icon{
+  min-width: 82px;
+  width: 82px;
+  height: 82px;
+
+  border-radius: 50%;
+
+  background: #f4dfa0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  color: #111;
+
+  transition: 0.35s ease;
+}
+
+.process-card:hover .process-icon{
+  background: #f0c133;
+
+  transform: scale(1.08);
+}
+
+/* ================= TEXT ================= */
+
+.process-card h3{
+  font-size: 25px;
+  line-height: 1.2;
+
+  color: #1b1712;
+
+  margin-bottom: 12px;
+}
+
+.process-card p{
+  font-size: 18px;
+  line-height: 1.8;
+
+  color: #403b35;
+
+  max-width: 320px;
+}
+
+/* ================= RIGHT ALIGN ================= */
+
+.right-card{
+  text-align: right;
+  justify-content: flex-end;
+}
+
+/* ================= CENTER ================= */
+
+.process-center{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.center-process-img{
+  width: 800px;
+  height: 800px; 
+
+  object-fit: contain;
+
+  animation: floatProcess 5s ease-in-out infinite;
+}
+
+/* ================= ANIMATION ================= */
+
+@keyframes floatProcess{
+
+  0%{
+    transform: translateY(0px);
+  }
+
+  50%{
+    transform: translateY(-14px);
+  }
+
+  100%{
+    transform: translateY(0px);
+  }
+
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width: 1200px){
+
+  .process-wrapper{
+    grid-template-columns: 1fr;
+  }
+
+  .process-left,
+  .process-right{
+    gap: 50px;
+  }
+
+  .right-card{
+    text-align: left;
+    justify-content: flex-start;
+  }
+
+}
+
+@media(max-width: 768px){
+
+  .working-process-section{
+    padding: 80px 5%;
+  }
+
+  .working-heading h1{
+    font-size: 42px;
+  }
+
+  .heading-line{
+    width: 150px;
+  }
+
+  .process-card h3{
+    font-size: 22px;
+  }
+
+  .process-card p{
+    font-size: 16px;
+  }
+
+  .process-icon{
+    width: 68px;
+    height: 68px;
+    min-width: 68px;
+  }
+
+  .center-process-img{
+    max-width: 220px;
+  }
+
+}
+
+/* ================= CUSTOM GAPS ================= */
+
+/* ================= CUSTOM POSITION ================= */
+
+.top-left{
+  transform: translateX(180px);
+  margin-bottom: 170px;
+}
+
+.top-right{
+  transform: translateX(-180px);
+  margin-bottom: 170px;
+}
+
+.middle-left{
+  margin-right: 70px;
+  margin-bottom: 180px;
+}
+
+.middle-right{
+  margin-left: 70px;
+  margin-bottom: 180px;
+}
+
+.bottom-left{
+  margin-right: -20px;
+  transform: translateX(180px);
+
+}
+
+.bottom-right{
+  margin-left: -20px;
+  transform: translateX(-180px);
+
+}

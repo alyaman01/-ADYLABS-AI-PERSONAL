@@ -1,0 +1,172 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body{
+  background: #f5f5f5;
+  font-family: serif;
+  /* 🎯 FIX: Kyunki navbar fixed hai, toh website ka baaki content navbar ke peeche na chhupe */
+  padding-top: 100px; 
+}
+
+.navbar{
+  /* 🎯 FIX: Navbar ko top par ek jagah fix kar diya */
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999999; /* Taaki website ka koi bhi section iske upar na aaye */
+
+  width: 100%;
+  height: 100px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 40px;
+
+  /* ✨ GLASSMORPHISM EFFECT: Transparent White + Heavy Blur */
+  background: rgba(255, 255, 255, 0.75); 
+  backdrop-filter: blur(12px); 
+  -webkit-backdrop-filter: blur(12px); /* Safari support ke liye */
+  
+  /* Halka sa bottom border ya shadow taaki content se alag dikhe */
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+}
+
+/* LEFT */
+.logo-container{
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.logo-container img{
+  width: 45px;
+}
+
+.logo-container h1{
+  font-size: 22px;
+  font-weight: bold;
+}
+
+/* CENTER */
+.nav-links{
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  list-style: none;
+}
+
+.nav-links li{
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.active{
+  border-bottom: 3px solid #f5b301;
+  padding-bottom: 5px;
+}
+
+/* RIGHT */
+.navbar-right{
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.navbar-market-btn{
+  padding: 15px 28px;
+  border-radius: 35px;
+  border: 1px solid #d8d8d8;
+  background: white;
+  cursor: pointer;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.contact-btn{
+  padding: 15px 28px;
+  border-radius: 35px;
+  border: none;
+  background: #fff0c4;
+  cursor: pointer;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.market-btn img,
+.contact-btn img{
+  width: 18px;
+}
+
+/* ==========================================================================
+   🚀 DROPDOWN HOVER ADDITIONS (With Expanded Height Support)
+   ========================================================================== */
+
+.dropdown-nav-item {
+  position: relative;
+  padding-bottom: 20px; 
+  margin-bottom: -20px;
+}
+
+.dropdown-menu-card {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(15px);
+  background: #ffffff;
+  width: 290px; /* Thoda sa scale badhaye 6 items ke liye */
+  border-radius: 14px;
+  padding: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  list-style: none;
+  
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s cubic-bezier(0.25, 1, 0.5, 1), visibility 0.25s;
+  z-index: 999999;
+}
+
+.dropdown-nav-item:hover .dropdown-menu-card {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+
+.dropdown-menu-card li a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  color: #333333;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 10px;
+  font-family: sans-serif;
+  transition: all 0.2s ease-in-out;
+}
+
+.dropdown-menu-card li a:hover {
+  background-color: #f7f7f9;
+  color: #f5b301;
+  transform: translateX(4px);
+}
+
+.dropdown-menu-icon {
+  font-size: 16px;
+  display: inline-flex;
+  align-items: center;
+}

@@ -1,0 +1,159 @@
+/* Container Framework - Seamless alignment with the section above */
+.agency-awards-section {
+  width: 100vw;
+  padding: 40px 0 120px 0; /* Balanced padding top/bottom */
+  background: radial-gradient(circle at 50% 0%, #fffdf2 0%, #ffffff 80%);
+  display: flex;
+  justify-content: center;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.awards-main-container {
+  max-width: 1300px;
+  width: 92%;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+/* ================= 🏆 HEADER & TROPHY AREA ================= */
+.awards-header-block {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  position: relative;
+}
+
+/* 🌈 Exact Screenshot multi-shade gradient header look */
+.awards-gradient-title {
+  font-family: 'Playfair Display', 'Georgia', serif;
+  font-size: 100px; /* Super bold massive typography from screenshot */
+  font-weight: 800;
+  line-height: 1.1;
+  margin: 0;
+  letter-spacing: -2px;
+  background: linear-gradient(95deg, #eab308 0%, #f97316 35%, #1e293b 75%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.reward-cup-wrapper {
+  position: absolute;
+  right: -20px;
+  top: -30px;
+  z-index: 2;
+}
+
+.reward-cup-img {
+  height: 300px; /* Large high-fidelity scale for reward trophy asset */
+  width: auto;
+  padding-bottom: 20px;
+  object-fit: contain;
+  filter: drop-shadow(0 15px 30px rgba(234, 179, 8, 0.15));
+}
+
+/* ================= 🎴 4 CARDS GRID SYSTEM ================= */
+.awards-companies-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2x2 grid framework */
+  gap: 30px;
+  width: 100%;
+}
+
+/* Individual Platform Badge Block styling */
+.award-company-card {
+  background: #ffffff;
+  border: 1px solid rgba(228, 228, 231, 0.7);
+  border-radius: 28px;
+  padding: 45px 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 220px; /* Substantial card height to hold space beautifully */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.015);
+  position: relative;
+  box-sizing: border-box;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+              box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.3s ease;
+}
+
+/* ✨ Premium Colorful Gold Shadow Glow Hover Animation */
+.award-company-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(234, 179, 8, 0.3);
+  /* Pure warm yellow-gold glowing vector aura */
+  box-shadow: 0 20px 45px rgba(234, 179, 8, 0.08), 
+              0 4px 12px rgba(234, 179, 8, 0.03);
+}
+
+/* Tagline metadata text */
+.award-card-tagline {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  font-weight: 800;
+  color: #0f1115;
+  line-height: 1.4;
+  margin-bottom: 25px;
+  max-width: 85%;
+}
+
+.award-card-body {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  width: 100%;
+}
+
+/* Main Brand Logo inside card */
+.award-company-logo {
+  height: 62px; /* Clean and crisp emblem height scale */
+  width: auto;
+  max-width: 70%;
+  object-fit: contain;
+}
+
+/* Bottom Right Corner Mini Sticker Icons */
+.award-mini-corner-badge {
+  height: 78px;
+  width: auto;
+  object-fit: contain;
+}
+
+/* ================= RESPONSIVE HANDLING ================= */
+@media (max-width: 1024px) {
+  .awards-gradient-title {
+    font-size: 60px;
+  }
+  .reward-cup-img {
+    height: 180px;
+  }
+}
+
+@media (max-width: 768px) {
+  .awards-header-block {
+    flex-direction: column-reverse;
+    align-items: center;
+    gap: 20px;
+    text-align: center;
+  }
+  .reward-cup-wrapper {
+    position: relative;
+    right: 0;
+    top: 0;
+  }
+  .awards-gradient-title {
+    font-size: 42px;
+  }
+  .awards-companies-grid {
+    grid-template-columns: 1fr; /* Switch to single column on mobile */
+    gap: 20px;
+  }
+  .award-company-card {
+    padding: 35px;
+    min-height: auto;
+  }
+}

@@ -1,0 +1,178 @@
+.about-company-section{
+  width: 100%;
+
+  padding: 120px 4%;
+
+  background: #f5f4e8;
+}
+
+/* ================= MAIN LOGO ================= */
+
+.about-main-logo{
+  text-align: center;
+
+  margin-bottom: 70px;
+}
+
+.about-main-logo h1{
+  font-size: 110px;
+  font-weight: 800;
+  line-height: 1;
+
+  color: #111;
+}
+
+.about-main-logo h1 span{
+  color: #ecb12e;
+}
+
+/* ================= BOX ================= */
+
+.about-company-box{
+  width: 100%;
+  max-width: 1350px;
+
+  margin: auto;
+
+  padding: 70px 55px;
+
+  border-radius: 34px;
+
+  background: #f8f8f8;
+
+  border: 2px solid #d8d8d8;
+
+  transition: 0.35s ease;
+}
+
+.about-company-box:hover{
+  transform: translateY(-6px);
+
+  box-shadow: 0 20px 40px rgba(0,0,0,0.06);
+}
+
+/* ================= SMALL LOGO ================= */
+
+.small-logo-wrap{
+  width: 120px;
+  height: 120px;
+
+  margin: auto;
+
+  border-radius: 50%;
+
+  background: #ffffff;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin-bottom: 35px;
+}
+
+.small-logo{
+  width: 72px;
+  object-fit: contain;
+}
+
+/* ================= HEADINGS ================= */
+
+.about-company-box h2{
+  text-align: center;
+
+  font-size: 34px;
+  font-weight: 700;
+
+  color: #171717;
+}
+
+.about-company-box h2 span{
+  color: #f09f22;
+}
+
+.about-company-box h3{
+  text-align: center;
+
+  margin-top: 10px;
+  margin-bottom: 55px;
+
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.4;
+
+  color: #1d1d1d;
+}
+
+/* ================= TEXT ================= */
+
+.about-text{
+  display: flex;
+  flex-direction: column;
+
+  gap: 34px;
+}
+
+.about-text p{
+  font-size: 28px;
+  line-height: 1.9;
+  font-weight: 600;
+
+  color: #5a5a5a;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width: 992px){
+
+  .about-main-logo h1{
+    font-size: 72px;
+  }
+
+  .about-company-box{
+    padding: 50px 35px;
+  }
+
+  .about-company-box h2{
+    font-size: 26px;
+  }
+
+  .about-company-box h3{
+    font-size: 22px;
+  }
+
+  .about-text p{
+    font-size: 20px;
+  }
+
+}
+
+@media(max-width: 768px){
+
+  .about-company-section{
+    padding: 80px 5%;
+  }
+
+  .about-main-logo h1{
+    font-size: 52px;
+  }
+
+  .small-logo-wrap{
+    width: 90px;
+    height: 90px;
+  }
+
+  .small-logo{
+    width: 52px;
+  }
+
+  .about-company-box{
+    padding: 35px 22px;
+    border-radius: 24px;
+  }
+
+  .about-text p{
+    font-size: 18px;
+    line-height: 1.7;
+  }
+
+}

@@ -1,0 +1,134 @@
+.services {
+  width: 100%;
+  padding: 70px 70px 30px;
+  background: linear-gradient(
+    to bottom,
+    #f6f2e4 0%,
+    #f4edd6 50%,
+    #f1e7ca 100%
+  );
+  overflow-x: hidden;
+}
+
+.services-container {
+  max-width: 1400px;
+  margin: auto;
+}
+
+/* HEADING */
+.services-heading {
+  text-align: center;
+  font-size: 80px;
+  font-weight: 700;
+  color: #1d1b18;
+  margin-bottom: 30px;
+}
+
+.services-heading span {
+  color: #e4ac1c;
+}
+
+/* TEXT */
+.services-text {
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto 90px;
+  font-size: 24px;
+  line-height: 1.8;
+  color: #66615b;
+  font-weight: 500;
+}
+
+/* 🔄 SLIDER MASK LAYER WINDOW (With scroll physics enabled) */
+.services-slider-window {
+  width: 100%;
+  overflow-x: auto; /* React dragging scroll ke liye auto allow kiya */
+  position: relative;
+  padding: 20px 0;
+  background: transparent;
+  scrollbar-width: none; /* Standard modern scrollbar hide */
+  user-select: none; /* Drag krte time text copy highlight na ho */
+}
+
+.services-slider-window::-webkit-scrollbar {
+  display: none; /* Safari and Chrome scrollbar hide */
+}
+
+/* 🏎️ HORIZONTAL MARQUEE ENGINE */
+.services-slider-track {
+  display: flex;
+  width: max-content;
+  gap: 40px;
+  background: transparent;
+  animation: scrollServices 35s linear infinite; 
+}
+
+/* ⛔ Class to instantly pause animation when user interacts via cursor */
+.pause-marquee {
+  animation-play-state: paused !important;
+}
+
+/* CARD LAYOUT CONFIG */
+.service-card {
+  background: #f8f8f8;
+  border-radius: 24px;
+  overflow: hidden;
+  padding-bottom: 35px;
+  transition: transform 0.3s ease;
+  width: 420px; 
+  flex-shrink: 0; 
+}
+
+.service-card:hover {
+  transform: translateY(-8px);
+}
+
+/* IMAGE */
+.service-card img {
+  width: 100%;
+  display: block;
+  pointer-events: none; /* Image drag ghost break handling */
+}
+
+/* TITLE */
+.service-card h2 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #1f1d1a;
+  margin: 30px 30px 18px;
+}
+
+/* PARAGRAPH */
+.service-card p {
+  font-size: 18px;
+  line-height: 1.8;
+  color: #666;
+  margin: 0 30px;
+}
+
+/* BENEFITS HEADING */
+.benefits-heading {
+  width: 100%;
+  text-align: center;
+  margin-top: 70px;
+}
+
+.benefits-heading h1 {
+  font-size: 78px;
+  font-weight: 700;
+  color: #1d1b18;
+}
+
+.benefits-heading h1 span {
+  color: #e4ac1c;
+}
+
+/* KEYFRAMES FOR INFINITE TICKER LOOP */
+@keyframes scrollServices {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-50% - 20px)); 
+  }
+}

@@ -1,0 +1,240 @@
+/* ==========================================================================
+   🎯 FIX: JSON MARKETPLACE KE ANDAR FAQ WIDTH OVERLAP RESET
+   ========================================================================== */
+.marketplace-container .faq-section {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-top: 40px !important; /* Spacing overlap reset */
+  box-sizing: border-box !important;
+  display: flex !important;
+  justify-content: center !important;
+}
+
+.marketplace-container .faq-container {
+  width: 95% !important;
+  max-width: 1350px !important; /* Bilkul original rules par force karega */
+}
+
+/* ==========================================================================
+   BAKI SAARA ORIGINAL FAQ CODE UNTOUCHED (SAME REHNE DIYA HAI)
+   ========================================================================== */
+
+/* Container section wrapping layout */
+.faq-section {
+  background-color: #fffbe9; /* Clean cream-yellow backdrop */
+  padding: 80px 40px;
+  padding-top: 50px;
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  margin-top: 90px;
+  width: 100%; /* Force standard layout initialization */
+  box-sizing: border-box;
+}
+
+.faq-container {
+  width: 95%;
+  max-width: 1350px;
+  display: flex;
+  gap: 50px;
+  align-items: flex-start; /* Isse right side top se align rahegi */
+}
+
+/* LEFT COLUMN (HEADING + CARD STRUCTURE) */
+.faq-left-column {
+  width: 420px;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+
+/* Text elements matching original layout */
+.main-faq-heading {
+  font-size: 70px;
+  font-weight: 800;
+  color: #111111;
+  margin: 0 0 15px 0;
+  line-height: 1.1;
+}
+
+.main-faq-sub {
+  font-size: 18px;
+  color: #555;
+  font-weight: 600;
+  margin: 0 0 35px 0;
+  line-height: 1.4;
+}
+
+/* Premium Black Card inside Left Column */
+.faq-left-card {
+  width: 100%;
+  background-color: #1a1a1a; 
+  border-radius: 25px;
+  padding: 45px 35px;
+  position: relative;
+  overflow: hidden; 
+  box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+  min-height: 250px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.card-title {
+  color: #ffffff;
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 1.3;
+  margin: 0 0 25px 0;
+}
+
+/* People rows layout */
+.audience-trust-row {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 40px;
+}
+
+.faq-people-img {
+  height: 40px;
+  width: auto;
+  object-fit: contain;
+}
+
+.trust-text {
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.highlight-text {
+  color: #efbe2f; 
+}
+
+/* Yellow Button details */
+.quick-call-btn {
+  background-color: #efbe2f;
+  color: #111;
+  border: none;
+  font-size: 18px;
+  font-weight: 700;
+  padding: 16px 28px;
+  border-radius: 35px;
+  cursor: pointer;
+  width: fit-content;
+  transition: all 0.3s ease;
+  z-index: 2; 
+}
+
+.quick-call-btn:hover {
+  background-color: #e4ad0d;
+  transform: translateY(-2px);
+}
+
+/* Absolute Floating Globe icon */
+.globe-vector-box {
+  position: absolute;
+  bottom: -10px;
+  right: -10px;
+  width: 150px;
+  height: 150px;
+  pointer-events: none;
+}
+
+.globe-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* RIGHT COLUMN (PURE ACCORDION CARDS) */
+.faq-right-accordion {
+  flex-grow: 1;
+}
+
+.accordion-list {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.accordion-item {
+  background: #ffffff;
+  border-radius: 18px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+  overflow: hidden;
+  transition: all 0.3s ease;
+  border: 1.5px solid transparent;
+}
+
+.active-item {
+  border-color: #efbe2f;
+}
+
+.accordion-header {
+  padding: 24px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+}
+
+.accordion-header h3 {
+  font-size: 20px;
+  font-weight: 700;
+  color: #111;
+  margin: 0;
+}
+
+.arrow-icon {
+  font-size: 13px;
+  color: #111;
+  transition: transform 0.3s ease;
+}
+
+.rotate-arrow {
+  transform: rotate(180deg);
+  color: #efbe2f;
+}
+
+.accordion-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out, padding 0.3s ease;
+  padding: 0 30px;
+  background-color: #ffffff;
+}
+
+.show-body {
+  max-height: 250px; 
+  padding-bottom: 24px;
+}
+
+.accordion-body p {
+  font-size: 17px;
+  color: #444;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Mobile & Tablet responsive adaptation */
+@media (max-width: 1024px) {
+  .faq-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  .faq-left-column {
+    width: 100%;
+    max-width: 600px;
+  }
+  .faq-left-card {
+    padding-bottom: 110px;
+  }
+  .faq-right-accordion {
+    width: 100%;
+    max-width: 600px;
+  }
+}

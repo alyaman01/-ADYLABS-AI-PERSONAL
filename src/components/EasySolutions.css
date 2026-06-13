@@ -1,0 +1,254 @@
+.easy-solutions{
+  width: 100%;
+  background: #f3f3f3;
+
+  margin-top: -40px;
+
+  position: relative;
+  z-index: 2;
+}
+
+/* ================= TOP SECTION ================= */
+
+.top-content{
+  background: rgb(255, 255, 255);
+
+  padding-top: 30px;
+  padding-bottom: 30px;
+
+  text-align: center;
+}
+
+/* EASY SOLUTION */
+
+.easy-heading{
+  font-size: 90px;
+  font-weight: 700;
+  line-height: 1;
+  color: #17120d;
+}
+
+.easy-heading span{
+  color: #e9b12c;
+}
+
+/* ================= BOTTOM GREY SECTION ================= */
+
+.bottom-content{
+
+  position: relative;
+
+  padding: 40px 8% 140px;
+
+  overflow: hidden;
+
+  z-index: 1;
+}
+
+.bottom-content::before{
+
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  background-image: url("../assets/benifits/wave2.svg");
+
+  background-size: 100% 100%;
+
+  background-position: center;
+
+  background-repeat: no-repeat;
+
+  filter: blur(9px);
+
+  transform: scale(1.01);
+
+  opacity: 0.30;
+
+  z-index: 0;
+}
+
+/* PROBLEM HEADING */
+
+.problem-heading{
+  text-align: center;
+  font-size: 72px;
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 35px;
+}
+
+/* SUBTEXT */
+
+.easy-subtext{
+  text-align: center;
+  font-size: 28px;
+  color: #7d7d7d;
+  font-weight: 500;
+
+  max-width: 1200px;
+
+  margin: auto auto 90px;
+
+  line-height: 1.5;
+}
+
+/* ================= GRID ================= */
+
+.solutions-grid{
+  display: grid;
+
+  grid-template-columns: repeat(2, 1fr);
+
+  gap: 42px;
+}
+
+/* CARD */
+
+.solution-card{
+
+  background: rgba(255,255,255,0.22);
+
+  backdrop-filter: blur(22px);
+
+  -webkit-backdrop-filter: blur(22px);
+
+  border: 1.5px solid rgba(255,255,255,0.45);
+
+  border-radius: 30px;
+
+  padding: 34px 38px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 26px;
+
+  transition: all 0.35s ease;
+
+  cursor: pointer;
+
+ box-shadow:
+  0 8px 32px rgba(31, 38, 135, 0.10),
+  inset 0 1px 1px rgba(255,255,255,0.35);
+}
+
+/* HOVER EFFECT */
+
+.solution-card:hover{
+
+  transform: translateY(-6px);
+
+  border: 3px solid #f1d400;
+
+  background: rgba(255, 253, 242, 0.62);
+
+  backdrop-filter: blur(22px);
+
+  -webkit-backdrop-filter: blur(22px);
+
+  box-shadow:
+    0 15px 35px rgba(241, 212, 0, 0.18),
+    0 8px 20px rgba(0,0,0,0.06);
+
+}
+
+/* ICON */
+
+.solution-icon{
+  font-size: 56px;
+
+  flex-shrink: 0;
+}
+
+/* CARD TEXT */
+
+.solution-card p{
+  font-size: 22px;
+
+  line-height: 1.45;
+
+  font-weight: 700;
+
+  color: #111;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width: 992px){
+
+  .easy-heading{
+    font-size: 62px;
+  }
+
+  .problem-heading{
+    font-size: 50px;
+  }
+
+  .easy-subtext{
+    font-size: 22px;
+  }
+
+  .solutions-grid{
+    grid-template-columns: 1fr;
+  }
+
+}
+
+@media(max-width: 768px){
+
+  .top-content{
+    padding-top: 25px;
+    padding-bottom: 25px;
+  }
+
+  .bottom-content{
+    padding: 40px 5% 70px;
+  }
+
+  .easy-heading{
+    font-size: 48px;
+  }
+
+  .problem-heading{
+    font-size: 34px;
+  }
+
+  .easy-subtext{
+    font-size: 18px;
+
+    margin-bottom: 55px;
+  }
+
+  .solution-card{
+    padding: 24px;
+
+    gap: 18px;
+  }
+
+  .solution-icon{
+    font-size: 42px;
+  }
+
+  .solution-card p{
+    font-size: 18px;
+  }
+
+}
+
+.problem-heading,
+.easy-subtext,
+.solutions-grid{
+
+  position: relative;
+
+  z-index: 2;
+}
+
+.consultation-btn{
+
+  margin-top: 40px;
+}

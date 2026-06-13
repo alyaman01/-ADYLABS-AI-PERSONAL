@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1379" height="821" viewBox="0 0 1379 821">
+  <g id="Group_1502" data-name="Group 1502" transform="translate(-0.055 0)" opacity="0.43">
+    <g id="Group_110" data-name="Group 110" transform="translate(50.863 53.409)">
+      <line id="Line_4" data-name="Line 4" y2="734.404" fill="none" stroke="#fffa00" stroke-width="5"/>
+      <line id="Line_7" data-name="Line 7" y2="734.404" transform="translate(1280.91)" fill="none" stroke="#fffa00" stroke-width="5"/>
+      <line id="Line_5" data-name="Line 5" y2="1280.909" transform="translate(1280.91 0) rotate(90)" fill="none" stroke="#fffa00" stroke-width="5"/>
+      <line id="Line_6" data-name="Line 6" y1="1280.909" transform="translate(1280.91 728.679) rotate(90)" fill="none" stroke="#fffa00" stroke-width="5"/>
+    </g>
+    <g id="Group_111" data-name="Group 111" transform="translate(0.054 0)">
+      <g id="Rectangle_219" data-name="Rectangle 219" transform="translate(0.001 0)" fill="#fff" stroke="#fffa00" stroke-width="5">
+        <rect width="65" height="65" stroke="none"/>
+        <rect x="2.5" y="2.5" width="60" height="60" fill="none"/>
+      </g>
+      <g id="Rectangle_220" data-name="Rectangle 220" transform="translate(1316.001 0)" fill="#fff" stroke="#fffa00" stroke-width="5">
+        <rect width="63" height="65" stroke="none"/>
+        <rect x="2.5" y="2.5" width="58" height="60" fill="none"/>
+      </g>
+      <g id="Rectangle_221" data-name="Rectangle 221" transform="translate(1316.001 756)" fill="#fff" stroke="#fffa00" stroke-width="5">
+        <rect width="63" height="65" stroke="none"/>
+        <rect x="2.5" y="2.5" width="58" height="60" fill="none"/>
+      </g>
+      <g id="Rectangle_222" data-name="Rectangle 222" transform="translate(0.001 756)" fill="#fff" stroke="#fffa00" stroke-width="5">
+        <rect width="65" height="65" stroke="none"/>
+        <rect x="2.5" y="2.5" width="60" height="60" fill="none"/>
+      </g>
+    </g>
+  </g>
+</svg>
