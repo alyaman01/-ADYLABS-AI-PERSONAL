@@ -1,8 +1,8 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "./GetInTouchModal.css";
 
-function GetInTouchModal() {
-  const [isOpen, setIsOpen] = useState(false);
+function GetInTouchModal({ onClose, onSubmitSuccess, isForced = false }) {
+  const [isOpen, setIsOpen] = useState(true);
   const [hasTriggeredSecondTime, setHasTriggeredSecondTime] = useState(false);
 
   // Form Field States
@@ -15,18 +15,26 @@ function GetInTouchModal() {
     projectDetails: "",
   });
 
-  useEffect(() => {
-    // 1️⃣ First Trigger: Jaise hi banda website pe aaye
-    setIsOpen(true);
-  }, []);
-
   const handleClose = () => {
-    setIsOpen(false);
+    // 🔐 LOCK LOGIC: Agar button click se popup khula hai toh tab tak close nahi hoga jab tak detail fill na ho
+    if (isForced) return;
 
-    // 2️⃣ Second Trigger Logic
-    if (!hasTriggeredSecondTime) {
+    if (onClose) {
+      onClose();
+    } else {
+      setIsOpen(false);
+    }
+
+    // 2️⃣ Second Trigger Logic (Sirf normal popup users ke liye)
+    if (!hasTriggeredSecondTime && !isForced) {
       setTimeout(() => {
-        setIsOpen(true);
+        if (onClose) {
+          // Parent is managing state, so we let parent open it if required.
+          // Fallback:
+          onClose();
+        } else {
+          setIsOpen(true);
+        }
         setHasTriggeredSecondTime(true); 
       }, 10000); 
     }
@@ -39,24 +47,32 @@ function GetInTouchModal() {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Lead Data Submitted Successfully:", formData);
-    setIsOpen(false);
+    
+    // 🔥 Parent function trigger hoga jo isVerified ko true banayega aur download flow start karega
+    if (onSubmitSuccess) {
+      onSubmitSuccess();
+    } else {
+      setIsOpen(false);
+    }
   };
 
   if (!isOpen) return null;
 
   return (
-    /* 🎯 FIX 1: Main overlay par handleClose lagaya taaki baahar click hone par popup band ho */
-    <div className="modal-blur-overlay" onClick={handleClose}>
+    /* 🎯 FIX 1: Main overlay click -> Agar forced lock hai toh undefined (disabled), varna normal handleClose */
+    <div className="modal-blur-overlay" onClick={isForced ? undefined : handleClose}>
       
-      {/* 🎯 FIX 2: e.stopPropagation() lagaya taaki form ke andar click karne par galti se modal band na ho */}
+      {/* 🎯 FIX 2: stopPropagation taaki form inputs par click karne se modal band na ho */}
       <div className="get-in-touch-modal-card" onClick={(e) => e.stopPropagation()}>
         
-        {/* Close Button Cross Icon */}
-        <button className="modal-close-cross" onClick={handleClose}>✕</button>
+        {/* ✕ Close Button: Agar isForced status true hai, toh Cross icon screen se hat jayega */}
+        {!isForced && (
+          <button className="modal-close-cross" onClick={handleClose}>✕</button>
+        )}
 
         <div className="modal-header-block">
-          <h2>Get in Touch</h2>
-          <p>Our experts will reach out within 24 hours.</p>
+          <h2>{isForced ? "🔒 Unlock Your Template & Schema" : "Get in Touch"}</h2>
+          <p>{isForced ? "Please fill in your details to instantly copy or download the n8n JSON file." : "Our experts will reach out within 24 hours."}</p>
         </div>
 
         <form onSubmit={handleSubmit} className="modal-lead-form">
@@ -151,7 +167,9 @@ function GetInTouchModal() {
             <button type="button" className="attach-document-btn">
               <span className="paperclip-icon">📎</span> Attach Your Document
             </button>
-            <button type="submit" className="modal-submit-cta">SUBMIT</button>
+            <button type="submit" className="modal-submit-cta">
+              {isForced ? "UNLOCK & DOWNLOAD NOW" : "SUBMIT"}
+            </button>
           </div>
 
         </form>

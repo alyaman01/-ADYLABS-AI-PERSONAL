@@ -27,21 +27,41 @@ import FaqSection from "../FaqSection";
 import ContactEnquiry from "../ContactEnquiry";
 import LetsTalkCTA from "../LetsTalkCTA";
 
+// 👑 POPUP CARD COMPONENT
+import GetInTouchModal from "../GetInTouchModal"; 
+
 function TemplateDetail({ filename, onBack }) {
   const [currentFile, setCurrentFile] = useState(filename);
   const [nodes, setNodes] = useState([]);
   const [edges, setEdges] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  /* 🔐 LEAD GENERATION STATES */
+  const [isVerified, setIsVerified] = useState(false); // Check karega ki user form bhar chuka hai ya nahi
+  const [showModal, setShowModal] = useState(false);   // Popup modal ko hide/show karne ke liye
+  const [pendingAction, setPendingAction] = useState(null); // Yaad rakhega 'copy' dabaya tha ya 'download'
+  const [isModalForced, setIsModalForced] = useState(false); // 🔥 Lock status check karne ke liye
+
   useEffect(() => {
     setCurrentFile(filename);
   }, [filename]);
+
+  // 🕒 1️⃣ FIRST TRIGGER: Page load hone ke 3 second baad normal popup automatic dikhane ke liye
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (!isVerified) {
+        setIsModalForced(false); // 🔓 Normal popup, jise cut kiya ja sake
+        setShowModal(true);
+      }
+    }, 3000);
+    return () => clearTimeout(timer);
+  }, [isVerified, currentFile]);
 
   useEffect(() => {
     const loadGithubWorkflow = async () => {
       try {
         setLoading(true);
-        const repoEndpoint = `https://githubusercontent.com{currentFile}`;
+        const repoEndpoint = `https://raw.githubusercontent.com${currentFile}`;
         const res = await fetch(repoEndpoint);
         
         if (!res.ok) {
@@ -115,6 +135,44 @@ function TemplateDetail({ filename, onBack }) {
     ]);
   };
 
+  /* ⚡ REAL ACTION EXECUTIONER */
+  const executeAction = (actionType) => {
+    if (actionType === "copy") {
+      navigator.clipboard.writeText(JSON.stringify({ nodes, edges }, null, 2));
+      alert("JSON Code copied to clipboard successfully! 🔥");
+    } else if (actionType === "download") {
+      const blob = new Blob([JSON.stringify({ nodes, edges }, null, 2)], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = `${currentFile ? currentFile.split("/").pop().replace(".json", "") : "n8n-template"}.json`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+  };
+
+  /* 🔘 BUTTON CLICK HANDLERS */
+  const handleActionButtonClick = (action) => {
+    if (isVerified) {
+      executeAction(action);
+    } else {
+      setPendingAction(action);
+      setIsModalForced(true); // 🔥 Locked Mode Active! Ab user bina fill kiye cut nahi kar payega
+      setShowModal(true);
+    }
+  };
+
+  /* 📝 SUCCESSFUL FORM SUBMISSION HANDLER */
+  const handleFormSubmitSuccess = () => {
+    setIsVerified(true);   
+    setShowModal(false);   
+    if (pendingAction) {
+      executeAction(pendingAction); 
+      setPendingAction(null);       
+    }
+  };
+
   if (loading) {
     return <div style={{ textAlign: "center", fontSize: "24px", fontWeight: "bold", paddingTop: "200px", background: "#ffffff", height: "100vh" }}>🔄 Generating Live n8n Automation Canvas...</div>;
   }
@@ -122,16 +180,13 @@ function TemplateDetail({ filename, onBack }) {
   return (
     <div className="template-detail-page">
       
-      {/* 🎯 NEW WRAPPER BLOCK: Iske andar background color denge full screen edge breakout ke saath */}
       <div className="detail-top-colored-bg">
         
-        {/* BACK NAVIGATION */}
         <div className="back-navigation" onClick={onBack}>
           <span className="arrow-back">←</span>
           <span>Back to template</span>
         </div>
 
-        {/* TOP CANVAS AREA */}
         <div className="detail-layout-container">
           <div className="detail-left-column">
             <div className="tech-badge-row">
@@ -142,11 +197,11 @@ function TemplateDetail({ filename, onBack }) {
             </div>
 
             <h1 className="template-main-title">
-              {currentFile ? currentFile.replace(".json", "").replaceAll("-", " ") : "Personal Life Manager"}
+              {currentFile ? currentFile.split("/").pop().replace(".json", "").replaceAll("-", " ") : "Personal Life Manager"}
             </h1>
 
             <p className="template-description">
-                Personal life manager withTelegram, Google services& voice-enabled AI
+                Personal life manager with Telegram, Google services & voice-enabled AI
             </p>
 
             <div className="creator-profile-card">
@@ -157,8 +212,23 @@ function TemplateDetail({ filename, onBack }) {
               </div>
               
               <div className="detail-action-buttons">
-                <button className="dt-btn dt-copy" title="Copy Raw Code"><img src={CopyIcon} alt="Copy" /></button>
-                <button className="dt-btn dt-download" title="Download Schema File"><img src={DownloadIcon} alt="Download" /></button>
+                {/* 📋 Copy Button */}
+                <button 
+                  className="dt-btn dt-copy" 
+                  title="Copy Raw Code"
+                  onClick={() => handleActionButtonClick("copy")}
+                >
+                  <img src={CopyIcon} alt="Copy" />
+                </button>
+
+                {/* 💾 Download Button */}
+                <button 
+                  className="dt-btn dt-download" 
+                  title="Download Schema File"
+                  onClick={() => handleActionButtonClick("download")}
+                >
+                  <img src={DownloadIcon} alt="Download" />
+                </button>
               </div>
             </div>
           </div>
@@ -171,26 +241,32 @@ function TemplateDetail({ filename, onBack }) {
           </div>
         </div>
 
-      </div> {/* TOP COLORED WRAPPER ENDS */}
+      </div>
 
-      {/* LOWER INFO TEXT COMPONENT */}
       <TemplateInfo filename={currentFile} />
 
-     
-      {/* RELATED GRID */}
       <RelatedTemplates onSelectCard={(newFile) => {
         setCurrentFile(newFile);
         window.scrollTo({ top: 0, behavior: "smooth" });
       }} />
 
-            <BonusSection/>
-            <PricingBonusTable/>
-            <WhyChooseUs/>
-            <WorkingProcess/>
-            <TestimonialSlider/>
-            <FaqSection/>
-            <ContactEnquiry/>
-            <LetsTalkCTA/>
+      <BonusSection/>
+      <PricingBonusTable/>
+      <WhyChooseUs/>
+      <WorkingProcess/>
+      <TestimonialSlider/>
+      <FaqSection/>
+      <ContactEnquiry/>
+      <LetsTalkCTA/>
+
+      {/* 🔮 PASSING CONTROL PROPS TO MODAL */}
+      {showModal && (
+        <GetInTouchModal 
+          isForced={isModalForced}
+          onClose={() => setShowModal(false)} 
+          onSubmitSuccess={handleFormSubmitSuccess} 
+        />
+      )}
 
     </div>
   );
