@@ -1,0 +1,24 @@
+/* 🌍 Global Reset aur Segoe UI Font Implementation */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body, html, #root {
+  font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, "Roboto", "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #ffffff;
+  color: #111111;
+}
+
+/* 🎨 Buttons aur Input fields ke liye safe backup font handle */
+input, select, textarea, button {
+  font-family: "Segoe UI", sans-serif !important;
+}
+
+/* 🌀 React Flow ke canvas ke text ko Segoe UI par force karne ke liye */
+.react-flow__node {
+  font-family: "Segoe UI", sans-serif !important;
+}

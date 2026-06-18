@@ -37,20 +37,20 @@ function TemplateDetail({ filename, onBack }) {
   const [loading, setLoading] = useState(true);
 
   /* 🔐 LEAD GENERATION STATES */
-  const [isVerified, setIsVerified] = useState(false); // Check karega ki user form bhar chuka hai ya nahi
-  const [showModal, setShowModal] = useState(false);   // Popup modal ko hide/show karne ke liye
-  const [pendingAction, setPendingAction] = useState(null); // Yaad rakhega 'copy' dabaya tha ya 'download'
-  const [isModalForced, setIsModalForced] = useState(false); // 🔥 Lock status check karne ke liye
+  const [isVerified, setIsVerified] = useState(false); 
+  const [showModal, setShowModal] = useState(false);   
+  const [pendingAction, setPendingAction] = useState(null); 
+  const [isModalForced, setIsModalForced] = useState(false); 
 
   useEffect(() => {
     setCurrentFile(filename);
   }, [filename]);
 
-  // 🕒 1️⃣ FIRST TRIGGER: Page load hone ke 3 second baad normal popup automatic dikhane ke liye
+  // 🕒 1️⃣ FIRST TRIGGER: Page load hone ke 3 second baad
   useEffect(() => {
     const timer = setTimeout(() => {
       if (!isVerified) {
-        setIsModalForced(false); // 🔓 Normal popup, jise cut kiya ja sake
+        setIsModalForced(false); 
         setShowModal(true);
       }
     }, 3000);
@@ -135,7 +135,6 @@ function TemplateDetail({ filename, onBack }) {
     ]);
   };
 
-  /* ⚡ REAL ACTION EXECUTIONER */
   const executeAction = (actionType) => {
     if (actionType === "copy") {
       navigator.clipboard.writeText(JSON.stringify({ nodes, edges }, null, 2));
@@ -152,18 +151,16 @@ function TemplateDetail({ filename, onBack }) {
     }
   };
 
-  /* 🔘 BUTTON CLICK HANDLERS */
   const handleActionButtonClick = (action) => {
     if (isVerified) {
       executeAction(action);
     } else {
       setPendingAction(action);
-      setIsModalForced(true); // 🔥 Locked Mode Active! Ab user bina fill kiye cut nahi kar payega
+      setIsModalForced(true); 
       setShowModal(true);
     }
   };
 
-  /* 📝 SUCCESSFUL FORM SUBMISSION HANDLER */
   const handleFormSubmitSuccess = () => {
     setIsVerified(true);   
     setShowModal(false);   
@@ -196,12 +193,14 @@ function TemplateDetail({ filename, onBack }) {
               <div className="detail-badge-box"><img src={CursorIcon} alt="Cursor" /></div>
             </div>
 
+            {/* 🎯 FIXED HEADING MAP */}
             <h1 className="template-main-title">
-              {currentFile ? currentFile.split("/").pop().replace(".json", "").replaceAll("-", " ") : "Personal Life Manager"}
+              Personal life manager with Telegram, Google services & voice-enabled AI
             </h1>
 
+            {/* 🎯 FIXED SUBHEADING DESCRIPTION MAP */}
             <p className="template-description">
-                Personal life manager with Telegram, Google services & voice-enabled AI
+              This project teaches you to create a personal AI assistant named Jackie that operates through Telegram
             </p>
 
             <div className="creator-profile-card">
@@ -212,7 +211,6 @@ function TemplateDetail({ filename, onBack }) {
               </div>
               
               <div className="detail-action-buttons">
-                {/* 📋 Copy Button */}
                 <button 
                   className="dt-btn dt-copy" 
                   title="Copy Raw Code"
@@ -221,7 +219,6 @@ function TemplateDetail({ filename, onBack }) {
                   <img src={CopyIcon} alt="Copy" />
                 </button>
 
-                {/* 💾 Download Button */}
                 <button 
                   className="dt-btn dt-download" 
                   title="Download Schema File"
@@ -259,7 +256,6 @@ function TemplateDetail({ filename, onBack }) {
       <ContactEnquiry/>
       <LetsTalkCTA/>
 
-      {/* 🔮 PASSING CONTROL PROPS TO MODAL */}
       {showModal && (
         <GetInTouchModal 
           isForced={isModalForced}

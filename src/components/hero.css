@@ -1,88 +1,134 @@
 .hero {
-
   width: 100%;
   min-height: 100vh;
-
   position: relative;
   overflow: hidden;
-
   display: flex;
   flex-direction: column;
-
   justify-content: center;
   align-items: center;
-
   text-align: center;
-
   background-image: url("../assets/home/home bg.png");
-
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-
   padding: 120px 40px;
 }
 
 /* ================= HEADING ================= */
-
 .hero h1 {
-
   font-size: 170px;
-
   font-weight: 700;
-
   line-height: 1;
-
   color: black;
 }
 
 /* ================= TEXT ================= */
-
 .hero p {
-
   margin-top: 35px;
-
   font-size: 32px;
-
   line-height: 1.4;
-
   color: #5a5a5a;
-
   font-weight: 600;
-
   max-width: 900px;
-
   text-align: center;
 }
 
-/* ================= BUTTON ================= */
-
-.hero button {
-
-  margin-top: 55px;
-
-  padding: 28px 90px;
-
-  border-radius: 70px;
-
-  border: 2px solid #d89d00;
-
-  background: rgba(255,255,255,0.15);
-
-  backdrop-filter: blur(10px);
-
-  font-size: 30px;
-
-  font-weight: 600;
-
-  cursor: pointer;
-
-  transition: 0.3s ease;
+/* ==========================================================================
+   👑 HERO BUTTON: 360° ROTATING GLOW + GIANT ACCENT AURA
+   ========================================================================== */
+@keyframes rotateHeroBorder {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
 }
 
-.hero button:hover {
+.glowing-hero-btn {
+  margin-top: 55px;
+  position: relative;
+  
+  /* Sizing proportion mapped from your original layout bounds */
+  width: 440px; 
+  height: 94px; 
+  
+  border-radius: 70px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  overflow: hidden; 
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  
+  /* High visibility ambient shadow tracker */
+  box-shadow: 0 10px 30px rgba(245, 179, 1, 0.15);
+  transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s ease;
+}
 
+/* Infinite rolling loop tracks scaled up for giant layout viewport */
+.glowing-hero-btn::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 250%; 
+  height: 250%;
+  background: conic-gradient(
+    #f5b301, 
+    #ffedd5, 
+    #ffdca3, 
+    #f5b301
+  ); 
+  animation: rotateHeroBorder 5s linear infinite;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+
+/* Giant inner content mask with soft layout aura blend */
+.hero-btn-inner-content {
+  position: absolute;
+  inset: 2.2px; 
+  
+  /* Clean White with Soft Golden Tint Aura */
+  background: linear-gradient(135deg, #ffffff 65%, #fff8e8 100%);
+  
+  border-radius: 70px;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px; /* Text aur Arrow ke beech ka premium gap */
+  
+  /* Original Big Font Metrics preserved precisely */
+  font-size: 30px;
+  font-weight: 600;
+  color: #111111;
+  transition: background 0.4s ease, color 0.4s ease;
+}
+
+/* Hover Interaction scaling mechanics */
+.glowing-hero-btn:hover {
   transform: scale(1.03);
+  box-shadow: 0 15px 40px rgba(245, 179, 1, 0.28);
+}
 
-  background: rgba(255,255,255,0.25);
+.glowing-hero-btn:hover .hero-btn-inner-content {
+  background: linear-gradient(135deg, #fffbf2 0%, #fff2cc 100%);
+}
+
+/* ==========================================================================
+   🎯 🚀 AUTOMATIC SMOOTH MOVING ARROW ANIMATION
+   ========================================================================== */
+@keyframes arrowBounceLeftRight {
+  0% { transform: translateX(0); }
+  50% { transform: translateX(6px); }  /* Halka sa right mein slide hoga */
+  100% { transform: translateX(0); }  /* Waapis apni jagah par */
+}
+
+.animated-btn-arrow {
+  display: inline-block;
+  font-size: 32px; /* Font ke scale ke mutabik arrow size handle */
+  color: #000000;  /* Arrow ko corporate brand yellow color diya */
+  
+  /* Smooth automatic continuous movement physics */
+  animation: arrowBounceLeftRight 1.5s ease-in-out infinite; 
 }

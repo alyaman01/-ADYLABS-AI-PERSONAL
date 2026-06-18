@@ -25,7 +25,7 @@ function Navbar() {
       {/* CENTER - Links */}
       <ul className="nav-links">
         <li
-          className={active === "Home" ? "active" : ""}
+          className={`nav-item ${active === "Home" ? "active" : ""}`}
           onClick={() => setActive("Home")}
         >
           <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>Home</Link>
@@ -33,7 +33,7 @@ function Navbar() {
 
         {/* 🎯 Services Dropdown Structure with 3 New Options */}
         <li
-          className={`dropdown-nav-item ${active === "Services" ? "active" : ""}`}
+          className={`dropdown-nav-item nav-item ${active === "Services" ? "active" : ""}`}
           onClick={() => setActive("Services")}
         >
           <span className="dropdown-trigger-link">Services</span>
@@ -54,7 +54,7 @@ function Navbar() {
                 <span className="dropdown-menu-icon">📈</span> AI Sales Agent
               </Link>
             </li>
-            {/* ✨ Naye Options Added 👇 */}
+            {/* ✨ Naye Options 👇 */}
             <li>
               <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
                 <span className="dropdown-menu-icon">💬</span> WhatsApp Automation
@@ -74,21 +74,21 @@ function Navbar() {
         </li>
 
         <li
-          className={active === "Portfolio" ? "active" : ""}
+          className={`nav-item ${active === "Portfolio" ? "active" : ""}`}
           onClick={() => setActive("Portfolio")}
         >
           Portfolio
         </li>
 
         <li
-          className={active === "About Us" ? "active" : ""}
+          className={`nav-item ${active === "About Us" ? "active" : ""}`}
           onClick={() => setActive("About Us")}
         >
           About Us
         </li>
 
         <li
-          className={active === "Pricing Plan" ? "active" : ""}
+          className={`nav-item ${active === "Pricing Plan" ? "active" : ""}`}
           onClick={() => setActive("Pricing Plan")}
         >
           Pricing Plan
@@ -97,17 +97,20 @@ function Navbar() {
 
       {/* RIGHT - Buttons */}
       <div className="navbar-right">
-        <Link to="/marketplace" style={{ textDecoration: 'none' }}>
-        <button className="navbar-market-btn">
-        <img src={DownloadIcon} alt="download" />
-          Json Marketplace
-        </button>
-       </Link>
+        <Link to="/marketplace" style={{ textDecoration: 'none' }} onClick={() => setActive("")}>
+          <button className="navbar-market-btn">
+            <img src={DownloadIcon} alt="download" />
+            Json Marketplace
+          </button>
+        </Link>
 
+        {/* 🔥 Glowing Rotating Border Implementation Wrapper */}
         <Link to="/contact" style={{ textDecoration: 'none' }} onClick={() => setActive("")}>
-          <button className="contact-btn">
-            <img src={PhoneIcon} alt="phone" />
-            Contact Us
+          <button className="glowing-contact-btn">
+            <span className="btn-inner-content">
+              <img src={PhoneIcon} alt="phone" className="phone-icon-img" />
+              Contact Us
+            </span>
           </button>
         </Link>
       </div>

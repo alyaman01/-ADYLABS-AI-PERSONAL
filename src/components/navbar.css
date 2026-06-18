@@ -1,22 +1,27 @@
-*{
+/* ==========================================================================
+   🌍 GLOBAL RESET & FONTS SETUP (Segoe UI Integration)
+   ========================================================================== */
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-body{
+body {
   background: #f5f5f5;
-  font-family: serif;
-  /* 🎯 FIX: Kyunki navbar fixed hai, toh website ka baaki content navbar ke peeche na chhupe */
+  /* 🎯 PREMIUM UPDATE: Clean Segoe UI font family */
+  font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
   padding-top: 100px; 
 }
 
-.navbar{
-  /* 🎯 FIX: Navbar ko top par ek jagah fix kar diya */
+/* ==========================================================================
+   🧱 MAIN NAVBAR LAYER (With Glassmorphism & Fixed Blur)
+   ========================================================================== */
+.navbar {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 999999; /* Taaki website ka koi bhi section iske upar na aaye */
+  z-index: 999999; 
 
   width: 100%;
   height: 100px;
@@ -26,94 +31,245 @@ body{
   align-items: center;
   padding: 0 40px;
 
-  /* ✨ GLASSMORPHISM EFFECT: Transparent White + Heavy Blur */
-  background: rgba(255, 255, 255, 0.75); 
+  /* Transparent White Layout with Heavy Filter Blur */
+  background: rgba(255, 255, 255, 0.85); 
   backdrop-filter: blur(12px); 
-  -webkit-backdrop-filter: blur(12px); /* Safari support ke liye */
+  -webkit-backdrop-filter: blur(12px); 
   
-  /* Halka sa bottom border ya shadow taaki content se alag dikhe */
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.01);
 }
 
-/* LEFT */
-.logo-container{
+/* ==========================================================================
+   ✨ LEFT LOGO AREA: Text Gradient Motion Effect
+   ========================================================================== */
+.logo-link-wrapper {
+  text-decoration: none;
+  color: inherit;
+}
+
+.logo-container {
   display: flex;
   align-items: center;
   gap: 14px;
 }
 
-.logo-container img{
+.logo-container img {
   width: 45px;
+  border-radius: 8px;
 }
 
-.logo-container h1{
+@keyframes textGradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.logo-container h1 {
   font-size: 22px;
-  font-weight: bold;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  
+  /* Continuous Smooth Glowing Flow */
+  background: linear-gradient(135deg, #111111, #efbe2f, #f5b301, #111111);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: textGradientMove 6s ease infinite;
 }
 
-/* CENTER */
-.nav-links{
+/* ==========================================================================
+   🎯 CENTER NAVIGATION LINKS: Sliding Underline & Contrast Toggles
+   ========================================================================== */
+.nav-links {
   display: flex;
   align-items: center;
   gap: 40px;
   list-style: none;
 }
 
-.nav-links li{
+.nav-links .nav-item {
   cursor: pointer;
-  font-size: 18px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #8a8a8a; /* 🔘 Base color is premium light grey */
+  position: relative;
+  padding: 8px 0;
+  transition: color 0.3s ease, font-weight 0.2s ease;
 }
 
-.active{
-  border-bottom: 3px solid #f5b301;
-  padding-bottom: 5px;
+/* Active Link State handler: Bold Dark Black */
+.nav-links .nav-item.active {
+  color: #111111 !important;
+  font-weight: 700;
 }
 
-/* RIGHT */
-.navbar-right{
+.nav-links .nav-item:hover {
+  color: #111111;
+}
+
+/* Minimalist Underline Element Base */
+.nav-links .nav-item::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2.5px;
+  background-color: #f5b301; /* Corporate Brand Yellow */
+  transition: width 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  border-radius: 4px;
+}
+
+/* Expand line to 100% width on active or hover */
+.nav-links .nav-item:hover::after,
+.nav-links .nav-item.active::after {
+  width: 100%;
+}
+
+/* ==========================================================================
+   📥 RIGHT ACTIONS PANEL: Marketplace Controls
+   ========================================================================== */
+.navbar-right {
   display: flex;
   align-items: center;
   gap: 20px;
 }
 
-.navbar-market-btn{
-  padding: 15px 28px;
+@keyframes buttonPulseGlow {
+  0% { box-shadow: 0 4px 15px rgba(239, 190, 47, 0.2); }
+  50% { box-shadow: 0 4px 25px rgba(239, 190, 47, 0.45); }
+  100% { box-shadow: 0 4px 15px rgba(239, 190, 47, 0.2); }
+}
+
+.navbar-market-btn {
+  padding: 13px 26px;
   border-radius: 35px;
-  border: 1px solid #d8d8d8;
-  background: white;
+  border: none; /* Fixed border hata diya */
+  
+  /* 🔥 Premium Tech Soft Gradient Background */
+  background: linear-gradient(135deg, #111111 0%, #2a2a2a 50%, #f5b301 100%);
+  background-size: 200% auto;
+  
   cursor: pointer;
-  font-size: 16px;
+  font-size: 15px;
+  font-weight: 600;
+  
+  /* Text and Icon white ho jayenge premium contrast ke liye */
+  color: #ffffff; 
+  
   display: flex;
   align-items: center;
   gap: 10px;
+  
+  /* Smooth speed handling for interactions */
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  position: relative;
+  z-index: 1;
 }
 
-.contact-btn{
-  padding: 15px 28px;
-  border-radius: 35px;
-  border: none;
-  background: #fff0c4;
-  cursor: pointer;
-  font-size: 16px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
+/* Marketplace Button Hover State Effects */
+.navbar-market-btn:hover {
+  background-position: right center; 
+  color: #ffffff;
+  transform: translateY(-2px); /* Halka sa upar uthega */
+  animation: buttonPulseGlow 2s infinite; /* Golden pulse glow effect */
 }
 
-.market-btn img,
-.contact-btn img{
-  width: 18px;
+/* Icon adjustment for reverse contrast inside Dark Button */
+.navbar-market-btn img {
+  width: 16px;
+  filter: brightness(0) invert(1); /* Black icon ko automatic white karne ke liye magic trick */
 }
 
 /* ==========================================================================
-   🚀 DROPDOWN HOVER ADDITIONS (With Expanded Height Support)
+   👑 360° ROTATING GLOW GRADIENT CONTACT US BUTTON
    ========================================================================== */
+@keyframes rotateBorderGlow {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
 
+.glowing-contact-btn {
+  position: relative;
+  width: 155px;
+  height: 48px;
+  border-radius: 35px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  overflow: hidden; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 15px rgba(245, 179, 1, 0.12);
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+/* Infinite rolling loop light tracks beneath mask */
+.glowing-contact-btn::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(
+    #f5b301, 
+    #ffedd5, 
+    #ffdca3, 
+    #f5b301
+  ); 
+  animation: rotateBorderGlow 4s linear infinite;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+
+/* Mask Inner Layer Area with Clean Corner Soft Aura Blend */
+.btn-inner-content {
+  position: absolute;
+  inset: 1.8px; /* Border Sharpness Gauge */
+  
+  /* Subtle Background Tint matching brandimplus layout aura */
+  background: linear-gradient(135deg, #ffffff 60%, #fff7e6 100%); 
+  
+  border-radius: 35px;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #111111;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.phone-icon-img {
+  width: 16px;
+}
+
+.glowing-contact-btn:hover {
+  transform: scale(1.02);
+  box-shadow: 0 6px 20px rgba(245, 179, 1, 0.22);
+}
+
+.glowing-contact-btn:hover .btn-inner-content {
+  background: linear-gradient(135deg, #fffcf5 0%, #fff0c4 100%);
+}
+
+/* ==========================================================================
+   🚀 DROPDOWN HOVER ARCHITECTURE WITH OFFSET WRAPPERS
+   ========================================================================== */
 .dropdown-nav-item {
   position: relative;
   padding-bottom: 20px; 
   margin-bottom: -20px;
+}
+
+.dropdown-trigger-link {
+  display: inline-block;
 }
 
 .dropdown-menu-card {
@@ -122,7 +278,7 @@ body{
   left: 50%;
   transform: translateX(-50%) translateY(15px);
   background: #ffffff;
-  width: 290px; /* Thoda sa scale badhaye 6 items ke liye */
+  width: 290px; 
   border-radius: 14px;
   padding: 10px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
@@ -155,7 +311,7 @@ body{
   font-size: 14px;
   font-weight: 600;
   border-radius: 10px;
-  font-family: sans-serif;
+  text-decoration: none;
   transition: all 0.2s ease-in-out;
 }
 

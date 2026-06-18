@@ -1,17 +1,17 @@
 .marketplace-container {
   width: 100%;
-  min-height: 100vh; /* Pure layout height handle karne ke liye */
+  min-height: 100vh;
   
   /* 🎯 FIXED BACKGROUND CONTROLS */
-  background-size: 100% auto; /* Horizontal full frame cover */
+  background-size: 100% auto; 
   background-position: top center;
   background-repeat: no-repeat;
-  background-attachment: scroll; /* Image content ke saath scroll hogi */
+  background-attachment: scroll; 
   
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start; /* Center hata kar flex-start kiya taaki top se start ho */
+  justify-content: flex-start; 
   padding: 80px 20px;
   text-align: center;
   box-sizing: border-box;
@@ -132,7 +132,7 @@
   transform: translateY(-1px);
 }
 
-/* Pink Active Border Pill Highlighter */
+/* Active Border Pill Highlighter */
 .filter-pill-btn.pill-active {
   background: #ffffff;
   color: #e21b64; 
@@ -140,29 +140,66 @@
   font-weight: bold;
 }
 
-/* 📞 Bottom Action Button */
+/* ==========================================================================
+   📞 🎯 SLEEK ABSOLUTE BLACK CTA BUTTON WITH INFINITE ARROW PHYSICS
+   ========================================================================== */
 .marketplace-action-block {
-  margin-bottom: 60px; /* Brands section se thoda gap rakhne ke liye */
+  margin-bottom: 70px; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
 
 .market-book-call-cta {
-  background: transparent;
-  border: 2px solid #111111;
-  border-radius: 35px;
-  padding: 18px 55px;
-  font-size: 18px;
-  font-weight: bold;
+  background: #111111; /* Absolute sharp dark aesthetic base */
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 50px;
+  padding: 20px 52px;
+  font-size: 19px;
+  font-weight: 700;
   font-family: 'Times New Roman', Times, serif;
-  color: #111111;
+  color: #ffffff; 
   cursor: pointer;
-  transition: all 0.25s ease-in-out;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px; 
+  
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
+/* 🎯 MAGIC ARROW: Ab ye hamesha bina hover ke bhi smoothly aage-piche chalta rahega */
+.cta-arrow-svg {
+  animation: fluidArrowHorizontal 1.2s infinite ease-in-out;
+}
+
+/* 🔥 NEW HOVER: Yellow khatam! Ab black theme par hi ekdum premium subtle lift milega */
 .market-book-call-cta:hover {
-  background: #111111;
-  color: #ffffff;
-  transform: scale(1.03);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  background: #222222; /* Pure professional dark charcoal black shift */
+  color: #ffffff; /* Text perfectly remains solid white */
+  transform: translateY(-4px) scale(1.02);
+  
+  /* Modern clean obsidian shadow drops (No yellow dirt) */
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), 
+              0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Infinite continuous micro-push tracking physics */
+@keyframes fluidArrowHorizontal {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(6px); /* Fluid forward push */
+  }
+  100% {
+    transform: translateX(0);
+  }
 }
 
 /* Responsive Grid Control */
@@ -180,6 +217,10 @@
     font-size: 16px;
   }
   .marketplace-container {
-    background-size: cover; /* Mobile devices par image fitting handle karega */
+    background-size: cover; 
+  }
+  .market-book-call-cta {
+    padding: 16px 36px;
+    font-size: 17px;
   }
 }

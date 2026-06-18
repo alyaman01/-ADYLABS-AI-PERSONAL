@@ -1,4 +1,6 @@
-/* 🎯 MAIN PAGE BASE: Pure page ka layout absolute crisp full clear white kar diya */
+/* ==========================================================================
+   🎯 MAIN PAGE BASE: Pure page ka layout absolute crisp full clear white kar diya
+   ========================================================================== */
 .template-detail-page {
   width: 100%;
   min-height: 100vh;
@@ -68,6 +70,7 @@
   margin-bottom: 30px;
 }
 
+/* 🎯 BADGE BOXES WITH ACTIVE HOVER BORDER */
 .detail-badge-box {
   width: 62px;
   height: 62px;
@@ -78,6 +81,15 @@
   justify-content: center;
   align-items: center;
   box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+  cursor: pointer;
+  transition: border-color 0.3s ease, transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s ease;
+}
+
+/* 🔥 NEW HOVER TRACK: Accent border highlights cleanly on hover */
+.detail-badge-box:hover {
+  border-color: #efbe2f;
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(239, 190, 47, 0.2);
 }
 
 .detail-badge-box img {
@@ -86,18 +98,19 @@
   object-fit: contain;
 }
 
+/* 🎯 HEADING TEXT STYLES LOCK */
 .template-main-title {
-  font-size: 44px;
+  font-size: 42px; /* Adjusted slightly for long phrase readability balance */
   font-weight: 800;
   color: #111111;
-  line-height: 1.25;
-  text-transform: capitalize;
+  line-height: 1.3;
   margin: 0 0 25px 0;
 }
 
+/* 🎯 SUBHEADING TEXT STYLES LOCK */
 .template-description {
   font-size: 19px;
-  color: #444444;
+  color: #555544;
   line-height: 1.6;
   font-weight: 600;
   margin-bottom: 45px;
@@ -195,7 +208,7 @@
 .more-templates-footer-head {
   width: 100%;
   background: #ffffff !important; 
-  padding: 60px 0 10px 0; /* Horizontal padding container reset */
+  padding: 60px 0 10px 0; 
   box-sizing: border-box;
 }
 

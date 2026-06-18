@@ -1,428 +1,298 @@
-
-.json-marketplace{
+/* ==========================================================================
+   🧱 GLOBAL SECTION BASE SETUP (Fixed Container Width)
+   ========================================================================== */
+.json-marketplace {
   margin-top: 40px;
   width: 100%;
-  padding: 20px 4%;
+  padding: 30px 4%; /* Unified balanced container tracks */
   background: #f7f6ef;
-  overflow: hidden;
+  box-sizing: border-box; /* Ensures padding does not burst layout width */
 }
 
 /* ================= HEADINGS ================= */
-
-.marketplace-heading{
+.marketplace-heading {
   text-align: center;
   margin-bottom: 50px;
 }
 
-/* ================= TOP BUTTON ================= */
-
-.market-btn{
-  width: 280px;
-  height: 100px;
-
-  border-radius: 60px;
-  border: none;
-
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-
-  font-size: 26px;
-  font-weight: 700;
-
-  cursor: pointer;
-
-  
-  margin-bottom: 50px;
-
-  transition: 0.3s ease;
-
-  box-shadow:
-    0 0 0 10px #efe6aa,
-    0 10px 30px rgba(0,0,0,0.06);
-}
-
-.market-btn:hover{
-  transform: translateY(-5px) scale(1.03);
-}
-
-/* ================= HEADING TEXT ================= */
-
-.marketplace-heading h1{
+.marketplace-heading h1 {
   font-size: 90px;
   color: #ec962f;
   font-weight: 700;
   line-height: 1;
 }
 
-.marketplace-heading h2{
+.marketplace-heading h2 {
   font-size: 60px;
   margin-top: 10px;
   font-weight: 700;
 }
 
-.marketplace-heading h2 span{
+.marketplace-heading h2 span {
   color: #efb32f;
 }
 
-.marketplace-heading p{
+.marketplace-heading p {
   font-size: 28px;
   color: #777;
   margin-top: 20px;
 }
 
-/* ================= FEATURE CARD ================= */
-
-.featured-card{
-  background: linear-gradient(
-  90deg,
-  #fff6d6 50%,
-  #ffe27a 90%,
-  #fff6d6 100%
-);
-
+/* ==========================================================================
+   👑 FEATURE CARD LAYOUT & HOVER LAYER
+   ========================================================================== */
+.featured-card {
+  background: linear-gradient(90deg, #fff6d6 50%, #ffe27a 90%, #fff6d6 100%);
   border-radius: 34px;
-
   padding: 40px;
-
   display: flex;
   justify-content: space-between;
   align-items: center;
-
-  margin-bottom: 0px;
-
-  overflow: hidden;
-
+  margin-bottom: 40px; /* Separator boundary margin fixed before grid */
+  box-sizing: border-box;
   min-height: 420px;
-
-  transition: 0.35s ease;
+  border: 1px solid rgba(240, 184, 47, 0.2);
+  transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.4s ease;
 }
 
-.featured-card:hover{
+.featured-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+  box-shadow: 0 25px 50px rgba(240, 184, 47, 0.25);
 }
 
-.featured-left{
+.featured-left {
   width: 55%;
   position: relative;
   z-index: 2;
 }
 
-.featured-left h2{
+.featured-left h2 {
   font-size: 50px;
   margin: 40px 0;
   line-height: 1.2;
 }
 
-.featured-right{
+.featured-right {
   width: 40%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.featured-right img{
+.featured-right img {
   width: 100%;
   max-width: 500px;
   height: auto;
   object-fit: contain;
 }
 
-/* ================= TOOL ICONS ================= */
-
-.tool-icons{
+/* ================= TOOL ICONS LAYOUT ================= */
+.tool-icons {
   display: flex;
   gap: 14px;
   flex-wrap: wrap;
 }
 
-.tool-box{
+.tool-box {
   width: 62px;
   height: 62px;
-
   border-radius: 16px;
-
-  border: 2px solid #999;
-
-  background: #fff;
-
+  border: 2px solid #adadad;
+  background: #ffffff;
   display: flex;
   justify-content: center;
   align-items: center;
-
   overflow: hidden;
-
-  transition: 0.3s ease;
-
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   cursor: pointer;
 }
 
-.tool-box:hover{
+.tool-box:hover {
   border-color: #f0b82f;
-  transform: translateY(-4px);
-  box-shadow: 0 8px 18px rgba(240,184,47,0.25);
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 0 8px 18px rgba(240, 184, 47, 0.3);
 }
 
-.tool-box img{
+.tool-box img {
   width: 32px;
   height: 32px;
   object-fit: contain;
 }
 
-/* ================= AUTHOR ================= */
-
-.author{
-  display: flex;
-  align-items: center;
-  gap: 14px;
-}
-
-.profile-img{
-  width: 52px;
-  height: 52px;
-
-  border-radius: 50%;
-  object-fit: cover;
-}
-
-.author-name{
+/* ==========================================================================
+   👥 AUTHOR STRUCTURAL LAYOUT FIXES
+   ========================================================================== */
+.author {
   display: flex;
   align-items: center;
   gap: 10px;
+  min-width: 0;
+  flex-shrink: 1;
 }
 
-.author-name span{
-  font-size: 21px;
+.profile-img {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.author-name {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+}
+
+.author-name span {
+  font-size: 16px;
   font-weight: 700;
+  color: #111111;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.verify-icon{
-  width: 24px !important;
-  height: 24px !important;
+.verify-icon {
+  width: 18px !important;
+  height: 18px !important;
   object-fit: contain !important;
+  flex-shrink: 0;
 }
 
-/* ================= GRID ================= */
-
-.market-grid{
+/* ==========================================================================
+   📦 CARDS GRID ECOSYSTEM (🚨 RIGHT CLIPPING OVERRIDE FIX)
+   ========================================================================== */
+.market-grid {
   display: grid;
-  grid-template-columns: repeat(3,1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 34px;
-
   padding: 40px;
-
   border-radius: 40px;
-
-  background: linear-gradient(
-  90deg,
-  #fff6d6 50%,
-  #ffe27a 90%,
-  #fff6d6 100%
-);
+  box-sizing: border-box; /* 🔥 MAGIC FIX: Standard bounds within view width */
+  width: 100%; /* Keeps parent boundaries locked */
+  background: linear-gradient(90deg, #fff6d6 50%, #ffe27a 90%, #fff6d6 100%);
 }
 
-/* ================= CARD ================= */
-
-.market-card{
-  background: #f8f8f8;
-
+/* ==========================================================================
+   🎯 GRID CARDS PRESTIGE LAYER WITH DYNAMIC GRADIENT GLOW LIFT
+   ========================================================================== */
+.market-card {
+  background: #ffffff; /* Fresh start on clean background foundation */
   border-radius: 28px;
-
-  padding: 32px;
-
-  min-height: 340px;
-
+  padding: 32px 24px;
+  min-height: 350px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-
-  transition: 0.35s ease;
-
+  position: relative;
+  box-sizing: border-box;
+  
+  /* ⚡ Thick distinct border padding outline track */
+  border: 3px solid transparent; 
+  background-clip: padding-box;
+  
+  /* Safe ambient default entry shadow drop */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+  transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), 
+              box-shadow 0.4s ease, 
+              border-color 0.4s ease, 
+              background 0.4s ease;
   cursor: pointer;
 }
 
-.market-card:hover{
-  transform: translateY(-8px);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+/* 🔥 NEW DYNAMIC UNIQUE HOVER OVERRIDE LOGIC */
+.market-card:hover {
+  transform: translateY(-12px); /* High distinct elevation physics pop */
+  
+  /* 🌟 UNIQUE GRADIENT BACKGROUND TYPE SHINE: Soft golden hue blends over from bottom corner */
+  background: linear-gradient(135deg, #ffffff 50%, #fffcee 75%, #fff6d3 100%);
+  
+  /* 💎 THICK GLOWING ACCENT BORDER OVERRIDE */
+  border-color: #efbe2f; 
+  
+  /* 🎯 INTENSE GOLDEN AURA SHADOW DROP: Heavy bright reflection feedback tracks */
+  box-shadow: 0 20px 40px rgba(239, 190, 47, 0.25), 
+              0 4px 15px rgba(239, 190, 47, 0.1);
 }
 
-.market-card h3{
-  font-size: 22px;
-  line-height: 1.7;
-  margin-top: 30px;
+.market-card h3 {
+  font-size: 20px;
+  line-height: 1.5;
+  margin-top: 25px;
   font-weight: 700;
+  color: #111111;
 }
 
-/* ================= CARD BOTTOM ================= */
-
-.card-bottom{
+/* ==========================================================================
+   ⚡ CARD BOTTOM COMPONENT LAYER
+   ========================================================================== */
+.card-bottom {
   display: flex;
   justify-content: space-between;
   align-items: center;
-
-  margin-top: 40px;
+  margin-top: 35px;
+  gap: 15px;
+  width: 100%;
 }
 
-.actions{
+.actions {
   display: flex;
-  gap: 5px;
+  gap: 10px;
+  flex-shrink: 0;
 }
 
-.actions button{
-  width: 40px;
-  height: 40px;
-
+.actions button {
+  width: 42px;
+  height: 42px;
   border-radius: 50%;
-  border: none;
-
-  background: #fff;
-
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  background: #ffffff;
   cursor: pointer;
-
   display: flex;
   justify-content: center;
   align-items: center;
-
-  transition: 0.3s ease;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.04);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
-.actions button:hover{
-  transform: scale(1.08);
+/* Action button standalone hover controls */
+.actions button:hover {
+  transform: scale(1.12) translateY(-2px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+  background: #111111;
 }
 
-.actions button img{
-  width: 22px;
-  height: 22px;
-  object-fit: contain;
+.actions button:hover img {
+  filter: brightness(0) invert(1);
 }
 
-.download-action{
+.download-action {
   background: #f0b82f !important;
+  border: none !important;
 }
 
-/* ================= DOWNLOAD BUTTON ================= */
-
-.download-btn-wrap{
-  display: flex;
-  justify-content: center;
-
-  margin-top: 0px;
-  background: linear-gradient(
-    90deg,
-    #fff6d6 50%,
-    #ffe27a 90%,
-    #fff6d6 100%
-  );
+.download-action:hover {
+  background: #e0aa22 !important;
+  box-shadow: 0 6px 14px rgba(240, 184, 47, 0.4) !important;
 }
 
-.download-btn{
-  width: 450px;
-  height: 95px;
-
-  border-radius: 60px;
-
-  border: 8px solid transparent;
-
-  background:
-    linear-gradient(#f7f1d9,#f7f1d9) padding-box,
-    linear-gradient(
-      90deg,
-      #ea4aaa,
-      #f0b52e
-    ) border-box;
-
-  font-size: 18px;
-  font-weight: 700;
-
-  cursor: pointer;
-
-  transition: 0.3s ease;
+.download-action:hover img {
+  filter: none !important;
 }
 
-.download-btn:hover{
-  transform: translateY(-5px) scale(1.03);
+.actions button img {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  transition: filter 0.2s ease;
 }
 
-/* ================= RESPONSIVE ================= */
-
-@media(max-width: 992px){
-
-  .market-grid{
-    grid-template-columns: 1fr;
-  }
-
-  .featured-card{
-    flex-direction: column;
-    gap: 40px;
-
-    text-align: center;
-  }
-
-  .featured-left{
-    width: 100%;
-  }
-
-  .featured-right{
-    width: 100%;
-  }
-
-  .featured-left h2{
-    font-size: 42px;
-  }
-
-  .marketplace-heading h1{
-    font-size: 60px;
-  }
-
-  .marketplace-heading h2{
-    font-size: 38px;
-  }
-
-}
-
-@media(max-width: 768px){
-
-  .market-btn{
-    width: 230px;
-    height: 82px;
-    font-size: 20px;
-  }
-
-  .marketplace-heading h1{
-    font-size: 48px;
-  }
-
-  .marketplace-heading h2{
-    font-size: 32px;
-  }
-
-  .marketplace-heading p{
-    font-size: 20px;
-  }
-
-  .featured-left h2{
-    font-size: 34px;
-  }
-
-  .market-card h3{
-    font-size: 18px;
-  }
-
-  .author-name span{
-    font-size: 20px;
-  }
-
-  .download-btn{
-    width: 100%;
-    font-size: 20px;
-    padding: 0 20px;
-  }
-
-  
-}
-
-.download-btn-wrap{
+/* ==========================================================================
+   📥 LOAD MORE CONTROL INTERFACES
+   ========================================================================== */
+.download-btn-wrap {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -430,7 +300,7 @@
   padding-bottom: 40px;
 }
 
-.load-more-btn{
+.load-more-btn {
   width: 250px;
   height: 70px;
   border: none;
@@ -439,9 +309,79 @@
   font-size: 18px;
   font-weight: 800;
   cursor: pointer;
+  transition: all 0.3s ease;
 }
 
-.load-more-btn:hover{
+.load-more-btn:hover {
   transform: translateY(-4px);
-  box-shadow: 0 10px 25px rgba(241,187,51,0.35);
+  box-shadow: 0 10px 25px rgba(241, 187, 51, 0.35);
+}
+
+/* ==========================================================================
+   📱 SYSTEM MEDIA LAYOUT RESPONSIVE ADAPTERS
+   ========================================================================== */
+@media(max-width: 1200px) {
+  .market-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+  }
+}
+
+@media(max-width: 992px) {
+  .market-grid {
+    grid-template-columns: 1fr;
+    padding: 20px;
+  }
+
+  .featured-card {
+    flex-direction: column;
+    gap: 40px;
+    text-align: center;
+  }
+
+  .featured-left {
+    width: 100%;
+  }
+
+  .featured-right {
+    width: 100%;
+  }
+
+  .featured-left h2 {
+    font-size: 42px;
+  }
+
+  .marketplace-heading h1 {
+    font-size: 60px;
+  }
+
+  .marketplace-heading h2 {
+    font-size: 38px;
+  }
+}
+
+@media(max-width: 768px) {
+  .marketplace-heading h1 {
+    font-size: 48px;
+  }
+
+  .marketplace-heading h2 {
+    font-size: 32px;
+  }
+
+  .marketplace-heading p {
+    font-size: 20px;
+  }
+
+  .featured-left h2 {
+    font-size: 34px;
+  }
+
+  .market-card h3 {
+    font-size: 18px;
+  }
+
+  .author-name span {
+    font-size: 18px;
+  }
 }

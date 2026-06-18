@@ -1,4 +1,6 @@
-/* Dark Blurred background behind the pop-up card */
+/* ==========================================================================
+   🧱 1. MAIN OVERLAY: Blurred Backdrop with Smart Mobile Scroll
+   ========================================================================== */
 .modal-blur-overlay {
   position: fixed;
   top: 0;
@@ -9,16 +11,20 @@
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   
-  /* 🎯 FIX 3: Iska z-index badha kar 1000000 kar diya taaki ye navbar ke upar render ho */
   z-index: 1000000; 
   
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 20px;
+  
+  /* 🎯 MOBILE FIX: Agar content vertical bada ho jaye toh overlay khud scroll ho sake */
+  overflow-y: auto; 
 }
 
-/* Modal Box Main Card Container */
+/* ==========================================================================
+   📦 2. MODAL BOX MAIN CARD: Adaptive Fluid Geometry
+   ========================================================================== */
 .get-in-touch-modal-card {
   background: #ffffff;
   width: 100%;
@@ -28,7 +34,10 @@
   position: relative;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
   animation: modalScalePopIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
-  border: 1px solid rgba(256,256,256,0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  
+  /* 🎯 MOBILE FIX: Choti screen par card upar se kate na, margin auto bounds handles it */
+  margin: auto; 
 }
 
 @keyframes modalScalePopIn {
@@ -54,6 +63,7 @@
   justify-content: center;
   align-items: center;
   transition: all 0.2s ease;
+  z-index: 10;
 }
 
 .modal-close-cross:hover {
@@ -84,7 +94,9 @@
   margin: 0;
 }
 
-/* Form Styles */
+/* ==========================================================================
+   📝 3. FORM CORE LAYOUTS & INLINE BOUNDS
+   ========================================================================== */
 .modal-lead-form {
   display: flex;
   flex-direction: column;
@@ -124,6 +136,17 @@
   background: #ffffff;
   outline: none;
   transition: border-color 0.2s ease;
+}
+
+/* 🎯 MOBILE FIX: iOS devices par drop-down default arrows override padding issue */
+.modal-lead-form select {
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23444' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  background-size: 16px;
+  padding-right: 40px;
 }
 
 .modal-lead-form textarea {
@@ -228,21 +251,82 @@
   box-shadow: 0 6px 15px rgba(239, 190, 47, 0.3);
 }
 
-/* Responsive Handling logic for ultra small screens devices */
+/* ==========================================================================
+   📱 4. ULTRA ADVANCED HIGH-DENSITY RESPONSIVE MEDIA QUERIES
+   ========================================================================== */
+
+/* 🍏 Tablet / Medium Screen Adjustments (max-width: 768px) */
+@media (max-width: 768px) {
+  .get-in-touch-modal-card {
+    padding: 30px;
+    border-radius: 28px;
+  }
+}
+
+/* 📲 Mobile View Adjustments (max-width: 540px) */
 @media (max-width: 540px) {
+  .modal-blur-overlay {
+    padding: 12px; /* Extra side spacing reduction for mobile displays */
+  }
+
+  .get-in-touch-modal-card {
+    padding: 30px 20px 20px 20px;
+    border-radius: 24px;
+  }
+
+  .modal-close-cross {
+    top: 15px;
+    right: 15px;
+    width: 32px;
+    height: 32px;
+    font-size: 12px;
+  }
+
+  .modal-header-block h2 {
+    font-size: 22px; /* Text scaled down smoothly to prevent multi-line wrap breaking */
+    padding-right: 25px; /* Keeps space clear from the close cross icon */
+  }
+
+  .modal-header-block p {
+    font-size: 13px;
+  }
+
   .form-row-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr; /* Dropdowns turn vertical stacking perfectly */
     gap: 14px;
   }
+
+  .modal-lead-form {
+    gap: 14px; /* Tighter input groupings */
+  }
+
   .modal-action-footer {
-    flex-direction: column-reverse;
-    gap: 14px;
+    flex-direction: column-reverse; /* Submit button comes on top for thumb accessibility */
+    gap: 12px;
     align-items: stretch;
+    margin-top: 5px;
   }
+
   .modal-submit-cta {
     width: 100%;
+    height: 46px;
+    font-size: 13px;
+  }
+
+  .attach-document-btn {
+    width: 100%;
+    justify-content: center;
+    height: 46px;
+  }
+}
+
+/* 🔋 Custom Height Query: Handles small screens/keyboards popping up */
+@media (max-height: 650px) {
+  .modal-blur-overlay {
+    align-items: flex-start; /* Positions card to scroll naturally from the top bounds */
   }
   .get-in-touch-modal-card {
-    padding: 25px 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
   }
 }

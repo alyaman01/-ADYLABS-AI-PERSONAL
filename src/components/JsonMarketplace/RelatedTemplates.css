@@ -5,50 +5,94 @@
   width: 100%;
   margin-top: 40px;
   box-sizing: border-box;
-  background: transparent !important; /* 🎯 BACKGROUND OVERRIDE CLEAR AWAY */
+  background: transparent !important; 
   background-color: transparent !important;
+  overflow: hidden; 
 }
 
+/* Base resets for safely securing children elements inside section bounds */
+.related-templates-section *,
+.related-templates-section *::before,
+.related-templates-section *::after {
+  box-sizing: border-box !important;
+}
+
+/* ==========================================================================
+   📦 RELATED GRID CONTAINER (🚨 CENTERED & ANTI-OVERFLOW TRACKS)
+   ========================================================================== */
 .related-market-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 34px;
+  
+  /* Columns strictly controlled with minmax to block scaling burst */
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 25px; 
   padding: 40px 0;
   width: 100%;
-  background: transparent !important; /* 🎯 GRID CONTAINER BACKGROUND REMOVED */
+  max-width: 100%;
+  
+  /* Grid contents remain structurally centered */
+  justify-content: center; 
+  
+  background: transparent !important; 
   background-color: transparent !important;
 }
 
-/* CARDS STRUCTURE */
+/* ==========================================================================
+   🎯 BALANCED CARDS WITH PERFECT WIDTH & PREMIUM GRADIENT HOVER
+   ========================================================================== */
 .related-market-card {
-  background: #f8f8f8;
+  background: #ffffff; 
   border-radius: 28px;
-  padding: 32px;
-  min-height: 340px;
+  padding: 28px 24px; /* Balanced horizontal dynamic cushion */
+  min-height: 330px; 
+  
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  transition: transform 0.35s ease, box-shadow 0.35s ease;
-  box-sizing: border-box;
-  border: 1px solid #eaeaea;
+  position: relative;
+  
+  /* 🔥 BALANCED WIDTH LOCK: Na zyada patla, na zyada broad. Ekdum perfect baseline. */
+  width: 100%;
+  max-width: 395px; /* Fixed perfect width configuration */
+  margin: 0 auto; /* Snaps cards to grid cell center */
+  
+  /* 3px Glowing tracking boundary layout line */
+  border: 3px solid transparent; 
+  background-clip: padding-box;
+  
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+  transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), 
+              box-shadow 0.4s ease, 
+              border-color 0.4s ease, 
+              background 0.4s ease;
 }
 
+/* 🔥 BRAND ACCENT GRADIENT HOVER LIFT */
 .related-market-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
+  transform: translateY(-12px); 
+  
+  /* Soft sun-kissed premium golden gradient glow leaking from bottom right corner */
+  background: linear-gradient(135deg, #ffffff 50%, #fffcee 75%, #fff6d3 100%);
+  
+  /* Solid high-definition brand accent active border track */
+  border-color: #efbe2f; 
+  
+  /* Intense Golden Ambient Reflex Light aura shadow drops */
+  box-shadow: 0 20px 40px rgba(239, 190, 47, 0.25), 
+              0 4px 15px rgba(239, 190, 47, 0.1);
 }
 
 .related-market-card h3 {
-  font-size: 22px;
-  line-height: 1.6;
-  margin-top: 30px;
+  font-size: 19px; 
+  line-height: 1.5;
+  margin-top: 22px;
   font-weight: 700;
   color: #111111;
   font-family: Arial, sans-serif;
   text-align: left;
 }
 
-/* TOOL ICONS HEAD */
+/* TOOL ICONS ROW */
 .related-tool-icons {
   display: flex;
   gap: 12px;
@@ -56,15 +100,20 @@
 }
 
 .related-tool-box {
-  width: 54px;
-  height: 54px;
+  width: 56px;
+  height: 56px;
   border-radius: 14px;
-  border: 1px solid #d5d5d5;
+  border: 1px solid #adadad;
   background: #ffffff;
   display: flex;
   justify-content: center;
   align-items: center;
   overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.related-market-card:hover .related-tool-box {
+  border-color: rgba(239, 190, 47, 0.5);
 }
 
 .related-tool-icon-img {
@@ -73,83 +122,115 @@
   object-fit: contain;
 }
 
-/* CARD BOTTOM TRACKS */
+/* ==========================================================================
+   👥 AUTHOR COMPONENT TRACKS (Single Line Absolute Locking System)
+   ========================================================================== */
 .related-card-bottom {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 40px;
+  margin-top: 35px;
+  gap: 12px; 
+  width: 100%;
 }
 
 .related-author {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
+  min-width: 0;
+  flex-shrink: 1;
 }
 
 .related-profile-img {
-  width: 48px;
-  height: 48px;
+  width: 42px;
+  height: 42px;
   border-radius: 50%;
   object-fit: cover;
+  flex-shrink: 0;
 }
 
 .related-author-name {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
+  min-width: 0;
 }
 
 .related-author-name span {
-  font-size: 18px;
+  font-size: 15px; 
   font-weight: 700;
   color: #111111;
+  white-space: nowrap; /* 🔥 MAGIC FIX: Locks text inside a strict single-line bounds */
+  overflow: hidden;
+  text-overflow: ellipsis; 
 }
 
 .related-verify-icon {
-  width: 20px !important;
-  height: 20px !important;
+  width: 18px !important;
+  height: 18px !important;
   object-fit: contain !important;
+  flex-shrink: 0;
 }
 
-/* UTILITY ACTION ACTION BUTTONS */
+/* ==========================================================================
+   ⚡ ACTIONS INTERFACE BAR BUTTONS
+   ========================================================================== */
 .related-actions {
   display: flex;
-  gap: 8px;
+  gap: 10px;
+  flex-shrink: 0;
 }
 
 .rel-btn {
-  width: 40px !important;
-  height: 40px !important;
+  width: 42px !important;
+  height: 42px !important;
   border-radius: 50% !important;
-  border: none !important;
+  border: 1px solid rgba(0, 0, 0, 0.05) !important;
   background: #ffffff !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
   cursor: pointer !important;
-  transition: transform 0.2s ease !important;
   padding: 0 !important;
   margin: 0 !important;
-  box-shadow: none !important;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.04) !important;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
 }
 
 .rel-btn:hover {
-  transform: scale(1.08) !important;
+  transform: scale(1.12) translateY(-2px) !important;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08) !important;
+  background: #111111 !important;
+}
+
+.rel-btn:hover img {
+  filter: brightness(0) invert(1); 
+}
+
+.rel-download {
+  background: #f0b82f !important;
+  border: none !important;
+}
+
+.rel-download:hover {
+  background: #e0aa22 !important;
+  box-shadow: 0 6px 14px rgba(240, 184, 47, 0.4) !important;
+}
+
+.rel-download:hover img {
+  filter: none !important; 
 }
 
 .rel-btn img {
   width: 20px !important;
   height: 20px !important;
   object-fit: contain !important;
-}
-
-.rel-download {
-  background: #f0b82f !important;
+  transition: filter 0.2s ease !important;
 }
 
 /* ==========================================================================
-   🎯 NEW: MOCKUP DESIGN ACCURATE LOAD MORE BUTTON STYLES
+   🎯 MOCKUP LOAD MORE CONTROL
    ========================================================================== */
 .related-load-more-wrap {
   display: flex;
@@ -165,20 +246,15 @@
   height: 85px;
   border-radius: 50px;
   border: none;
-  
-  /* 🎯 IMPORTED ASSET BUTTON ATTACHED (Peeche waala image block perfectly background load karega) */
   background-image: url('../../assets/illustration/buttonbg.jpg');
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-
   font-size: 24px;
   font-weight: 800;
   color: #111111;
   cursor: pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  
-  /* Mockup glow blur boundaries shadow */
   box-shadow: 
     0 0 0 8px #fdf3bbf2, 
     0 12px 30px rgba(241,187,51,0.25);
@@ -191,15 +267,26 @@
     0 16px 35px rgba(241,187,51,0.35);
 }
 
-/* RESPONSIVE SCALING */
-@media (max-width: 1024px) {
+/* ==========================================================================
+   📱 SYSTEM MEDIA LAYOUT RESPONSIVE ADAPTERS
+   ========================================================================== */
+@media (max-width: 1200px) {
   .related-market-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+  }
+  .related-market-card {
+    max-width: 420px; 
   }
 }
 
 @media (max-width: 768px) {
   .related-market-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 20px;
+    padding: 20px 0;
+  }
+  .related-market-card {
+    max-width: 100%; 
   }
 }

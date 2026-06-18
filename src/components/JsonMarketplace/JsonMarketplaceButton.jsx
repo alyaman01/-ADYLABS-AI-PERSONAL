@@ -12,19 +12,19 @@ import FaqSection from "../FaqSection";
 import ContactEnquiry from "../ContactEnquiry";
 import LetsTalkCTA from "../LetsTalkCTA";
 
-// 🎯 DYNAMIC DETAIL PAGE IMPORT (Jahan n8n automation screen chalegi)
+// 🎯 DYNAMIC DETAIL PAGE IMPORT
 import TemplateDetail from "./TemplateDetail"; 
 
 function JsonMarketplaced() {
   const [activeTag, setActiveTag] = useState("AI");
   const [searchQuery, setSearchQuery] = useState("");
   
-  // 🎯 SINGLE PAGE CONTROLLER STATE (Bina routing ke screen change karne ke liye)
+  // 🎯 SINGLE PAGE CONTROLLER STATE
   const [selectedTemplate, setSelectedTemplate] = useState(null);
 
   const tags = ["AI", "Sales", "IT ops", "Marketing", "AI Ads", "Social media", "Support"];
 
-  // 🎯 AGAR USER NE CARD PAR CLICK KIYA HAI: Toh direct detail page render hoga
+  // 🎯 AGAR USER NE CARD PAR CLICK KIYA HAI:
   if (selectedTemplate) {
     return (
       <TemplateDetail 
@@ -84,19 +84,33 @@ function JsonMarketplaced() {
         ))}
       </div>
 
-      {/* 📞 Bottom Button */}
+      {/* 📞 🎯 FIXED: ALWAYS ANIMATED ARROW WITH PREMIUM BLACK THEME */}
       <div className="marketplace-action-block">
-        <button className="market-book-call-cta">Book Free Call</button>
+        <button className="market-book-call-cta">
+          <span>Book Free Call</span>
+          <svg 
+            className="cta-arrow-svg" 
+            width="22" 
+            height="18" 
+            viewBox="0 0 24 24" 
+            fill="none" 
+            stroke="currentColor" 
+            strokeWidth="3" 
+            strokeLinecap="round" 
+            strokeLinejoin="round"
+          >
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </button>
       </div>
 
       {/* Internal Sub Sections */}
       <Brands/>
       
-      {/* 🎯 SECOND SECTION: Isme props pass kiya hai click trigger ke liye */}
       <JsonSecondSection onSelectCard={(filename) => setSelectedTemplate(filename)} />
       
       <BonusSection/>
-
       <PricingBonusTable/>
       <WhyChooseUs/>
       <WorkingProcess/>
