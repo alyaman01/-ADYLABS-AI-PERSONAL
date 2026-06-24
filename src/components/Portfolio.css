@@ -1,3 +1,6 @@
+/* ==========================================================================
+   🧱 PORTFOLIO MAIN SECTION ARCHITECTURE
+   ========================================================================== */
 .portfolio{
   width: 100%;
   background: #f3f3f3;
@@ -7,7 +10,6 @@
 }
 
 /* ================= HERO SECTION ================= */
-
 .portfolio-hero{
   width: 100%;
   height: 720px;
@@ -27,8 +29,7 @@
   background-repeat: no-repeat;
 }
 
-/* MAIN IMAGE */
-
+/* MAIN IMAGE LAYER */
 .portfolio-hero::before{
   content: "";
 
@@ -43,8 +44,7 @@
   z-index: 1;
 }
 
-/* BLUR EFFECT */
-
+/* BLUR EFFECT BACKDROP */
 .portfolio-hero::after{
   content: "";
 
@@ -85,8 +85,7 @@
   );
 }
 
-/* DARK OVERLAY */
-
+/* DARK OVERLAY SHEET */
 .hero-overlay{
   position: absolute;
 
@@ -104,7 +103,6 @@
 }
 
 /* ================= BUTTON ================= */
-
 .consult-btn{
   width: 250px;
   height: 92px;
@@ -141,8 +139,7 @@
   transform: translateX(-50%) scale(1.04);
 }
 
-/* ================= SEE TEXT ================= */
-
+/* ================= HUGE HERO TITLE ================= */
 .hero-title{
   position: absolute;
 
@@ -163,8 +160,7 @@
   user-select: none;
 }
 
-/* ================= CONTENT ================= */
-
+/* ================= CONTENT CONTAINER ================= */
 .portfolio-content{
   position: relative;
 
@@ -177,8 +173,7 @@
   padding: 0 5% 100px;
 }
 
-/* ================= WATERMARK ================= */
-
+/* ================= WATERMARK BACKGROUND TEXT ================= */
 .portfolio-watermark{
   position: relative;
 
@@ -200,8 +195,7 @@
   user-select: none;
 }
 
-/* ================= TABS (CRITICAL CAPSULE FIXES) ================= */
-
+/* ================= TABS CAPSULES ================= */
 .portfolio-tabs{
   display: flex;
   justify-content: center;
@@ -212,17 +206,14 @@
   width: 100%;
 }
 
-/* Pure rounded capsules with explicit height/padding override */
 .portfolio-tabs .tab-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   
-  /* Perfect Capsule Geometry */
   padding: 23px 46px !important;
   border-radius: 100px !important; 
   
-  /* Clean Outline Styling */
   border: 2px solid #d8d8d8 !important;
   background-color: #ffffff !important;
   
@@ -236,13 +227,11 @@
   transition: all 0.25s ease-in-out !important;
 }
 
-/* Hover style trigger */
 .portfolio-tabs .tab-btn:hover {
   background-color: #fffaf0 !important;
   border-color: #efd486 !important;
 }
 
-/* Perfect Amber/Yellow Filled Active State */
 .portfolio-tabs .tab-btn.active {
   background-color: #efd486 !important;
   border-color: #d9b44d !important;
@@ -250,8 +239,7 @@
   box-shadow: 0 4px 12px rgba(239, 212, 134, 0.2) !important;
 }
 
-/* ================= SLIDER ================= */
-
+/* ================= SLIDER TRACK CORE ================= */
 .slider-wrapper{
   width: 100%;
   overflow: hidden;
@@ -259,78 +247,53 @@
 
 .portfolio-grid{
   display: flex;
-
   gap: 28px;
-
   transition: transform 0.5s ease;
 }
 
-/* ================= CARD ================= */
-
+/* ================= PORTFOLIO CARD LAYOUT ================= */
 .portfolio-card{
-  min-width: calc((100% - 56px) / 3);
-
+  min-width: calc((100% - 56px) / 3); /* Default Desktop Viewport 3 Cards */
   background: #f8f8f8;
-
   border-radius: 26px;
-
   border: 3px solid #d8d8d8;
-
   padding: 12px;
-
   transition: 0.3s ease;
+  box-sizing: border-box;
 }
 
 .portfolio-card:hover{
   transform: translateY(-5px);
 }
 
-/* IMAGE */
-
 .card-image{
   position: relative;
-
   overflow: hidden;
-
   border-radius: 18px;
 }
 
 .card-image img{
   width: 100%;
   height: 240px;
-
   object-fit: cover;
-
   display: block;
 }
 
-/* PLAY BUTTON */
-
 .play-btn{
   position: absolute;
-
   top: 50%;
   left: 50%;
-
   transform: translate(-50%, -50%);
-
   width: 70px;
   height: 70px;
-
   border-radius: 50%;
-
   background: #f0c83d;
-
   display: flex;
   justify-content: center;
   align-items: center;
-
   font-size: 30px;
-
   cursor: pointer;
 }
-
-/* CARD CONTENT */
 
 .card-content{
   padding: 20px 14px 8px;
@@ -340,79 +303,59 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-
   gap: 14px;
-
   margin-bottom: 16px;
 }
 
 .card-top h3{
   font-size: 19px;
   line-height: 1.4;
-
   font-weight: 700;
 }
 
 .card-tag{
   background: #f3df9f;
-
   padding: 10px 16px;
-
   border-radius: 30px;
-
   font-size: 13px;
   font-weight: 700;
-
   white-space: nowrap;
 }
 
 .card-content p{
   font-size: 17px;
   line-height: 1.5;
-
   color: #666;
-
   margin-bottom: 22px;
 }
 
 .workflow-btn{
   width: 100%;
   height: 58px;
-
   border: none;
   border-radius: 14px;
-
   background: #f3e4ad;
-
   font-size: 20px;
   font-weight: 700;
-
   cursor: pointer;
 }
 
-/* ================= CONTROLS ================= */
-
+/* ================= SLIDER ENGINE CONTROLS ================= */
 .slider-controls{
   display: flex;
   justify-content: center;
   align-items: center;
-
   gap: 28px;
-
   margin-top: 55px;
 }
 
 .arrow-btn{
   width: 54px;
   height: 54px;
-
   border-radius: 50%;
   border: none;
-
   background: #efd486;
-
   font-size: 32px;
-
   cursor: pointer;
 }
 
@@ -424,9 +367,7 @@
 .dot{
   width: 14px;
   height: 14px;
-
   border-radius: 50%;
-
   background: #d5d5d5;
 }
 
@@ -434,36 +375,154 @@
   background: #efc760;
 }
 
-/* ================= RESPONSIVE ================= */
 
-@media(max-width: 992px){
+/* ==========================================================================
+   📱📱 COMPREHENSIVE RESPONSIVE ENGINE (No Horizontal Scroll Guarantee)
+   ========================================================================== */
 
-  .hero-title{
+/* Medium Laptops & Large Tablets (Max-width: 1024px) */
+@media screen and (max-width: 1024px) {
+  .portfolio-hero {
+    height: 600px;
+    margin-top: 80px;
+  }
+
+  .hero-title {
     font-size: 140px;
   }
 
-  .portfolio-watermark{
-    font-size: 120px;
+  .portfolio-content {
+    margin-top: -180px; /* Overlap balanced against scaled down hero aspect */
+    padding: 0 4% 80px;
   }
 
+  .portfolio-watermark {
+    font-size: 140px;
+    margin-bottom: 40px;
+  }
+
+  /* 🎯 TABLET VIEW: Slider scales perfectly to present exactly 2 cards */
+  .portfolio-card {
+    min-width: calc((100% - 28px) / 2);
+  }
 }
 
-@media(max-width: 768px){
-
-  .portfolio-hero{
-    height: 520px;
+/* Medium & Small Tablets (Max-width: 768px) */
+@media screen and (max-width: 768px) {
+  .portfolio-hero {
+    height: 480px;
+    margin-top: 70px;
+    border-bottom-left-radius: 24px;
+    border-bottom-right-radius: 24px;
   }
 
-  .hero-title{
+  .hero-title {
     font-size: 90px;
   }
 
-  .portfolio-watermark{
+  .portfolio-content {
+    margin-top: -120px;
+    padding: 0 20px 60px;
+  }
+
+  .portfolio-watermark {
     font-size: 80px;
+    margin-bottom: 30px;
   }
 
-  .portfolio-card{
+  /* 🎯 TOUCH INTERFACE TRACK: Horizontal swiping enabled for capsule items on tabs */
+  .portfolio-tabs {
+    justify-content: flex-start;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    padding-bottom: 12px;
+    gap: 12px;
+    scrollbar-width: none; /* Hide modern scrollbar frame */
+  }
+  
+  .portfolio-tabs::-webkit-scrollbar {
+    display: none; /* Safari, Chrome hide tracker */
+  }
+
+  .portfolio-tabs .tab-btn {
+    padding: 14px 28px !important; /* Touch-optimized compact geometry */
+    font-size: 15px !important;
+  }
+
+  /* 🎯 MOBILE VIEW: Slider transforms seamlessly to 1 full card format width layout */
+  .portfolio-grid {
+    gap: 20px;
+  }
+
+  .portfolio-card {
     min-width: 100%;
+    border-radius: 20px;
   }
 
+  .card-image img {
+    height: 200px;
+  }
+  
+  .consult-btn {
+    width: 200px;
+    height: 76px;
+    font-size: 16px;
+    border: 5px solid #ead78e;
+  }
+}
+
+/* Compact Smartphones (Max-width: 480px) */
+@media screen and (max-width: 480px) {
+  .portfolio-hero {
+    height: 380px;
+  }
+
+  /* Critical downscale metrics to avoid screen breaks */
+  .hero-title {
+    font-size: 56px;
+  }
+
+  .portfolio-content {
+    margin-top: -80px;
+  }
+
+  .portfolio-watermark {
+    font-size: 52px;
+  }
+
+  .card-top {
+    flex-direction: column; /* Card title stack to prevent string clipping inside cards */
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .card-tag {
+    padding: 6px 12px;
+    font-size: 11px;
+  }
+
+  .card-top h3 {
+    font-size: 18px;
+  }
+
+  .card-content p {
+    font-size: 14px;
+    line-height: 1.4;
+  }
+
+  .workflow-btn {
+    height: 50px;
+    font-size: 16px;
+  }
+
+  .slider-controls {
+    gap: 16px;
+    margin-top: 35px;
+  }
+
+  .arrow-btn {
+    width: 46px;
+    height: 46px;
+    font-size: 24px;
+  }
 }

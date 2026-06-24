@@ -24,7 +24,6 @@
 }
 
 /* LIGHT OVERLAY */
-/* LIGHT OVERLAY */
 .benefits::before{
   content: "";
 
@@ -52,7 +51,6 @@
 }
 
 /* CONTENT ABOVE OVERLAY */
-
 .benefits > * {
 
   position: relative;
@@ -61,7 +59,6 @@
 }
 
 /* TOP TEXT */
-
 .benefits-text {
 
   text-align: center;
@@ -80,7 +77,6 @@
 }
 
 /* GRID */
-
 .benefits-grid {
 
   display: grid;
@@ -91,7 +87,6 @@
 }
 
 /* CARD */
-
 .benefit-card {
 
   position: relative;
@@ -123,7 +118,6 @@
 }
 
 /* ICON */
-
 .benefit-icon {
 
   position: absolute;
@@ -154,7 +148,6 @@
 }
 
 /* TITLE */
-
 .benefit-card h2 {
 
   font-size: 27px;
@@ -169,7 +162,6 @@
 }
 
 /* PARAGRAPH */
-
 .benefit-card p {
 
   font-size: 18px;
@@ -181,32 +173,80 @@
   font-weight: 500;
 }
 
-/* RESPONSIVE */
+/* ==========================================================================
+   📱 UPDATED RESPONSIVE ARCHITECTURE
+   ========================================================================== */
 
+/* Tablets & Medium Laptops */
 @media(max-width:1100px){
+  .benefits {
+    padding: 60px 40px 100px;
+  }
 
   .benefits-grid{
-
     grid-template-columns: repeat(2,1fr);
+    gap: 80px 30px; /* Tablet view ke liye rows aur columns ka gap optimize kiya */
+  }
+
+  .benefits-text {
+    margin-top: 0px; /* Negative margin zero kiya taaki overlap na ho */
+    font-size: 24px;
   }
 }
 
+/* Small Tablets & Big Phones */
 @media(max-width:768px){
-
   .benefits{
-
     padding: 50px 20px 100px;
   }
 
   .benefits-grid{
-
-    grid-template-columns: 1fr;
-
-    gap: 80px;
+    grid-template-columns: 1fr; /* Single column stack */
+    gap: 75px; /* Vertical gap standard maintain kiya absolute icon ke liye */
   }
 
   .benefits-text{
+    font-size: 20px;
+    margin: 0 auto 50px;
+    line-height: 1.6;
+  }
+}
 
-    font-size: 22px;
+/* 🎯 NEW SMARTPHONES BLOCK (Max-width: 480px) */
+@media(max-width: 480px) {
+  .benefits {
+    padding: 40px 15px 80px; /* Minimal side spacing */
+  }
+
+  .benefits-text {
+    font-size: 16px; /* Optimized phone font size */
+    margin-bottom: 60px;
+  }
+
+  /* Cards responsive text tuning */
+  .benefit-card {
+    padding: 75px 20px 35px; /* Padding thodi slim ki taaki card zyada lamba na khinche */
+    border-radius: 24px;
+  }
+
+  /* Absolute Top Icons resized cleanly for small screen layout */
+  .benefit-icon {
+    width: 80px;
+    height: 80px;
+    top: -40px;
+  }
+
+  .benefit-icon svg, .benefit-icon i, .benefit-icon img {
+    transform: scale(0.85); /* Icon elements auto adjust scaling */
+  }
+
+  .benefit-card h2 {
+    font-size: 21px; /* Heading size normal lock setup */
+    margin-bottom: 14px;
+  }
+
+  .benefit-card p {
+    font-size: 14px;
+    line-height: 1.6;
   }
 }

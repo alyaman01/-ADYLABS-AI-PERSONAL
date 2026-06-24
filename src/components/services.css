@@ -132,3 +132,97 @@
     transform: translateX(calc(-50% - 20px)); 
   }
 }
+
+/* ==========================================================================
+   📱 RESPONSIVE MEDIA QUERIES (Services & Slider Loop Fixes)
+   ========================================================================== */
+
+/* Tablets (Max-width: 1024px) */
+@media screen and (max-width: 1024px) {
+  .services {
+    padding: 60px 40px 30px; /* Padding thodi narrow ki */
+  }
+
+  .services-heading {
+    font-size: 56px;
+  }
+
+  .services-text {
+    font-size: 20px;
+    margin: 0 auto 50px;
+  }
+
+  .benefits-heading h1 {
+    font-size: 54px;
+  }
+}
+
+/* Small Tablets & Big Phones (Max-width: 768px) */
+@media screen and (max-width: 768px) {
+  .services-heading {
+    font-size: 42px;
+  }
+
+  .services-text {
+    font-size: 18px;
+  }
+
+  .benefits-heading h1 {
+    font-size: 40px;
+  }
+
+  /* Slider cards layout tighter for medium screen viewports */
+  .service-card {
+    width: 340px; 
+    gap: 30px;
+  }
+  
+  .services-slider-track {
+    gap: 25px;
+  }
+}
+
+/* Smart Phones (Max-width: 480px) */
+@media screen and (max-width: 480px) {
+  .services {
+    padding: 50px 20px 20px; /* Minimal padding for edge handling */
+  }
+
+  .services-heading {
+    font-size: 32px;
+    line-height: 1.2;
+    margin-bottom: 20px;
+  }
+
+  .services-text {
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 40px;
+  }
+
+  /* 🎯 CARD RE-SIZING FOR PHONE: Mobile window bounds ke andar auto fit karega */
+  .service-card {
+    width: 280px; 
+    padding-bottom: 25px;
+    border-radius: 18px;
+  }
+
+  .service-card h2 {
+    font-size: 20px;
+    margin: 20px 20px 10px;
+  }
+
+  .service-card p {
+    font-size: 14px;
+    margin: 0 20px;
+  }
+
+  .benefits-heading {
+    margin-top: 40px;
+  }
+
+  .benefits-heading h1 {
+    font-size: 30px;
+    line-height: 1.2;
+  }
+}

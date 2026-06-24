@@ -1,7 +1,10 @@
-/* Outer block containing full layout structure */
+/* ==========================================================================
+   CTA OUTER SECTION
+   ========================================================================== */
+
 .cta-outer-section {
   background-color: #ffffff;
-  padding: 60px 40px 100px 40px; /* Bottom spacing allows clean footer transition later */
+  padding: 60px 40px 100px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -9,13 +12,16 @@
   box-sizing: border-box;
 }
 
-/* THE BOLD YELLOW BORDER CONTAINER BOX */
+/* ==========================================================================
+   YELLOW BORDER BOX
+   ========================================================================== */
+
 .cta-yellow-border-box {
   width: 100%;
   max-width: 1350px;
-  border: 4px solid #f9cd47; /* Thick premium golden yellow outline rim */
-  border-radius: 45px; /* Smooth heavy curved bounding edges */
-  background-color: #ffffff;
+  border: 4px solid #f9cd47;
+  border-radius: 45px;
+  background: #ffffff;
   padding: 80px 20px;
   display: flex;
   flex-direction: column;
@@ -27,146 +33,246 @@
 }
 
 /* ==========================================================================
-   LET'S TALK MULTI-COLOR GRADIENT TEXT
+   MAIN TITLE
    ========================================================================== */
+
 .cta-main-title {
-  font-size: 160px; /* Massive display typography scale matching screenshot */
+  font-size: 160px;
   font-weight: 900;
-  margin: 0 0 25px 0;
-  font-family: 'Arial Black', sans-serif;
+  margin: 0 0 25px;
+  font-family: "Arial Black", sans-serif;
   letter-spacing: -2px;
-  
-  /* Super precise multi-stop gradient transition loop (Yellow -> Orange -> Brown -> Black) */
+  line-height: 1;
+
   background: linear-gradient(
-    to right, 
-    #f9ca43 0%, 
+    to right,
+    #f9ca43 0%,
     #f7bb40 20%,
-    #f28a34 40%, 
-    #bf622b 60%, 
+    #f28a34 40%,
+    #bf622b 60%,
     #4a2711 80%,
     #111111 100%
   );
-  
-  /* Standard webkit browser text clipping masks */
+
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+
   display: inline-block;
+  word-break: keep-all;
 }
 
 /* ==========================================================================
-   SUBHEADINGS & HIGHLIGHT TEXTS
+   SUB HEADINGS
    ========================================================================== */
+
 .cta-sub-heading {
   font-size: 32px;
   font-weight: 700;
   color: #111111;
-  margin: 0 0 15px 0;
-  font-family: Georgia, serif; /* Elegant contrast serif typeface styles */
+  margin: 0 0 15px;
+  font-family: Georgia, serif;
 }
 
-/* Individual inline colored blocks matching original layout artwork */
 .cta-project-highlight {
   font-size: 46px;
   font-weight: 800;
-  margin: 0 0 50px 0;
+  margin: 0 0 50px;
   font-family: Arial, sans-serif;
   letter-spacing: -0.5px;
+  line-height: 1.3;
 }
 
 .text-teal {
-  color: #49a2a5; /* Deep premium teal turquoise color */
+  color: #49a2a5;
 }
 
 .text-brown {
-  color: #8c7355; /* Earthy structural dust brown */
+  color: #8c7355;
 }
 
 .text-orange {
-  color: #e4713c; /* Sharp vibrant core orange */
+  color: #e4713c;
 }
 
 /* ==========================================================================
-   BIG GOLDEN CAPSULE BUTTON & HOVER
+   BUTTON AREA
    ========================================================================== */
+
 .cta-btn-wrapper {
+  width: 100%;
   display: flex;
   justify-content: center;
-  width: 100%;
 }
 
 .cta-contact-btn {
-  background-color: #f9cd47; /* Bright background golden yellow */
+  background-color: #f9cd47;
   color: #111111;
   border: none;
-  font-size: 32px; /* Huge bold typography print */
+  font-size: 32px;
   font-weight: 800;
-  font-family: Georgia, serif; /* Matches serif accent layout look */
+  font-family: Georgia, serif;
   padding: 24px 85px;
-  border-radius: 50px; /* Soft infinite round capsule border */
+  border-radius: 50px;
   cursor: pointer;
+
   box-shadow: 0 8px 25px rgba(249, 205, 71, 0.25);
-  
-  /* Transition timings for elegant reactivity */
-  transition: transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1),
-              background-color 0.3s ease,
-              box-shadow 0.3s ease;
+
+  transition:
+    transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1),
+    background-color 0.3s ease,
+    box-shadow 0.3s ease,
+    color 0.3s ease;
 }
 
-/* Interactive reaction loops on hovering */
 .cta-contact-btn:hover {
-  transform: scale(1.04) translateY(-3px); /* Interactive bounce spring expansion */
-  background-color: #111111; /* Sleek theme switch to black block look */
+  transform: scale(1.04) translateY(-3px);
+  background-color: #111111;
   color: #ffffff;
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.18);
 }
 
-/* Container scales down smoothly if user hits click triggers */
 .cta-contact-btn:active {
   transform: scale(0.98);
 }
 
 /* ==========================================================================
-   VIEWPORT RESPONSIVE BREAKPOINTS
+   LARGE TABLET
    ========================================================================== */
-@media (max-width: 1024px) {
+
+@media (max-width: 1200px) {
   .cta-main-title {
-    font-size: 110px; /* Steps typography text scales down for medium layouts */
+    font-size: 130px;
   }
+
+  .cta-project-highlight {
+    font-size: 40px;
+  }
+}
+
+/* ==========================================================================
+   TABLET
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+  .cta-outer-section {
+    padding: 50px 25px 80px;
+  }
+
+  .cta-yellow-border-box {
+    padding: 70px 20px;
+  }
+
+  .cta-main-title {
+    font-size: 110px;
+  }
+
   .cta-sub-heading {
     font-size: 26px;
   }
+
   .cta-project-highlight {
     font-size: 36px;
   }
+
   .cta-contact-btn {
     font-size: 26px;
     padding: 18px 65px;
   }
 }
 
-@media (max-width: 680px) {
+/* ==========================================================================
+   MOBILE
+   ========================================================================== */
+
+@media (max-width: 768px) {
   .cta-outer-section {
-    padding: 30px 15px;
+    padding: 40px 15px 60px;
   }
+
   .cta-yellow-border-box {
-    border-radius: 30px;
     padding: 50px 15px;
+    border-radius: 30px;
   }
+
   .cta-main-title {
-    font-size: 64px; /* Dynamic compact scaling for true mobile viewports */
+    font-size: 72px;
     letter-spacing: -1px;
   }
+
   .cta-sub-heading {
     font-size: 20px;
-    line-height: 1.3;
+    line-height: 1.4;
   }
+
   .cta-project-highlight {
     font-size: 28px;
+    margin-bottom: 35px;
   }
+
   .cta-contact-btn {
+    width: 100%;
+    max-width: 350px;
     font-size: 20px;
-    padding: 14px 45px;
-    width: 90%; /* Fluid width allocation rules */
+    padding: 14px 30px;
+  }
+}
+
+/* ==========================================================================
+   SMALL MOBILE
+   ========================================================================== */
+
+@media (max-width: 480px) {
+  .cta-outer-section {
+    padding: 30px 10px 50px;
+  }
+
+  .cta-yellow-border-box {
+    border-width: 3px;
+    border-radius: 20px;
+    padding: 40px 12px;
+  }
+
+  .cta-main-title {
+    font-size: 48px;
+    margin-bottom: 15px;
+  }
+
+  .cta-sub-heading {
+    font-size: 17px;
+  }
+
+  .cta-project-highlight {
+    font-size: 22px;
+    margin-bottom: 25px;
+  }
+
+  .cta-contact-btn {
+    width: 100%;
+    font-size: 17px;
+    padding: 12px 20px;
+    border-radius: 40px;
+  }
+}
+
+/* ==========================================================================
+   EXTRA SMALL DEVICES
+   ========================================================================== */
+
+@media (max-width: 360px) {
+  .cta-main-title {
+    font-size: 40px;
+  }
+
+  .cta-sub-heading {
+    font-size: 15px;
+  }
+
+  .cta-project-highlight {
+    font-size: 18px;
+  }
+
+  .cta-contact-btn {
+    font-size: 15px;
   }
 }

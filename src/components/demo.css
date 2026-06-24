@@ -112,3 +112,86 @@
 .play-button:hover{
   transform: translate(-50%, -50%) scale(1.08);
 }
+
+/* ==========================================================================
+   📱 RESPONSIVE MEDIA QUERIES (Demo Video Section Fixes)
+   ========================================================================== */
+
+/* Tablets (Max-width: 1024px) */
+@media screen and (max-width: 1024px) {
+  .demo h1 {
+    font-size: 52px;
+  }
+
+  .demo p {
+    font-size: 18px;
+    padding: 0 20px;
+    text-align: center;
+  }
+
+  .video-section {
+    width: 85%; /* Tablet par video section thoda bada kiya */
+  }
+}
+
+/* Phones & Small Tablets (Max-width: 768px) */
+@media screen and (max-width: 768px) {
+  .demo h1 {
+    font-size: 40px;
+  }
+
+  .video-section {
+    width: 90%; 
+  }
+
+  .video-wrapper, .video-banner {
+    border-radius: 24px; /* Choti screen par corners thode kam round acche lagenge */
+  }
+
+  .play-button {
+    width: 70px;
+    height: 70px;
+    font-size: 28px;
+  }
+}
+
+/* Small Smart Phones (Max-width: 480px) */
+@media screen and (max-width: 480px) {
+  .demo {
+    padding: 40px 0 20px;
+  }
+
+  .demo h1 {
+    font-size: 32px; /* Font perfectly scale down */
+    text-align: center;
+    padding: 0 15px;
+    line-height: 1.2;
+  }
+
+  .demo p {
+    font-size: 15px;
+    margin-bottom: 25px;
+    padding: 0 15px;
+  }
+
+  /* 🎯 VIDEO ACCENT RE-BOUNDING FOR MOBILE */
+  .video-section {
+    width: 92%; /* Mobile par full width ke paas le gaye taaki video clear dikhe */
+  }
+
+  /* Agar aapka .frame asset mobile par ajeeb lage ya video ko chhupaye, 
+     to ise responsive optimize karne ke liye width adjust kar di hai */
+  .frame {
+    width: 106%; 
+  }
+
+  .video-wrapper, .video-banner {
+    border-radius: 16px; /* Clean crisp edges for small screen look */
+  }
+
+  .play-button {
+    width: 55px;
+    height: 55px;
+    font-size: 22px; /* Play icon choti screens par tightly centered rahega */
+  }
+}

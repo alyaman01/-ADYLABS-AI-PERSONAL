@@ -14,6 +14,12 @@ body {
   padding-top: 100px; 
 }
 
+/* 🔥 CRITICAL GLOBAL FIX: Pure page par horizontal scroll rokne ke liye */
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+}
+
 /* ==========================================================================
    🧱 MAIN NAVBAR LAYER (With Glassmorphism & Fixed Blur)
    ========================================================================== */
@@ -146,7 +152,7 @@ body {
 .navbar-market-btn {
   padding: 13px 26px;
   border-radius: 35px;
-  border: none; /* Fixed border hata diya */
+  border: none; 
   
   /* 🔥 Premium Tech Soft Gradient Background */
   background: linear-gradient(135deg, #111111 0%, #2a2a2a 50%, #f5b301 100%);
@@ -173,14 +179,14 @@ body {
 .navbar-market-btn:hover {
   background-position: right center; 
   color: #ffffff;
-  transform: translateY(-2px); /* Halka sa upar uthega */
-  animation: buttonPulseGlow 2s infinite; /* Golden pulse glow effect */
+  transform: translateY(-2px); 
+  animation: buttonPulseGlow 2s infinite; 
 }
 
 /* Icon adjustment for reverse contrast inside Dark Button */
 .navbar-market-btn img {
   width: 16px;
-  filter: brightness(0) invert(1); /* Black icon ko automatic white karne ke liye magic trick */
+  filter: brightness(0) invert(1); 
 }
 
 /* ==========================================================================
@@ -229,7 +235,7 @@ body {
 /* Mask Inner Layer Area with Clean Corner Soft Aura Blend */
 .btn-inner-content {
   position: absolute;
-  inset: 1.8px; /* Border Sharpness Gauge */
+  inset: 1.8px; 
   
   /* Subtle Background Tint matching brandimplus layout aura */
   background: linear-gradient(135deg, #ffffff 60%, #fff7e6 100%); 
@@ -325,4 +331,112 @@ body {
   font-size: 16px;
   display: inline-flex;
   align-items: center;
+}
+
+/* ==========================================================================
+   📱 📱 RESPONSIVE DESIGN (Media Queries added here)
+   ========================================================================== */
+
+/* Hamburger Icon Styles (Desktop par hidden) */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  z-index: 1000000;
+}
+
+.menu-toggle span {
+  width: 26px;
+  height: 3px;
+  background-color: #111111;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+/* Tablets and small laptops */
+@media screen and (max-width: 1024px) {
+  body {
+    padding-top: 80px;
+  }
+
+  .navbar {
+    height: 80px;
+    padding: 0 20px;
+  }
+
+  .menu-toggle {
+    display: flex; /* Show Hamburger */
+  }
+
+  /* Nav links turning into mobile slide-out panel */
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: -100%; 
+    width: 280px;
+    height: 100vh;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 100px 30px 40px 30px;
+    gap: 20px;
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.05);
+    transition: right 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+
+  .nav-links.active {
+    right: 0; /* Slide in menu */
+  }
+
+  .navbar-right {
+    margin-left: auto;
+    margin-right: 15px;
+    gap: 12px;
+  }
+}
+
+/* Mobile Screens (Aapki screenshot ke hisab se setup) */
+@media screen and (max-width: 480px) {
+  .logo-container h1 {
+    font-size: 16px; /* Logo text thoda chota */
+  }
+
+  .logo-container img {
+    width: 32px;
+  }
+
+  .navbar-right {
+    gap: 8px; /* Elements ke beech ka gap compress kiya */
+  }
+
+  /* 🎯 FIXED: Json Marketplace Button configuration */
+  .navbar-market-btn {
+    padding: 10px 14px;
+    font-size: 13px;
+  }
+
+  /* Agar Text layout ko push kar rha hai to text hide ho jayega, sirf icon dikhega */
+  .navbar-market-btn span {
+    display: none; 
+  }
+
+  /* Dusra button hide kar diya taaki overflow zero ho jaye */
+  .glowing-contact-btn {
+    display: none; 
+  }
+}
+
+/* Hamburger Active Cross Effect */
+.menu-toggle.active span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+.menu-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+.menu-toggle.active span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
 }

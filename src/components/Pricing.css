@@ -1,4 +1,6 @@
-/* General Section Setup */
+/* ==========================================================================
+   🧱 PRICING SECTIONS GENERAL SETUP
+   ========================================================================== */
 .pricing-section {
   padding: 60px 40px 100px 40px;
   background: #fff;
@@ -315,10 +317,6 @@
 .free-badge-img {
   height: 50px;
   object-fit: contain;
-}
-
-/* 🎯 AAPKI PURANI ROTATE PROPERTY JO IMAGE SEEDHI KARTI HAI */
-.free-badge-img {
   transform: rotate(45deg) !important; 
 }
 
@@ -406,9 +404,202 @@
   transform: translateY(2px);
 }
 
-/* Mobile responsive resets */
+
+/* ==========================================================================
+   📱 RESPONSIVE MEDIA QUERIES (Structural Normalization Overrides)
+   ========================================================================== */
+
+/* 💻 Tablets and Intermediate Desktop Viewports (Max-width: 1200px) */
 @media (max-width: 1200px) {
+  .pricing-section {
+    padding: 60px 24px 80px 24px;
+  }
+
+  /* Slider container auto targets 1-card bounding box on tablets */
   .pricing-slider-container {
     max-width: 430px;
+    padding: 15px 10px;
+  }
+}
+
+/* 🔌 Small Tablets and Mini Systems (Max-width: 768px) */
+@media (max-width: 768px) {
+  .pricing-header-container {
+    margin-bottom: 40px;
+  }
+
+  .header-bg-wrapper {
+    max-width: 100%;
+    height: 260px;
+    border-radius: 28px;
+  }
+
+  .pricing-title {
+    font-size: 52px;
+  }
+
+  .join-text {
+    font-size: 34px;
+    margin: 25px 0 20px 0;
+  }
+
+  /* Tab Navigation downscales for mobile thumb reaches */
+  .pricing-tabs {
+    border-radius: 30px;
+    padding: 4px;
+  }
+
+  .tab-btn {
+    padding: 10px 16px;
+    font-size: 15px;
+    border-radius: 24px;
+  }
+
+  .pricing-card {
+    padding: 40px 24px 30px 24px;
+    border-radius: 28px;
+  }
+
+  .pricing-card h2 {
+    font-size: 26px;
+  }
+
+  .price-tag {
+    font-size: 48px;
+  }
+
+  .price-tag .currency {
+    font-size: 24px;
+    margin-top: 6px;
+  }
+
+  .start-btn, .call-btn {
+    height: 52px;
+    font-size: 18px;
+    border-radius: 10px;
+  }
+
+  .feature {
+    font-size: 16px;
+  }
+}
+
+/* 🎯 NEW SMARTPHONES ENGINE BLOCK (Max-width: 480px) */
+@media (max-width: 480px) {
+  .pricing-section {
+    padding: 40px 14px 60px 14px;
+  }
+
+  /* Structural adjustment to prevent clipping inside small frames */
+  .header-bg-wrapper {
+    height: 180px;
+    border-radius: 20px;
+  }
+
+  .pricing-title {
+    font-size: 36px;
+  }
+
+  .join-text {
+    font-size: 24px;
+    line-height: 1.3;
+    margin: 20px 0 15px 0;
+  }
+
+  /* Converts overlapping horizontal tabs to a stacked fluid row setup */
+  .pricing-tabs {
+    flex-wrap: wrap;
+    border-radius: 16px;
+    padding: 6px;
+    gap: 6px;
+    justify-content: center;
+  }
+
+  .tab-btn {
+    flex: 1 1 calc(50% - 6px); /* Adaptive double column tracking on mobile */
+    padding: 8px 10px;
+    font-size: 13px;
+    text-align: center;
+    border-radius: 10px;
+  }
+
+  /* 🛠️ CARDS ENGINE RESET: Dynamically recalculates item size constraints */
+  .pricing-slider-container {
+    max-width: 100%;
+  }
+
+  .pricing-card {
+    width: calc(100vw - 48px); /* Locks safe dimensions relative to viewport */
+    margin: 0 auto;
+    padding: 35px 20px;
+  }
+
+  .popular-badge {
+    right: 20px;
+    padding: 6px 12px;
+    font-size: 10px;
+  }
+
+  .plan-icon {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 15px;
+  }
+
+  .plan-desc {
+    font-size: 14px;
+    min-height: auto;
+    margin-bottom: 15px;
+  }
+
+  .price-tag {
+    font-size: 40px;
+  }
+
+  .billing {
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+
+  .features {
+    margin-top: 25px;
+    gap: 12px;
+  }
+
+  .feature {
+    font-size: 14px;
+  }
+
+  .feature-star-img {
+    width: 18px;
+    height: 18px;
+    margin-right: 8px;
+  }
+
+  .free-benefits {
+    font-size: 15px;
+    margin-top: 30px;
+  }
+
+  .free-badge-img {
+    height: 36px;
+  }
+
+  .down-btn {
+    width: 50px;
+    height: 50px;
+    font-size: 22px;
+    margin-top: 15px;
+  }
+
+  .slider-nav {
+    margin-top: 35px;
+    gap: 15px;
+  }
+
+  .nav-arrow {
+    width: 44px;
+    height: 44px;
+    font-size: 16px;
   }
 }

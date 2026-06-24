@@ -110,3 +110,81 @@
 .project-btn:hover{
   transform: translateY(-5px);
 }
+
+/* ==========================================================================
+   📱 RESPONSIVE MEDIA QUERIES (Demo Videos Grid Fixes)
+   ========================================================================== */
+
+/* Tablets & Medium Screens (Max-width: 1024px) */
+@media screen and (max-width: 1024px) {
+  .demo-videos {
+    padding: 10px 40px 60px; /* Side spacing thodi kam kari */
+  }
+
+  .demo-videos h1 {
+    font-size: 52px;
+  }
+
+  /* 🎯 TABLET GRID: 3 columns ki jagah 2 columns kar diye */
+  .videos-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px; /* Cards ke beech ka gap thoda kam kiya */
+  }
+
+  .project-btn {
+    padding: 20px 45px;
+    font-size: 22px;
+  }
+}
+
+/* Small Tablets & Big Phones (Max-width: 768px) */
+@media screen and (max-width: 768px) {
+  .demo-videos h1 {
+    font-size: 40px;
+  }
+
+  .play-btn {
+    width: 65px;
+    height: 65px;
+    font-size: 26px;
+  }
+}
+
+/* Smart Phones (Max-width: 480px) */
+@media screen and (max-width: 480px) {
+  .demo-videos {
+    padding: 10px 20px 50px; /* Mobile par padding minimal kar di */
+  }
+
+  .demo-videos h1 {
+    font-size: 32px;
+    line-height: 1.2;
+    margin-bottom: 20px;
+  }
+
+  /* 🎯 MOBILE GRID: Ab saare cards ek ke niche ek clean line mein aayenge */
+  .videos-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  /* Mobile par touch device hota hai toh hover effect disable ya subtle rakhte hain */
+  .video-card:hover {
+    transform: translateY(-4px);
+  }
+
+  .play-btn {
+    width: 55px;
+    height: 55px;
+    font-size: 22px;
+  }
+
+  /* 🎯 BUTTON AUTO-FIT: Bada button ab mobile par perfectly wrap ho jayega */
+  .project-btn {
+    width: 100%; /* Full screen span */
+    max-width: 320px; /* Isse bada nahi hoga loop clean dikhega */
+    padding: 16px 30px;
+    font-size: 18px;
+    border-radius: 20px;
+  }
+}

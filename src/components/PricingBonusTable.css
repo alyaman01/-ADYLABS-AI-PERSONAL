@@ -124,3 +124,129 @@
 .bonus-table tbody tr:hover {
   background-color: #faf9f5; 
 }
+
+
+/* ==========================================================================
+   📱 RESPONSIVE MEDIA QUERIES (Data Matrix Optimization Block)
+   ========================================================================== */
+
+/* 💻 Tablets & Medium Screens (Max-width: 1024px) */
+@media screen and (max-width: 1024px) {
+  .bonus-section {
+    padding: 60px 24px;
+  }
+
+  .bonus-title {
+    font-size: 44px;
+  }
+
+  .bonus-subtitle {
+    font-size: 24px;
+  }
+
+  .table-wrapper {
+    width: 100%;
+    padding: 10px 24px;
+    border-radius: 24px;
+  }
+
+  .bonus-table th {
+    font-size: 22px;
+    padding: 25px 15px;
+  }
+
+  .bonus-table td {
+    font-size: 19px;
+    padding: 25px 15px;
+  }
+}
+
+/* 🔌 Small Tablets & Portrait Mode (Max-width: 768px) */
+@media screen and (max-width: 768px) {
+  .bonus-section {
+    padding: 50px 16px;
+  }
+
+  .bonus-header {
+    margin-bottom: 30px;
+  }
+
+  .bonus-title {
+    font-size: 36px;
+  }
+
+  .bonus-subtitle {
+    font-size: 20px;
+  }
+
+  /* 🛠️ HORIZONTAL SWIPE SHIELD: Keeps table clean and allows swipe on overflow bounds */
+  .table-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch; /* Butter smooth inertial scroll for iOS devices */
+    padding: 10px 16px;
+    border-radius: 20px;
+  }
+
+  .bonus-table {
+    min-width: 680px; /* Locks minimum density width layout to prevent squishing text rows */
+  }
+
+  .bonus-table th {
+    font-size: 18px;
+    padding: 20px 12px;
+  }
+
+  .bonus-table td {
+    font-size: 16px;
+    padding: 20px 12px;
+  }
+
+  .bonus-table th:last-child,
+  .bonus-table td:last-child {
+    padding-right: 15px; 
+  }
+}
+
+/* 🎯 NEW SMARTPHONES ENGINE BLOCK (Max-width: 480px) */
+@media screen and (max-width: 480px) {
+  .bonus-section {
+    padding: 40px 12px;
+  }
+
+  .bonus-free-badge {
+    height: 60px;
+    margin-bottom: 8px;
+  }
+
+  .bonus-title {
+    font-size: 28px;
+    line-height: 1.2;
+    margin-bottom: 10px;
+  }
+
+  .bonus-subtitle {
+    font-size: 16px;
+    line-height: 1.4;
+  }
+
+  .table-wrapper {
+    border-radius: 16px;
+    padding: 5px 10px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.01);
+  }
+
+  /* Keeps micro spacing tracking intact inside swipable frames */
+  .bonus-table {
+    min-width: 580px; 
+  }
+
+  .bonus-table th {
+    font-size: 15px;
+    padding: 16px 8px;
+  }
+
+  .bonus-table td {
+    font-size: 14px;
+    padding: 16px 8px;
+  }
+}

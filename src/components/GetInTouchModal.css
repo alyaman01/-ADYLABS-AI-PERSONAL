@@ -330,3 +330,187 @@
     margin-bottom: 20px;
   }
 }
+
+
+
+/* ==========================================================================
+   RESPONSIVE ENHANCEMENTS
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Better viewport handling */
+.modal-blur-overlay {
+  min-height: 100dvh;
+}
+
+/* ==========================================================================
+   TABLET
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  .get-in-touch-modal-card {
+    max-width: 100%;
+    padding: 30px;
+    border-radius: 28px;
+  }
+
+  .modal-header-block h2 {
+    font-size: 24px;
+  }
+
+  .modal-header-block p {
+    font-size: 13px;
+  }
+}
+
+/* ==========================================================================
+   MOBILE
+   ========================================================================== */
+
+@media (max-width: 540px) {
+  .modal-blur-overlay {
+    padding: 12px;
+  }
+
+  .get-in-touch-modal-card {
+    width: 100%;
+    max-width: 100%;
+    padding: 25px 18px 18px;
+    border-radius: 22px;
+  }
+
+  .modal-close-cross {
+    top: 12px;
+    right: 12px;
+    width: 32px;
+    height: 32px;
+    font-size: 12px;
+  }
+
+  .modal-header-block {
+    margin-bottom: 18px;
+  }
+
+  .modal-header-block h2 {
+    font-size: 22px;
+    line-height: 1.3;
+    padding-right: 30px;
+  }
+
+  .modal-header-block p {
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  .form-row-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .modal-lead-form {
+    gap: 14px;
+  }
+
+  .modal-lead-form input[type="text"],
+  .modal-lead-form input[type="email"],
+  .modal-lead-form select,
+  .modal-lead-form textarea,
+  .phone-input-wrapper {
+    height: 46px;
+    font-size: 14px;
+  }
+
+  .modal-lead-form textarea {
+    min-height: 100px;
+    height: auto;
+  }
+
+  .phone-input-wrapper .country-code-flag {
+    padding: 0 10px;
+    font-size: 13px;
+  }
+
+  .modal-action-footer {
+    flex-direction: column-reverse;
+    gap: 12px;
+    align-items: stretch;
+  }
+
+  .modal-submit-cta,
+  .attach-document-btn {
+    width: 100%;
+    justify-content: center;
+    height: 46px;
+  }
+}
+
+/* ==========================================================================
+   SMALL MOBILE
+   ========================================================================== */
+
+@media (max-width: 400px) {
+  .get-in-touch-modal-card {
+    padding: 22px 15px 15px;
+  }
+
+  .modal-header-block h2 {
+    font-size: 20px;
+  }
+
+  .modal-header-block p {
+    font-size: 12px;
+  }
+
+  .form-input-group label {
+    font-size: 12px;
+  }
+
+  .modal-submit-cta,
+  .attach-document-btn {
+    font-size: 12px;
+  }
+
+  .phone-input-wrapper .country-code-flag {
+    padding: 0 8px;
+    font-size: 12px;
+  }
+}
+
+/* ==========================================================================
+   HEIGHT FIXES
+   ========================================================================== */
+
+@media (max-height: 700px) {
+  .modal-blur-overlay {
+    align-items: flex-start;
+  }
+
+  .get-in-touch-modal-card {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-height: 550px) {
+  .get-in-touch-modal-card {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+}
+
+/* ==========================================================================
+   TOUCH DEVICES
+   ========================================================================== */
+
+@media (hover: none) {
+  .modal-close-cross:hover,
+  .attach-document-btn:hover,
+  .modal-submit-cta:hover {
+    transform: none;
+  }
+}

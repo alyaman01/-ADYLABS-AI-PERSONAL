@@ -1,10 +1,11 @@
 /* ==========================================================================
-   🎯 FIX: JSON MARKETPLACE KE ANDAR FAQ WIDTH OVERLAP RESET
+   MARKETPLACE FAQ WIDTH FIX
    ========================================================================== */
+
 .marketplace-container .faq-section {
   width: 100% !important;
   max-width: 100% !important;
-  margin-top: 40px !important; /* Spacing overlap reset */
+  margin-top: 40px !important;
   box-sizing: border-box !important;
   display: flex !important;
   justify-content: center !important;
@@ -12,23 +13,22 @@
 
 .marketplace-container .faq-container {
   width: 95% !important;
-  max-width: 1350px !important; /* Bilkul original rules par force karega */
+  max-width: 1350px !important;
 }
 
 /* ==========================================================================
-   BAKI SAARA ORIGINAL FAQ CODE UNTOUCHED (SAME REHNE DIYA HAI)
+   FAQ SECTION
    ========================================================================== */
 
-/* Container section wrapping layout */
 .faq-section {
-  background-color: #fffbe9; /* Clean cream-yellow backdrop */
+  background-color: #fffbe9;
   padding: 80px 40px;
   padding-top: 50px;
   font-family: Arial, sans-serif;
   display: flex;
   justify-content: center;
   margin-top: 90px;
-  width: 100%; /* Force standard layout initialization */
+  width: 100%;
   box-sizing: border-box;
 }
 
@@ -37,23 +37,25 @@
   max-width: 1350px;
   display: flex;
   gap: 50px;
-  align-items: flex-start; /* Isse right side top se align rahegi */
+  align-items: flex-start;
 }
 
-/* LEFT COLUMN (HEADING + CARD STRUCTURE) */
+/* ==========================================================================
+   LEFT COLUMN
+   ========================================================================== */
+
 .faq-left-column {
   width: 420px;
+  flex-shrink: 0;
   display: flex;
   flex-direction: column;
-  flex-shrink: 0;
 }
 
-/* Text elements matching original layout */
 .main-faq-heading {
   font-size: 70px;
   font-weight: 800;
-  color: #111111;
-  margin: 0 0 15px 0;
+  color: #111;
+  margin: 0 0 15px;
   line-height: 1.1;
 }
 
@@ -61,39 +63,38 @@
   font-size: 18px;
   color: #555;
   font-weight: 600;
-  margin: 0 0 35px 0;
-  line-height: 1.4;
+  margin: 0 0 35px;
+  line-height: 1.5;
 }
 
-/* Premium Black Card inside Left Column */
 .faq-left-card {
   width: 100%;
-  background-color: #1a1a1a; 
+  background: #1a1a1a;
   border-radius: 25px;
   padding: 45px 35px;
   position: relative;
-  overflow: hidden; 
-  box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+  overflow: hidden;
   min-height: 250px;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  box-sizing: border-box;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
 }
 
 .card-title {
-  color: #ffffff;
+  color: #fff;
   font-size: 30px;
   font-weight: 700;
   line-height: 1.3;
-  margin: 0 0 25px 0;
+  margin: 0 0 25px;
 }
 
-/* People rows layout */
 .audience-trust-row {
   display: flex;
   align-items: center;
   gap: 15px;
   margin-bottom: 40px;
+  flex-wrap: wrap;
 }
 
 .faq-people-img {
@@ -103,17 +104,16 @@
 }
 
 .trust-text {
-  color: #ffffff;
+  color: #fff;
   font-size: 15px;
   font-weight: 600;
   margin: 0;
 }
 
 .highlight-text {
-  color: #efbe2f; 
+  color: #efbe2f;
 }
 
-/* Yellow Button details */
 .quick-call-btn {
   background-color: #efbe2f;
   color: #111;
@@ -125,7 +125,7 @@
   cursor: pointer;
   width: fit-content;
   transition: all 0.3s ease;
-  z-index: 2; 
+  z-index: 2;
 }
 
 .quick-call-btn:hover {
@@ -133,7 +133,10 @@
   transform: translateY(-2px);
 }
 
-/* Absolute Floating Globe icon */
+/* ==========================================================================
+   GLOBE IMAGE
+   ========================================================================== */
+
 .globe-vector-box {
   position: absolute;
   bottom: -10px;
@@ -149,9 +152,13 @@
   object-fit: contain;
 }
 
-/* RIGHT COLUMN (PURE ACCORDION CARDS) */
+/* ==========================================================================
+   RIGHT ACCORDION
+   ========================================================================== */
+
 .faq-right-accordion {
-  flex-grow: 1;
+  flex: 1;
+  min-width: 0;
 }
 
 .accordion-list {
@@ -161,12 +168,12 @@
 }
 
 .accordion-item {
-  background: #ffffff;
+  background: #fff;
   border-radius: 18px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
   overflow: hidden;
-  transition: all 0.3s ease;
   border: 1.5px solid transparent;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
 }
 
 .active-item {
@@ -178,8 +185,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 15px;
   cursor: pointer;
-  user-select: none;
 }
 
 .accordion-header h3 {
@@ -193,6 +200,7 @@
   font-size: 13px;
   color: #111;
   transition: transform 0.3s ease;
+  flex-shrink: 0;
 }
 
 .rotate-arrow {
@@ -203,38 +211,183 @@
 .accordion-body {
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.3s ease-out, padding 0.3s ease;
+  transition: max-height 0.35s ease, padding 0.35s ease;
   padding: 0 30px;
-  background-color: #ffffff;
+  background: #fff;
 }
 
 .show-body {
-  max-height: 250px; 
+  max-height: 300px;
   padding-bottom: 24px;
 }
 
 .accordion-body p {
   font-size: 17px;
   color: #444;
-  line-height: 1.6;
+  line-height: 1.7;
   margin: 0;
 }
 
-/* Mobile & Tablet responsive adaptation */
+/* ==========================================================================
+   LARGE TABLET
+   ========================================================================== */
+
+@media (max-width: 1200px) {
+  .main-faq-heading {
+    font-size: 58px;
+  }
+
+  .faq-container {
+    gap: 35px;
+  }
+}
+
+/* ==========================================================================
+   TABLET
+   ========================================================================== */
+
 @media (max-width: 1024px) {
+  .faq-section {
+    padding: 60px 25px;
+    margin-top: 60px;
+  }
+
   .faq-container {
     flex-direction: column;
     align-items: center;
   }
-  .faq-left-column {
+
+  .faq-left-column,
+  .faq-right-accordion {
     width: 100%;
-    max-width: 600px;
+    max-width: 700px;
   }
+
   .faq-left-card {
     padding-bottom: 110px;
   }
-  .faq-right-accordion {
+
+  .main-faq-heading {
+    font-size: 50px;
+  }
+}
+
+/* ==========================================================================
+   MOBILE
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  .faq-section {
+    padding: 50px 15px;
+  }
+
+  .faq-container {
     width: 100%;
-    max-width: 600px;
+    gap: 30px;
+  }
+
+  .main-faq-heading {
+    font-size: 38px;
+  }
+
+  .main-faq-sub {
+    font-size: 16px;
+  }
+
+  .faq-left-card {
+    padding: 30px 25px 100px;
+    border-radius: 20px;
+  }
+
+  .card-title {
+    font-size: 24px;
+  }
+
+  .quick-call-btn {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+    padding: 14px 20px;
+  }
+
+  .accordion-header {
+    padding: 20px;
+  }
+
+  .accordion-header h3 {
+    font-size: 17px;
+    line-height: 1.4;
+  }
+
+  .accordion-body {
+    padding: 0 20px;
+  }
+
+  .accordion-body p {
+    font-size: 15px;
+  }
+
+  .globe-vector-box {
+    width: 120px;
+    height: 120px;
+  }
+}
+
+/* ==========================================================================
+   SMALL MOBILE
+   ========================================================================== */
+
+@media (max-width: 480px) {
+  .faq-section {
+    padding: 40px 10px;
+  }
+
+  .main-faq-heading {
+    font-size: 30px;
+  }
+
+  .main-faq-sub {
+    font-size: 14px;
+  }
+
+  .faq-left-card {
+    padding: 25px 20px 90px;
+  }
+
+  .card-title {
+    font-size: 20px;
+  }
+
+  .trust-text {
+    font-size: 13px;
+  }
+
+  .quick-call-btn {
+    font-size: 15px;
+    padding: 12px 18px;
+  }
+
+  .accordion-header {
+    padding: 16px;
+  }
+
+  .accordion-header h3 {
+    font-size: 15px;
+  }
+
+  .accordion-body {
+    padding: 0 16px;
+  }
+
+  .accordion-body p {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .globe-vector-box {
+    width: 90px;
+    height: 90px;
+    bottom: 0;
+    right: 0;
   }
 }

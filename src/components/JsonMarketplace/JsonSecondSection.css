@@ -385,3 +385,279 @@
     font-size: 18px;
   }
 }
+
+
+/* ==========================================================================
+   RESPONSIVE ENHANCEMENTS
+   ========================================================================== */
+
+@media (max-width: 1200px) {
+  .json-marketplace {
+    padding: 30px 3%;
+  }
+
+  .market-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+    padding: 25px;
+  }
+
+  .featured-left h2 {
+    font-size: 42px;
+  }
+}
+
+/* ==========================================================================
+   TABLET
+   ========================================================================== */
+
+@media (max-width: 992px) {
+  .json-marketplace {
+    padding: 25px 15px;
+  }
+
+  .featured-card {
+    flex-direction: column;
+    text-align: center;
+    gap: 35px;
+    padding: 30px;
+    min-height: auto;
+  }
+
+  .featured-left,
+  .featured-right {
+    width: 100%;
+  }
+
+  .featured-left h2 {
+    font-size: 36px;
+    margin: 25px 0;
+  }
+
+  .featured-right img {
+    max-width: 350px;
+  }
+
+  .tool-icons {
+    justify-content: center;
+  }
+
+  .marketplace-heading h1 {
+    font-size: 60px;
+  }
+
+  .marketplace-heading h2 {
+    font-size: 38px;
+  }
+
+  .marketplace-heading p {
+    font-size: 22px;
+  }
+
+  .market-grid {
+    grid-template-columns: 1fr;
+    padding: 20px;
+  }
+}
+
+/* ==========================================================================
+   MOBILE
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  .json-marketplace {
+    padding: 20px 12px;
+  }
+
+  .marketplace-heading {
+    margin-bottom: 35px;
+  }
+
+  .marketplace-heading h1 {
+    font-size: 48px;
+    line-height: 1.1;
+  }
+
+  .marketplace-heading h2 {
+    font-size: 30px;
+    line-height: 1.2;
+  }
+
+  .marketplace-heading p {
+    font-size: 18px;
+    margin-top: 12px;
+  }
+
+  .featured-card {
+    padding: 25px 20px;
+    border-radius: 25px;
+  }
+
+  .featured-left h2 {
+    font-size: 28px;
+  }
+
+  .featured-right img {
+    max-width: 280px;
+  }
+
+  .tool-box {
+    width: 54px;
+    height: 54px;
+  }
+
+  .tool-box img {
+    width: 28px;
+    height: 28px;
+  }
+
+  .market-grid {
+    padding: 15px;
+    gap: 18px;
+    border-radius: 25px;
+  }
+
+  .market-card {
+    min-height: auto;
+    padding: 24px 18px;
+  }
+
+  .market-card h3 {
+    font-size: 18px;
+    margin-top: 18px;
+  }
+
+  .author-name span {
+    font-size: 15px;
+  }
+
+  .card-bottom {
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+
+  .actions {
+    width: 100%;
+    justify-content: flex-end;
+  }
+
+  .load-more-btn {
+    width: 220px;
+    height: 60px;
+    font-size: 16px;
+  }
+}
+
+/* ==========================================================================
+   SMALL MOBILE
+   ========================================================================== */
+
+@media (max-width: 480px) {
+  .marketplace-heading h1 {
+    font-size: 38px;
+  }
+
+  .marketplace-heading h2 {
+    font-size: 24px;
+  }
+
+  .marketplace-heading p {
+    font-size: 16px;
+  }
+
+  .featured-card {
+    padding: 20px 15px;
+    border-radius: 20px;
+  }
+
+  .featured-left h2 {
+    font-size: 22px;
+  }
+
+  .featured-right img {
+    max-width: 220px;
+  }
+
+  .tool-icons {
+    gap: 10px;
+  }
+
+  .tool-box {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+  }
+
+  .tool-box img {
+    width: 24px;
+    height: 24px;
+  }
+
+  .market-grid {
+    padding: 12px;
+    gap: 15px;
+  }
+
+  .market-card {
+    padding: 18px 15px;
+    border-radius: 20px;
+  }
+
+  .market-card h3 {
+    font-size: 16px;
+    line-height: 1.4;
+  }
+
+  .profile-img {
+    width: 38px;
+    height: 38px;
+  }
+
+  .author-name span {
+    font-size: 14px;
+  }
+
+  .verify-icon {
+    width: 14px !important;
+    height: 14px !important;
+  }
+
+  .actions button {
+    width: 38px;
+    height: 38px;
+  }
+
+  .actions button img {
+    width: 18px;
+    height: 18px;
+  }
+
+  .load-more-btn {
+    width: 100%;
+    max-width: 280px;
+    height: 55px;
+    font-size: 15px;
+  }
+}
+
+/* ==========================================================================
+   EXTRA SMALL DEVICES
+   ========================================================================== */
+
+@media (max-width: 360px) {
+  .marketplace-heading h1 {
+    font-size: 32px;
+  }
+
+  .marketplace-heading h2 {
+    font-size: 20px;
+  }
+
+  .featured-left h2 {
+    font-size: 18px;
+  }
+
+  .market-card h3 {
+    font-size: 15px;
+  }
+}

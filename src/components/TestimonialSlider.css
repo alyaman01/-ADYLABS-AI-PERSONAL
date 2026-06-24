@@ -1,23 +1,22 @@
-/* Outer layout - creates space from the previous top element */
+/* ==========================================================================
+   TESTIMONIAL SECTION
+   ========================================================================== */
+
 .testimonial-outer-section {
-  background-color: #fcebba; 
-  padding: 60px 50px 80px 50px; /* Niche 80px ka space diya hai taaki page scroll ho */
-  margin-top: 90px; 
+  background-color: #fcebba;
+  padding: 60px 50px 80px;
+  margin-top: 90px;
   box-sizing: border-box;
   display: flex;
   justify-content: center;
 }
 
-/* THE INNER CONTAINER (Jo first screenshot me clear white card zone hai) */
 .testimonial-inner-white-box {
   background-color: #fffbe9;
   width: 100%;
   max-width: 1250px;
-  border-top-left-radius: 45px;
-  border-top-right-radius: 45px;
-  border-bottom-left-radius: 45px;
-  border-bottom-right-radius: 45px;
-  padding: 60px 50px 60px 50px; /* Bottom padding ko 20px se badha kar 60px kar diya */
+  border-radius: 45px;
+  padding: 60px 50px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -25,13 +24,17 @@
   box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.02);
 }
 
-/* Section Title layout styles */
+/* ==========================================================================
+   TITLE
+   ========================================================================== */
+
 .section-title {
   font-size: 44px;
   font-weight: 700;
-  color: #111111;
-  margin: 0 0 10px 0;
-  font-family: serif; /* Serifs match the design screenshot exactly */
+  color: #111;
+  margin: 0 0 10px;
+  font-family: serif;
+  text-align: center;
 }
 
 .title-underline {
@@ -43,8 +46,9 @@
 }
 
 /* ==========================================================================
-   PROFILE CARD LAYOUT
+   TESTIMONIAL CARD
    ========================================================================== */
+
 .testimonial-card {
   width: 100%;
   max-width: 1000px;
@@ -71,7 +75,7 @@
 }
 
 .client-content-wrapper {
-  flex-grow: 1;
+  flex: 1;
   display: flex;
   flex-direction: column;
   gap: 25px;
@@ -82,18 +86,19 @@
   display: flex;
   align-items: center;
   gap: 15px;
+  flex-wrap: wrap;
 }
 
 .client-name {
   font-size: 24px;
   font-weight: 800;
-  color: #111111;
+  color: #111;
   margin: 0;
 }
 
 .client-role {
   font-size: 16px;
-  color: #666666;
+  color: #666;
 }
 
 .client-rating {
@@ -107,14 +112,17 @@
 }
 
 .filled-star {
-  color: #fca120; /* Vibrant star orange-gold fill */
+  color: #fca120;
 }
 
 .empty-star {
   color: #cccccc;
 }
 
-/* Message block quotes styling */
+/* ==========================================================================
+   QUOTE SECTION
+   ========================================================================== */
+
 .quote-body-box {
   position: relative;
 }
@@ -138,16 +146,17 @@
 
 .quote-text {
   font-size: 20px;
-  color: #222222;
-  line-height: 1.6;
+  color: #222;
+  line-height: 1.7;
   font-weight: 500;
   margin: 0;
   text-align: left;
 }
 
 /* ==========================================================================
-   NAVIGATION AND INCREASED GLOBE VECTOR SIZE
+   SLIDER CONTROLS
    ========================================================================== */
+
 .slider-controls-wrapper {
   display: flex;
   align-items: center;
@@ -158,61 +167,229 @@
 }
 
 .nav-arrow-btn {
-  background-color: #f7e7b6; 
+  background-color: #f7e7b6;
   border: none;
   width: 46px;
   height: 46px;
   border-radius: 50%;
   font-size: 18px;
   font-weight: bold;
-  color: #111111;
+  color: #111;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background-color 0.2s ease;
+  transition: all 0.25s ease;
 }
 
 .nav-arrow-btn:hover {
   background-color: #efbe2f;
+  transform: scale(1.05);
 }
 
-/* Globe vector graphic scale increase */
+/* ==========================================================================
+   CENTER VECTOR
+   ========================================================================== */
+
 .center-vector-container {
-  width: 250px;  
-  height: 180px; /* Height thodi aur badha di */
+  width: 250px;
+  height: 180px;
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: visible; /* Kisi bhi layout border se image cut nahi hogi */
-  margin-top: -20px; /* Globe ko thoda upar balanced lift dene ke liye */
+  overflow: visible;
+  margin-top: -20px;
 }
+
 .bottom-vector-img {
   width: 100%;
   height: 100%;
   object-fit: contain;
 }
 
-/* Tablet / Mobile view responsive management rules */
+/* ==========================================================================
+   LARGE TABLET
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+  .testimonial-outer-section {
+    padding: 50px 25px 70px;
+  }
+
+  .testimonial-inner-white-box {
+    padding: 50px 30px;
+  }
+
+  .section-title {
+    font-size: 38px;
+  }
+
+  .title-underline {
+    width: 160px;
+  }
+
+  .client-image-wrapper {
+    width: 220px;
+    height: 220px;
+  }
+
+  .quote-text {
+    font-size: 18px;
+  }
+}
+
+/* ==========================================================================
+   TABLET
+   ========================================================================== */
+
 @media (max-width: 900px) {
   .testimonial-outer-section {
-    padding: 30px 15px 0 15px;
+    padding: 40px 15px 60px;
+    margin-top: 50px;
   }
+
   .testimonial-inner-white-box {
     padding: 40px 20px;
+    border-radius: 30px;
   }
+
   .testimonial-card {
     flex-direction: column;
     align-items: center;
+    text-align: center;
+    gap: 25px;
   }
+
+  .client-content-wrapper {
+    align-items: center;
+    padding-top: 0;
+  }
+
   .client-meta {
     flex-direction: column;
-    gap: 5px;
+    gap: 8px;
   }
+
   .client-rating {
     margin-left: 0;
   }
+
+  .quote-text {
+    text-align: center;
+  }
+
   .quote-icon {
     display: none;
+  }
+
+  .center-vector-container {
+    width: 200px;
+    height: 140px;
+  }
+}
+
+/* ==========================================================================
+   MOBILE
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  .section-title {
+    font-size: 32px;
+  }
+
+  .title-underline {
+    width: 130px;
+    margin-bottom: 35px;
+  }
+
+  .client-image-wrapper {
+    width: 180px;
+    height: 180px;
+  }
+
+  .client-name {
+    font-size: 22px;
+  }
+
+  .client-role {
+    font-size: 15px;
+  }
+
+  .quote-text {
+    font-size: 16px;
+    line-height: 1.8;
+  }
+
+  .star {
+    font-size: 18px;
+  }
+
+  .nav-arrow-btn {
+    width: 42px;
+    height: 42px;
+    font-size: 16px;
+  }
+
+  .center-vector-container {
+    width: 170px;
+    height: 120px;
+  }
+}
+
+/* ==========================================================================
+   SMALL MOBILE
+   ========================================================================== */
+
+@media (max-width: 480px) {
+  .testimonial-outer-section {
+    padding: 30px 10px 50px;
+  }
+
+  .testimonial-inner-white-box {
+    padding: 30px 15px;
+    border-radius: 20px;
+  }
+
+  .section-title {
+    font-size: 26px;
+  }
+
+  .title-underline {
+    width: 100px;
+    height: 4px;
+    margin-bottom: 25px;
+  }
+
+  .client-image-wrapper {
+    width: 150px;
+    height: 150px;
+  }
+
+  .client-name {
+    font-size: 20px;
+  }
+
+  .client-role {
+    font-size: 14px;
+  }
+
+  .quote-text {
+    font-size: 15px;
+  }
+
+  .slider-controls-wrapper {
+    gap: 15px;
+  }
+
+  .nav-arrow-btn {
+    width: 38px;
+    height: 38px;
+    font-size: 14px;
+  }
+
+  .center-vector-container {
+    width: 140px;
+    height: 100px;
+    margin-top: -10px;
   }
 }

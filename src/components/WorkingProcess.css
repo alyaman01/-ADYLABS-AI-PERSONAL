@@ -1,21 +1,23 @@
+/* ==========================================================================
+   🧱 WORKING PROCESS MAIN SECTION
+   ========================================================================== */
 .working-process-section{
   width: 100%;
   padding: 110px 5%;
 
   /* UPPER SECTION KE SAATH MATCHING */
   background: linear-gradient(
-  to bottom,
-  #f8f7ef 0%,
-  #f4f0d9 40%,
-  #ece4bb 75%,
-  #e2d39a 100%
-);
+    to bottom,
+    #f8f7ef 0%,
+    #f4f0d9 40%,
+    #ece4bb 75%,
+    #e2d39a 100%
+  );
 
   overflow: hidden;
 }
 
 /* ================= HEADING ================= */
-
 .working-heading{
   text-align: center;
 }
@@ -39,7 +41,6 @@
 }
 
 /* ================= WRAPPER ================= */
-
 .process-wrapper{
   margin-top: 10px;
 
@@ -51,16 +52,14 @@
   gap: 40px;
 }
 
-/* ================= LEFT / RIGHT ================= */
-
+/* ================= LEFT / RIGHT COLUMNS ================= */
 .process-left,
 .process-right{
   display: flex;
   flex-direction: column;
 }
 
-/* ================= CARD ================= */
-
+/* ================= CARD LAYOUT ================= */
 .process-card{
   display: flex;
   align-items: flex-start;
@@ -73,15 +72,13 @@
   transform: translateY(-5px);
 }
 
-/* ================= ICON ================= */
-
+/* ================= CARD ICON ================= */
 .process-icon{
   min-width: 82px;
   width: 82px;
   height: 82px;
 
   border-radius: 50%;
-
   background: #f4dfa0;
 
   display: flex;
@@ -95,12 +92,10 @@
 
 .process-card:hover .process-icon{
   background: #f0c133;
-
   transform: scale(1.08);
 }
 
-/* ================= TEXT ================= */
-
+/* ================= TEXT TYPOGRAPHY ================= */
 .process-card h3{
   font-size: 25px;
   line-height: 1.2;
@@ -119,15 +114,13 @@
   max-width: 320px;
 }
 
-/* ================= RIGHT ALIGN ================= */
-
+/* ================= RIGHT CARD DEFAULT ALIGNMENT ================= */
 .right-card{
   text-align: right;
   justify-content: flex-end;
 }
 
-/* ================= CENTER ================= */
-
+/* ================= CENTER BLOCK (IMAGE) ================= */
 .process-center{
   display: flex;
   justify-content: center;
@@ -143,82 +136,7 @@
   animation: floatProcess 5s ease-in-out infinite;
 }
 
-/* ================= ANIMATION ================= */
-
-@keyframes floatProcess{
-
-  0%{
-    transform: translateY(0px);
-  }
-
-  50%{
-    transform: translateY(-14px);
-  }
-
-  100%{
-    transform: translateY(0px);
-  }
-
-}
-
-/* ================= RESPONSIVE ================= */
-
-@media(max-width: 1200px){
-
-  .process-wrapper{
-    grid-template-columns: 1fr;
-  }
-
-  .process-left,
-  .process-right{
-    gap: 50px;
-  }
-
-  .right-card{
-    text-align: left;
-    justify-content: flex-start;
-  }
-
-}
-
-@media(max-width: 768px){
-
-  .working-process-section{
-    padding: 80px 5%;
-  }
-
-  .working-heading h1{
-    font-size: 42px;
-  }
-
-  .heading-line{
-    width: 150px;
-  }
-
-  .process-card h3{
-    font-size: 22px;
-  }
-
-  .process-card p{
-    font-size: 16px;
-  }
-
-  .process-icon{
-    width: 68px;
-    height: 68px;
-    min-width: 68px;
-  }
-
-  .center-process-img{
-    max-width: 220px;
-  }
-
-}
-
-/* ================= CUSTOM GAPS ================= */
-
-/* ================= CUSTOM POSITION ================= */
-
+/* ================= CUSTOM POSITION (DESKTOP SPECIFIC) ================= */
 .top-left{
   transform: translateX(180px);
   margin-bottom: 170px;
@@ -242,11 +160,150 @@
 .bottom-left{
   margin-right: -20px;
   transform: translateX(180px);
-
 }
 
 .bottom-right{
   margin-left: -20px;
   transform: translateX(-180px);
+}
 
+/* ================= ANIMATION KEYFRAMES ================= */
+@keyframes floatProcess{
+  0%{ transform: translateY(0px); }
+  50%{ transform: translateY(-14px); }
+  100%{ transform: translateY(0px); }
+}
+
+
+/* ==========================================================================
+   📱 RESPONSIVE MEDIA QUERIES (The Ultimate Positional Fixing Engine)
+   ========================================================================== */
+
+/* Laptops & Large Tablets (Max-width: 1200px) */
+@media screen and (max-width: 1200px) {
+  .working-process-section {
+    padding: 80px 4%;
+  }
+
+  /* Grid turns into single column track */
+  .process-wrapper {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    margin-top: 50px;
+  }
+
+  /* Center image shifts to optimal size constraints */
+  .center-process-img {
+    width: 100%;
+    max-width: 450px;
+    height: auto;
+  }
+
+  .process-left,
+  .process-right {
+    gap: 30px;
+  }
+
+  /* Reset right text layout to standard left align for natural reading */
+  .right-card {
+    text-align: left;
+    justify-content: flex-start;
+  }
+
+  /* 🎯 THE OVERRIDE CORE: Resetting all desktop translations to ensure zero screen spill */
+  .top-left, .top-right,
+  .middle-left, .middle-right,
+  .bottom-left, .bottom-right {
+    transform: none !important;
+    margin: 0 !important;
+  }
+}
+
+/* Small Tablets & Portrait Displays (Max-width: 768px) */
+@media screen and (max-width: 768px) {
+  .working-process-section {
+    padding: 60px 20px;
+  }
+
+  .working-heading h1 {
+    font-size: 42px;
+  }
+
+  .heading-line {
+    width: 150px;
+    height: 5px;
+  }
+
+  .center-process-img {
+    max-width: 320px;
+  }
+
+  .process-card h3 {
+    font-size: 22px;
+    margin-bottom: 8px;
+  }
+
+  .process-card p {
+    font-size: 16px;
+    max-width: 100%; /* Spans across entire container bounds smoothly */
+  }
+
+  .process-icon {
+    width: 68px;
+    height: 68px;
+    min-width: 68px;
+  }
+}
+
+/* 🎯 COMPACT SMARTPHONES (Max-width: 480px) */
+@media screen and (max-width: 480px) {
+  .working-process-section {
+    padding: 50px 14px;
+  }
+
+  .working-heading h1 {
+    font-size: 32px;
+    line-height: 1.2;
+  }
+
+  /* Re-ordering elements: Heading -> Image -> Steps (Left and Right) */
+  .process-center {
+    grid-row: 1; /* Center image content scales right below title header */
+    margin-bottom: 20px;
+  }
+  
+  .process-wrapper {
+    gap: 24px;
+    margin-top: 30px;
+  }
+
+  .process-card {
+    flex-direction: column; /* Stacks icons over textual descriptors dynamically */
+    align-items: center;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.4);
+    padding: 24px 16px;
+    border-radius: 24px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+  }
+
+  .process-icon {
+    width: 60px;
+    height: 60px;
+    min-width: 60px;
+  }
+
+  .process-card h3 {
+    font-size: 20px;
+    margin-top: 10px;
+  }
+
+  .process-card p {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .center-process-img {
+    max-width: 250px;
+  }
 }

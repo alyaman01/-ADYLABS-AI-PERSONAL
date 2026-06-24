@@ -1,4 +1,6 @@
-
+/* ==========================================================================
+   🧱 JSON MARKETPLACE MAIN SECTION
+   ========================================================================== */
 .json-marketplace{
   width: 100%;
   padding: 20px 4%;
@@ -7,14 +9,12 @@
 }
 
 /* ================= HEADINGS ================= */
-
 .marketplace-heading{
   text-align: center;
   margin-bottom: 50px;
 }
 
 /* ================= TOP BUTTON ================= */
-
 .market-btn{
   width: 280px;
   height: 100px;
@@ -31,7 +31,6 @@
 
   cursor: pointer;
 
-  
   margin-bottom: 50px;
 
   transition: 0.3s ease;
@@ -46,7 +45,6 @@
 }
 
 /* ================= HEADING TEXT ================= */
-
 .marketplace-heading h1{
   font-size: 90px;
   color: #ec962f;
@@ -71,17 +69,15 @@
 }
 
 /* ================= FEATURE CARD ================= */
-
 .featured-card{
   background: linear-gradient(
-  90deg,
-  #fff6d6 50%,
-  #ffe27a 90%,
-  #fff6d6 100%
-);
+    90deg,
+    #fff6d6 50%,
+    #ffe27a 90%,
+    #fff6d6 100%
+  );
 
   border-radius: 34px;
-
   padding: 40px;
 
   display: flex;
@@ -89,11 +85,9 @@
   align-items: center;
 
   margin-bottom: 0px;
-
   overflow: hidden;
 
   min-height: 420px;
-
   transition: 0.35s ease;
 }
 
@@ -129,7 +123,6 @@
 }
 
 /* ================= TOOL ICONS ================= */
-
 .tool-icons{
   display: flex;
   gap: 14px;
@@ -141,9 +134,7 @@
   height: 62px;
 
   border-radius: 16px;
-
   border: 2px solid #999;
-
   background: #fff;
 
   display: flex;
@@ -151,9 +142,7 @@
   align-items: center;
 
   overflow: hidden;
-
   transition: 0.3s ease;
-
   cursor: pointer;
 }
 
@@ -170,7 +159,6 @@
 }
 
 /* ================= AUTHOR ================= */
-
 .author{
   display: flex;
   align-items: center;
@@ -203,31 +191,26 @@
 }
 
 /* ================= GRID ================= */
-
 .market-grid{
   display: grid;
   grid-template-columns: repeat(3,1fr);
   gap: 34px;
 
   padding: 40px;
-
   border-radius: 40px;
 
   background: linear-gradient(
-  90deg,
-  #fff6d6 50%,
-  #ffe27a 90%,
-  #fff6d6 100%
-);
+    90deg,
+    #fff6d6 50%,
+    #ffe27a 90%,
+    #fff6d6 100%
+  );
 }
 
 /* ================= CARD ================= */
-
 .market-card{
   background: #f8f8f8;
-
   border-radius: 28px;
-
   padding: 32px;
 
   min-height: 340px;
@@ -237,7 +220,6 @@
   justify-content: space-between;
 
   transition: 0.35s ease;
-
   cursor: pointer;
 }
 
@@ -254,7 +236,6 @@
 }
 
 /* ================= CARD BOTTOM ================= */
-
 .card-bottom{
   display: flex;
   justify-content: space-between;
@@ -274,15 +255,12 @@
 
   border-radius: 50%;
   border: none;
-
   background: #fff;
-
   cursor: pointer;
 
   display: flex;
   justify-content: center;
   align-items: center;
-
   transition: 0.3s ease;
 }
 
@@ -301,7 +279,6 @@
 }
 
 /* ================= DOWNLOAD BUTTON ================= */
-
 .download-btn-wrap{
   display: flex;
   justify-content: center;
@@ -320,7 +297,6 @@
   height: 95px;
 
   border-radius: 60px;
-
   border: 8px solid transparent;
 
   background:
@@ -333,9 +309,7 @@
 
   font-size: 18px;
   font-weight: 700;
-
   cursor: pointer;
-
   transition: 0.3s ease;
 }
 
@@ -343,19 +317,21 @@
   transform: translateY(-5px) scale(1.03);
 }
 
-/* ================= RESPONSIVE ================= */
+/* ==========================================================================
+   📱 RESPONSIVE MEDIA QUERIES (Clean Viewport Balancing)
+   ========================================================================== */
 
 @media(max-width: 992px){
-
   .market-grid{
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr; /* Stacked grid for cleaner spacing on tablet tabs */
+    padding: 30px;
   }
 
   .featured-card{
     flex-direction: column;
-    gap: 40px;
-
+    gap: 35px;
     text-align: center;
+    padding: 35px;
   }
 
   .featured-left{
@@ -368,6 +344,11 @@
 
   .featured-left h2{
     font-size: 42px;
+    margin: 25px 0;
+  }
+
+  .tool-icons, .author {
+    justify-content: center; /* Center-aligned layout blocks for clean stacking aspect */
   }
 
   .marketplace-heading h1{
@@ -377,15 +358,14 @@
   .marketplace-heading h2{
     font-size: 38px;
   }
-
 }
 
 @media(max-width: 768px){
-
   .market-btn{
     width: 230px;
     height: 82px;
     font-size: 20px;
+    box-shadow: 0 0 0 6px #efe6aa, 0 8px 20px rgba(0,0,0,0.05);
   }
 
   .marketplace-heading h1{
@@ -398,6 +378,7 @@
 
   .marketplace-heading p{
     font-size: 20px;
+    margin-top: 12px;
   }
 
   .featured-left h2{
@@ -414,10 +395,90 @@
 
   .download-btn{
     width: 100%;
-    font-size: 20px;
-    padding: 0 20px;
+    max-width: 400px; /* Locked max width scaling metrics to protect layout flow */
+    font-size: 18px;
+    height: 80px;
   }
-
-  
 }
 
+/* 🎯 NEW SMARTPHONES BLOCK (Max-width: 480px) */
+@media(max-width: 480px) {
+  .json-marketplace {
+    padding: 20px 12px; /* Extra breathing space for modern mobile boundaries */
+  }
+
+  .marketplace-heading {
+    margin-bottom: 35px;
+  }
+
+  /* Critical micro typography downscaling */
+  .marketplace-heading h1 {
+    font-size: 34px;
+  }
+
+  .marketplace-heading h2 {
+    font-size: 24px;
+    line-height: 1.3;
+  }
+
+  .marketplace-heading p {
+    font-size: 15px;
+    line-height: 1.5;
+  }
+
+  /* Featured Card Mobile Tuning */
+  .featured-card {
+    padding: 30px 20px;
+    border-radius: 24px;
+  }
+
+  .featured-left h2 {
+    font-size: 24px;
+    margin: 15px 0;
+  }
+
+  .tool-box {
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+  }
+
+  .tool-box img {
+    width: 24px;
+    height: 24px;
+  }
+
+  .author-name span {
+    font-size: 16px;
+  }
+
+  /* Grid Layout Mobile Compacting */
+  .market-grid {
+    padding: 16px;
+    border-radius: 24px;
+    gap: 20px;
+  }
+
+  .market-card {
+    padding: 24px 20px;
+    border-radius: 20px;
+    min-height: auto; /* Allow auto stretching instead of hard coding heights */
+  }
+
+  .market-card h3 {
+    font-size: 16px;
+    line-height: 1.5;
+    margin-top: 15px;
+  }
+
+  .card-bottom {
+    margin-top: 25px;
+  }
+
+  /* Footer action button scaling */
+  .download-btn {
+    height: 68px;
+    font-size: 16px;
+    border: 5px solid transparent;
+  }
+}

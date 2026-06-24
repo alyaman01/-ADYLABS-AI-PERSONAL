@@ -224,3 +224,162 @@
     font-size: 17px;
   }
 }
+
+
+
+/* ==========================================================================
+   RESPONSIVE IMPROVEMENTS
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+  .marketplace-container {
+    padding: 60px 20px;
+  }
+
+  .marketplace-header h2 {
+    font-size: 50px;
+  }
+
+  .marketplace-header h3 {
+    font-size: 32px;
+  }
+
+  .search-box-container {
+    max-width: 700px;
+  }
+}
+
+/* ==========================================================================
+   TABLET
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  .marketplace-container {
+    padding: 50px 15px;
+    background-size: cover;
+  }
+
+  .marketplace-header h2 {
+    font-size: 38px;
+    line-height: 1.2;
+    margin-bottom: 25px;
+  }
+
+  .marketplace-header h3 {
+    font-size: 24px;
+  }
+
+  .search-box-container {
+    height: 72px;
+    padding: 0 18px;
+    border-radius: 18px;
+  }
+
+  .marketplace-search-input {
+    font-size: 16px;
+  }
+
+  .filter-tags-row {
+    gap: 10px;
+    margin-bottom: 35px;
+  }
+
+  .filter-pill-btn {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+
+  .market-book-call-cta {
+    padding: 16px 36px;
+    font-size: 17px;
+  }
+}
+
+/* ==========================================================================
+   MOBILE
+   ========================================================================== */
+
+@media (max-width: 480px) {
+  .marketplace-container {
+    padding: 40px 12px;
+  }
+
+  .marketplace-header h2 {
+    font-size: 30px;
+    letter-spacing: 0;
+  }
+
+  .marketplace-header h3 {
+    font-size: 20px;
+  }
+
+  .search-box-container {
+    height: 62px;
+    padding: 0 14px;
+    border-radius: 16px;
+    margin-bottom: 20px;
+  }
+
+  .marketplace-search-input {
+    font-size: 15px;
+  }
+
+  .input-active-tag {
+    padding: 5px 10px;
+    margin-right: 8px;
+  }
+
+  .input-active-tag span {
+    font-size: 13px;
+  }
+
+  .clear-tag-btn {
+    font-size: 10px;
+  }
+
+  .filter-tags-row {
+    gap: 8px;
+    margin-bottom: 30px;
+  }
+
+  .filter-pill-btn {
+    padding: 7px 12px;
+    font-size: 13px;
+  }
+
+  .marketplace-action-block {
+    margin-bottom: 50px;
+  }
+
+  .market-book-call-cta {
+    width: 100%;
+    max-width: 320px;
+    padding: 14px 24px;
+    font-size: 15px;
+    gap: 10px;
+  }
+}
+
+/* ==========================================================================
+   EXTRA SMALL DEVICES
+   ========================================================================== */
+
+@media (max-width: 360px) {
+  .marketplace-header h2 {
+    font-size: 26px;
+  }
+
+  .marketplace-header h3 {
+    font-size: 18px;
+  }
+
+  .market-book-call-cta {
+    font-size: 14px;
+    padding: 12px 20px;
+  }
+
+  .filter-pill-btn {
+    font-size: 12px;
+    padding: 6px 10px;
+  }
+}

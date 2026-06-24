@@ -231,3 +231,160 @@
     width: 100%;
   }
 }
+
+
+/* ==========================================================================
+   EXTRA RESPONSIVE POLISH
+   ========================================================================== */
+
+@media (max-width: 992px) {
+  .meta-block h4 {
+    font-size: 22px;
+  }
+
+  .author-name {
+    font-size: 18px;
+  }
+
+  .update-text {
+    font-size: 17px;
+  }
+
+  .lower-right-details h2 {
+    font-size: 28px;
+  }
+
+  .scrollable-text-box {
+    height: auto;
+    max-height: 500px;
+  }
+
+  .more-templates-inline-title {
+    margin-left: 0;
+    margin-top: 80px;
+    font-size: 34px;
+  }
+}
+
+@media (max-width: 768px) {
+  .template-lower-info-section {
+    padding: 30px 15px;
+    gap: 35px;
+  }
+
+  .lower-left-meta {
+    flex-direction: column;
+    gap: 25px;
+  }
+
+  .meta-block h4 {
+    font-size: 20px;
+    margin-bottom: 12px;
+  }
+
+  .author-avatar {
+    width: 38px;
+    height: 38px;
+  }
+
+  .author-name {
+    font-size: 16px;
+  }
+
+  .verify-icon-small {
+    width: 16px;
+    height: 16px;
+  }
+
+  .cat-tag {
+    padding: 10px 18px;
+    font-size: 14px;
+  }
+
+  .share-circle-btn {
+    width: 42px;
+    height: 42px;
+    font-size: 16px;
+  }
+
+  .lower-right-details h2 {
+    font-size: 24px;
+  }
+
+  .lower-right-details h3 {
+    font-size: 20px;
+  }
+
+  .details-para-text,
+  .features-list-points li,
+  .step-tag-text {
+    font-size: 16px;
+  }
+
+  .scrollable-text-box {
+    height: auto;
+    max-height: none;
+    overflow: visible;
+    padding-right: 0;
+  }
+
+  .more-templates-inline-title {
+    font-size: 28px;
+    gap: 10px;
+    margin-top: 60px;
+  }
+
+  .more-templates-inline-title span {
+    padding: 6px 16px;
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .template-lower-info-section {
+    padding: 25px 12px;
+  }
+
+  .meta-block h4 {
+    font-size: 18px;
+  }
+
+  .author-name {
+    font-size: 15px;
+  }
+
+  .update-text {
+    font-size: 15px;
+  }
+
+  .cat-tag {
+    font-size: 13px;
+    padding: 8px 14px;
+  }
+
+  .lower-right-details h2 {
+    font-size: 22px;
+  }
+
+  .lower-right-details h3 {
+    font-size: 18px;
+  }
+
+  .details-para-text,
+  .features-list-points li,
+  .step-tag-text {
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  .more-templates-inline-title {
+    font-size: 22px;
+    margin-top: 50px;
+  }
+
+  .more-templates-inline-title span {
+    font-size: 14px;
+    padding: 5px 12px;
+    border-radius: 10px;
+  }
+}

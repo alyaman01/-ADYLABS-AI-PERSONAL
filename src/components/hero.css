@@ -132,3 +132,90 @@
   /* Smooth automatic continuous movement physics */
   animation: arrowBounceLeftRight 1.5s ease-in-out infinite; 
 }
+
+/* ==========================================================================
+   📱 RESPONSIVE MEDIA QUERIES (Hero Fixes without breaking styles)
+   ========================================================================== */
+
+/* Tablets and iPads (Max-width: 1024px) */
+@media screen and (max-width: 1024px) {
+  .hero {
+    padding: 100px 30px;
+  }
+  
+  .hero h1 {
+    font-size: 100px; /* Tablet par thoda compress kiya */
+  }
+
+  .hero p {
+    font-size: 24px;
+    max-width: 700px;
+    margin-top: 25px;
+  }
+
+  .glowing-hero-btn {
+    width: 360px;
+    height: 80px;
+    margin-top: 40px;
+  }
+
+  .hero-btn-inner-content {
+    font-size: 24px;
+  }
+}
+
+/* Big Phones & Small Tablets (Max-width: 768px) */
+@media screen and (max-width: 768px) {
+  .hero h1 {
+    font-size: 70px;
+  }
+
+  .hero p {
+    font-size: 20px;
+    max-width: 90%;
+  }
+}
+
+/* Small Smart Phones (Max-width: 480px) - Matches your screenshot view */
+@media screen and (max-width: 480px) {
+  .hero {
+    padding: 80px 20px; /* Side spacing kam kari taaki text chipke na */
+  }
+
+  .hero h1 {
+    font-size: 42px; /* 170px se drop kiya taaki screen size mein content break na ho */
+    line-height: 1.1;
+    word-wrap: break-word;
+  }
+
+  .hero p {
+    font-size: 16px; /* Text responsive scale down */
+    margin-top: 20px;
+    line-height: 1.5;
+  }
+
+  /* 🎯 BUTTON RESPONSIVE RE-BOUNDING: Ab button screen se bahar nahi bhagega */
+  .glowing-hero-btn {
+    width: 100%; /* Pure mobile span par fit hoga automatic */
+    max-width: 290px; /* But isse bada bhi nahi hoga taaki clean lage */
+    height: 56px; 
+    margin-top: 35px;
+    border-radius: 40px;
+  }
+
+  .glowing-hero-btn::before {
+    width: 300%; /* Rotating light width reset for proper flow */
+    height: 300%;
+  }
+
+  .hero-btn-inner-content {
+    inset: 1.8px; /* Border outline thickness auto adjust */
+    border-radius: 40px;
+    font-size: 16px; /* Font size optimized for clean legibility */
+    gap: 8px;
+  }
+
+  .animated-btn-arrow {
+    font-size: 18px; /* Arrow icon standard scale tracking */
+  }
+}

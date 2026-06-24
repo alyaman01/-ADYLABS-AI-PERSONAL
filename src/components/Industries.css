@@ -1,3 +1,6 @@
+/* ==========================================================================
+   🧱 INDUSTRIES MAIN SECTION
+   ========================================================================== */
 .industries{
   width: 100%;
 
@@ -7,7 +10,6 @@
 }
 
 /* HEADING */
-
 .industries-heading{
   text-align: center;
 
@@ -37,7 +39,6 @@
 }
 
 /* BIG BACKGROUND BOX */
-
 .industries-bg{
   position: relative;
 
@@ -59,7 +60,6 @@
 }
 
 /* CENTER ICON */
-
 .center-icon{
   position: absolute;
 
@@ -89,8 +89,8 @@
 
   box-shadow: 0 10px 30px rgba(0,0,0,0.08);
 }
-/* GRID */
 
+/* GRID */
 .industries-grid{
   display: grid;
 
@@ -100,9 +100,7 @@
 }
 
 /* CARD */
-
 .industry-card{
-
   display: flex;
 
   align-items: flex-start;
@@ -122,10 +120,7 @@
   min-height: 210px;
 }
 
-
-
 .industry-card:hover{
-
   transform: translateY(-6px);
 
   border: 4px solid #f1d400;
@@ -136,7 +131,6 @@
 }
 
 /* ICON */
-
 .industry-icon{
   font-size: 58px;
 
@@ -160,7 +154,6 @@
 }
 
 /* TEXT */
-
 .industry-card h2{
   font-size: 32px;
 
@@ -183,4 +176,119 @@
   font-weight: 600;
 
   max-width: 430px;
+}
+
+/* ==========================================================================
+   📱 RESPONSIVE MEDIA QUERIES (Industries Grid Fixes)
+   ========================================================================== */
+
+/* Laptops & Tablets (Max-width: 1024px) */
+@media screen and (max-width: 1024px) {
+  .industries {
+    padding: 40px;
+  }
+
+  .industries-heading {
+    font-size: 56px;
+  }
+
+  .industries-subtext {
+    font-size: 22px;
+  }
+
+  .industries-bg {
+    padding: 100px 40px 60px;
+    margin-top: 70px;
+  }
+
+  .center-icon {
+    width: 110px;
+    height: 110px;
+    top: -55px;
+    font-size: 54px;
+  }
+
+  .industry-card h2 {
+    font-size: 26px;
+  }
+
+  .industry-card p {
+    font-size: 17px;
+  }
+}
+
+/* Small Tablets & Big Phones (Max-width: 768px) */
+@media screen and (max-width: 768px) {
+  .industries {
+    padding: 40px 20px;
+  }
+
+  .industries-heading {
+    font-size: 42px;
+  }
+
+  /* 🎯 GRID RE-ALIGNMENT: 2 Columns se tod kar 1 column stack kiya */
+  .industries-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .industry-card {
+    min-height: auto;
+    padding: 30px 24px;
+  }
+}
+
+/* Smart Phones (Max-width: 480px) */
+@media screen and (max-width: 480px) {
+  .industries-heading {
+    font-size: 32px;
+    line-height: 1.2;
+  }
+
+  .industries-subtext {
+    font-size: 16px;
+    margin-top: 15px;
+    padding: 0 10px;
+  }
+
+  .industries-bg {
+    padding: 80px 16px 40px;
+    border-radius: 28px;
+    margin-top: 55px;
+  }
+
+  /* Absolute header icon scaling downsized tightly */
+  .center-icon {
+    width: 80px;
+    height: 80px;
+    top: -40px;
+    font-size: 40px;
+  }
+
+  /* Card layouts modified to handle small mobile limits */
+  .industry-card {
+    flex-direction: column; /* Icon aur content upar niche ho jayenge taaki squeeze na ho */
+    gap: 16px;
+    padding: 24px 20px;
+    border-radius: 20px;
+    border: 3px solid #d6d6d6;
+  }
+
+  .industry-icon {
+    width: 65px;
+    height: 65px;
+    font-size: 40px;
+    border-radius: 14px;
+  }
+
+  .industry-card h2 {
+    font-size: 22px;
+    margin-bottom: 8px;
+  }
+
+  .industry-card p {
+    font-size: 14px;
+    line-height: 1.5;
+  }
 }

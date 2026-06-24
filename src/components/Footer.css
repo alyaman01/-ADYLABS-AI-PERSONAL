@@ -363,3 +363,232 @@
     font-size: 80px;
   }
 }
+
+/* ==========================================================================
+   RESPONSIVE IMPROVEMENTS
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+  .footer-wrapper {
+    padding: 60px 25px 30px;
+  }
+
+  .footer-black-container {
+    flex-wrap: wrap;
+    padding: 50px;
+    gap: 40px;
+    border-radius: 30px;
+  }
+
+  .footer-links-col {
+    width: calc(50% - 20px);
+  }
+
+  .contact-grid-layout {
+    flex-direction: column;
+    gap: 35px;
+  }
+
+  .contact-zone-title {
+    font-size: 36px;
+  }
+
+  .giant-watermark-text {
+    font-size: 160px;
+  }
+}
+
+/* ==========================================================================
+   TABLET
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  .footer-top-brand-row {
+    flex-direction: column;
+    gap: 25px;
+    text-align: center;
+  }
+
+  .footer-logo-block {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .footer-main-logo-img {
+    height: 80px;
+  }
+
+  .footer-brand-name {
+    font-size: 34px;
+  }
+
+  .footer-social-wrap {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .footer-black-container {
+    flex-direction: column;
+    padding: 40px 30px;
+    border-radius: 25px;
+  }
+
+  .footer-links-col {
+    width: 100%;
+  }
+
+  .col-heading {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  .contact-zone-title {
+    font-size: 30px;
+  }
+
+  .meta-box-label {
+    font-size: 20px;
+  }
+
+  .address-para-text {
+    font-size: 18px;
+  }
+
+  .yellow-action-bar {
+    width: 100%;
+    max-width: 350px;
+  }
+
+  .action-with-view-wrap {
+    flex-wrap: wrap;
+  }
+
+  .giant-watermark-text {
+    font-size: 100px;
+    line-height: 1;
+  }
+
+  .copyright-line-text {
+    font-size: 22px;
+  }
+
+  .legal-links-row {
+    gap: 20px;
+  }
+}
+
+/* ==========================================================================
+   MOBILE
+   ========================================================================== */
+
+@media (max-width: 480px) {
+  .footer-wrapper {
+    padding: 40px 15px 25px;
+  }
+
+  .footer-main-logo-img {
+    height: 65px;
+  }
+
+  .footer-brand-name {
+    font-size: 26px;
+  }
+
+  .social-icon-box {
+    width: 46px;
+    height: 46px;
+  }
+
+  .social-icon {
+    font-size: 20px;
+  }
+
+  .footer-black-container {
+    padding: 30px 20px;
+    border-radius: 20px;
+  }
+
+  .col-heading {
+    font-size: 20px;
+  }
+
+  .col-links-list li a {
+    font-size: 16px;
+  }
+
+  .compney-deck-btn {
+    width: 100%;
+    justify-content: center;
+    font-size: 15px;
+    padding: 14px 18px;
+  }
+
+  .contact-zone-title {
+    font-size: 24px;
+  }
+
+  .meta-box-label {
+    font-size: 18px;
+  }
+
+  .address-para-text {
+    font-size: 15px;
+    word-break: break-word;
+  }
+
+  .yellow-action-bar {
+    width: 100%;
+    min-width: unset;
+    font-size: 15px;
+    padding: 0 15px;
+  }
+
+  .giant-watermark-text {
+    font-size: 60px;
+    margin-top: 35px;
+  }
+
+  .from-attribution {
+    font-size: 13px;
+  }
+
+  .bold-company-brand {
+    font-size: 16px;
+  }
+
+  .legal-links-row {
+    gap: 15px;
+    padding-bottom: 20px;
+  }
+
+  .legal-links-row a {
+    font-size: 15px;
+  }
+
+  .copyright-line-text {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+}
+
+/* ==========================================================================
+   EXTRA SMALL DEVICES
+   ========================================================================== */
+
+@media (max-width: 360px) {
+  .giant-watermark-text {
+    font-size: 45px;
+  }
+
+  .footer-brand-name {
+    font-size: 22px;
+  }
+
+  .contact-zone-title {
+    font-size: 20px;
+  }
+
+  .copyright-line-text {
+    font-size: 14px;
+  }
+}
