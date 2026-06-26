@@ -1,4 +1,4 @@
-import "./demoVideos.css";
+import "./DemoVideos.css";
 
 import Video1 from "../assets/videos/video1.webp";
 import Video2 from "../assets/videos/video2.webp";

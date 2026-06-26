@@ -1,4 +1,4 @@
-import "./benefits.css";
+import "./Benefits.css";
 
 import {
   Bot,

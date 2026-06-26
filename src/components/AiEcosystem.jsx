@@ -1,4 +1,4 @@
-import "./aiEcosystem.css";
+import "./AiEcosystem.css";
 
 import AiFace from "../assets/illustration/ai_image.svg";
 
