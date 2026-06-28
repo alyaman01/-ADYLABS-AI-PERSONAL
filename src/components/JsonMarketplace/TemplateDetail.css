@@ -408,3 +408,544 @@
     font-size: 26px;
   }
 }
+
+
+/* ==========================================================================
+   🧩 N8N CUSTOM FLOW NODE STYLES (AUTOMATIC GITHUB FETCH)
+   ========================================================================== */
+.n8n-custom-flow-node {
+  background: #ffffff;
+  color: #111111;
+  border: 1px solid #e2e2e2;
+  border-radius: 14px;
+  padding: 12px 18px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.03);
+  min-width: 220px;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.n8n-custom-flow-node:hover {
+  border-color: #efbe2f;
+  transform: translateY(-2px);
+}
+
+.n8n-node-content-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.n8n-node-icon-frame {
+  width: 36px;
+  height: 36px;
+  background: #fdfdfd;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  border: 1px solid #f0f0f0;
+}
+
+.n8n-node-icon-frame img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+.n8n-node-text-frame {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.n8n-node-title {
+  font-weight: 700;
+  font-size: 14px;
+  color: #111111;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 150px;
+}
+
+.n8n-node-subtitle {
+  font-size: 11px;
+  color: #888888;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+/* ==========================================================================
+   ⚙️ N8N HUB DARK INDUSTRIAL THEME (COMMAND CENTER LOOK)
+   ========================================================================== */
+.hub-dark-wrapper {
+  background: #1e1e24 !important;
+  border: 4px solid #111115 !important;
+  border-radius: 24px !important;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* Header strip */
+.hub-header-bar {
+  background: #111115;
+  padding: 12px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #2d2d35;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.hub-brand-name {
+  color: #ff6d5a;
+  font-weight: 800;
+  margin-left: 6px;
+}
+
+.hub-user-pfp {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 1px solid #efbe2f;
+  margin-left: 10px;
+}
+
+/* Base Body Layout Split */
+.hub-workspace-body {
+  display: flex;
+  flex: 1;
+  height: calc(100% - 45px);
+  position: relative;
+}
+
+/* Mini Left Navigation Strip */
+.hub-mini-sidebar {
+  width: 45px;
+  background: #16161a;
+  border-right: 1px solid #2d2d35;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 15px;
+  gap: 20px;
+}
+
+.sidebar-icon {
+  font-size: 18px;
+  cursor: pointer;
+  opacity: 0.5;
+  transition: opacity 0.2s;
+}
+
+.sidebar-icon.active, .sidebar-icon:hover {
+  opacity: 1;
+}
+
+/* Main Flow Container Blueprint Grid */
+.hub-core-canvas-area {
+  flex: 1;
+  position: relative;
+  background-color: #1a1a1f !important;
+}
+
+/* ==========================================================================
+   🧩 INDUSTRIAL PRO AUTOMATION NODE CARDS
+   ========================================================================== */
+.n8n-hub-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 10px 14px;
+  min-width: 210px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+  position: relative;
+  box-sizing: border-box;
+}
+
+.n8n-hub-card.trigger-border {
+  border: 2px solid #3182ce;
+}
+
+/* Metrics and badge labels on node boxes */
+.node-metrics-badge {
+  position: absolute;
+  top: -12px;
+  right: 12px;
+  background: #edf2f7;
+  color: #2d3748;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 20px;
+  border: 1px solid #cbd5e0;
+}
+
+.node-status-dot {
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 9px;
+  font-weight: 700;
+  padding: 1px 6px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  text-transform: uppercase;
+}
+
+.node-status-dot.live { color: #38a169; }
+.node-status-dot.active { color: #3182ce; }
+.node-status-dot.complex { color: #805ad5; }
+.node-status-dot.inactive { color: #e53e3e; }
+.node-status-dot .dot {
+  width: 6px;
+  height: 6px;
+  background: currentColor;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+/* Node Internal layout details */
+.hub-node-body {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.hub-node-icon-box {
+  width: 34px;
+  height: 34px;
+  background: #f7fafc;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #e2e8f0;
+}
+
+.hub-node-icon-box img {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+}
+
+.hub-node-title {
+  font-size: 12px;
+  font-weight: 800;
+  color: #1a202c;
+  max-width: 140px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.hub-node-subtitle {
+  font-size: 10px;
+  color: #718096;
+  font-weight: 500;
+}
+
+/* 👑 CENTRAL MASTER AI AGENT BOX (GOLD/BEIGE THEME) */
+.n8n-hub-ai-agent-card {
+  background: #fffdf5;
+  border: 2px solid #efbe2f;
+  border-radius: 18px;
+  padding: 16px;
+  min-width: 220px;
+  text-align: center;
+  box-shadow: 0 15px 35px rgba(239, 190, 47, 0.15);
+  position: relative;
+}
+
+.agent-tps-badge {
+  font-size: 11px;
+  font-weight: 800;
+  color: #efbe2f;
+  margin-bottom: 6px;
+}
+
+.agent-node-icon {
+  width: 50px;
+  height: 50px;
+  background: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 10px;
+  border: 2px solid #efbe2f;
+}
+
+.agent-node-icon img {
+  width: 32px;
+  height: 32px;
+}
+
+.agent-title {
+  font-size: 15px;
+  font-weight: 800;
+  color: #1a202c;
+  margin-bottom: 12px;
+}
+
+.agent-tools-box {
+  background: #fff;
+  border: 1px solid #f0e6c8;
+  border-radius: 10px;
+  padding: 6px;
+}
+
+.tools-heading {
+  font-size: 10px;
+  color: #aaa;
+  text-align: left;
+  margin-bottom: 4px;
+  font-weight: 700;
+}
+
+.tools-pills-row {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.tools-pills-row span {
+  background: #f7fafc;
+  border: 1px solid #e2e8f0;
+  font-size: 9px;
+  font-weight: 600;
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: #4a5568;
+}
+
+.hub-handle {
+  background: #efbe2f !important;
+  width: 8px !important;
+  height: 8px !important;
+}
+
+/* ==========================================================================
+   📊 FLOATING INFRASTRUCTURE METRICS & SIDE PANEL RAILS
+   ========================================================================== */
+.embedded-panel {
+  position: absolute;
+  background: rgba(22, 22, 26, 0.95);
+  border: 1px solid #2d2d35;
+  border-radius: 12px;
+  padding: 10px;
+  color: #fff;
+  z-index: 5;
+}
+
+.footer-timeline {
+  bottom: 15px;
+  left: 15px;
+  width: 180px;
+}
+
+.footer-logs {
+  bottom: 15px;
+  left: 210px;
+  width: 320px;
+}
+
+.panel-title {
+  font-size: 11px;
+  font-weight: 700;
+  color: #e2e8f0;
+  margin-bottom: 4px;
+}
+
+.panel-subtitle {
+  font-size: 9px;
+  color: #718096;
+}
+
+.mock-sparkline {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: 40px;
+  margin-top: 6px;
+}
+
+.mock-sparkline .bar {
+  flex: 1;
+  background: #efbe2f;
+  border-radius: 2px 2px 0 0;
+}
+
+.logs-terminal-stream {
+  font-family: monospace;
+  font-size: 10px;
+  color: #a0aec0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.logs-terminal-stream .time { color: #48bb78; }
+
+/* Right Floating Sidebar Command Station Grid */
+.hub-floating-right-rail {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 5;
+  max-height: calc(100% - 30px);
+  overflow-y: auto;
+}
+
+.rail-card {
+  background: rgba(22, 22, 26, 0.95);
+  border: 1px solid #2d2d35;
+  border-radius: 12px;
+  padding: 10px;
+  color: #fff;
+}
+
+.mock-chart-graphic {
+  font-size: 11px;
+  color: #48bb78;
+  padding: 5px 0;
+}
+
+.mini-logs-list {
+  font-size: 9px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.log-row.success { color: #48bb78; }
+.log-row.fail { color: #f56565; }
+
+.usage-progress-bar {
+  width: 100%;
+  height: 6px;
+  background: #2d2d35;
+  border-radius: 4px;
+  overflow: hidden;
+  margin: 5px 0;
+}
+
+.usage-progress-bar .fill {
+  height: 100%;
+  background: linear-gradient(90deg, #efbe2f, #f56565);
+}
+
+.usage-txt {
+  font-size: 9px;
+  color: #718096;
+}
+
+/* ==========================================================================
+   ⚙️ FIXED CLASH: CENTER VIEWPORT FOR REACTFLOW BOUNDS
+   ========================================================================== */
+.hub-core-canvas-area {
+  flex: 1;
+  position: relative;
+  background-color: #16161a !important; /* Dark solid dashboard field */
+  overflow: hidden;
+}
+
+/* 🎯 Diagram boundaries isolated away from floating rails panels */
+.reactflow-centered-viewport {
+  position: absolute;
+  top: 0;
+  left: 0;
+  /* Leaves 350px padding on the right for right rail sidebar and 240px padding at bottom left */
+  width: calc(100% - 240px); 
+  height: 100%;
+  z-index: 1;
+}
+
+/* Floating left rails positioned cleanly underneath */
+.hub-floating-left-rail {
+  position: absolute;
+  bottom: 15px;
+  left: 15px;
+  display: flex;
+  gap: 12px;
+  z-index: 4; /* Stays interactive but visually aligned away */
+  pointer-events: auto;
+}
+
+.hub-floating-left-rail .embedded-panel {
+  position: relative !important;
+  bottom: unset !important;
+  left: unset !important;
+  background: rgba(26, 26, 31, 0.95);
+  border: 1px solid #2d2d35;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+}
+
+/* Floating side rails config override */
+.hub-floating-right-rail {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 210px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  z-index: 4;
+  max-height: calc(100% - 30px);
+  overflow-y: auto;
+  pointer-events: auto;
+}
+
+.rail-card {
+  background: rgba(26, 26, 31, 0.95);
+  border: 1px solid #2d2d35;
+  border-radius: 12px;
+  padding: 12px;
+  color: #fff;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+}
+
+/* ==========================================================================
+   🧩 RE-STYLED PRODUCTION CARDS WITH BETTER SCALING
+   ========================================================================== */
+.n8n-hub-card {
+  background: #ffffff;
+  border: 1px solid #cbd5e0;
+  border-radius: 12px;
+  padding: 8px 12px;
+  min-width: 190px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+.n8n-hub-ai-agent-card {
+  background: #fffdf5;
+  border: 2px solid #efbe2f;
+  border-radius: 16px;
+  padding: 12px;
+  min-width: 200px;
+  box-shadow: 0 8px 25px rgba(239, 190, 47, 0.25);
+}
+
+.status-lbl.green {
+  background: #2f855a;
+  color: #fff;
+  padding: 2px 8px;
+  font-size: 10px;
+  border-radius: 4px;
+  font-weight: bold;
+}
