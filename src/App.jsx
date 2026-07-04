@@ -2,6 +2,7 @@ import React from 'react';
 import "./App.css";
 // 1. Router ke tools import kiye
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import TemplateDetail from "./components/JsonMarketplace/TemplateDetail"; // Path sahi check kar lena
 
 // 2. Global elements jo hamesha dikhenge
 import Navbar from "./components/navbar";
@@ -31,6 +32,7 @@ function App() {
         {/* Jab URL me /contact ho, toh naya ContactUs page dikhao */}
         <Route path="/contact" element={<ContactUs />} />
         <Route path="/marketplace" element={<JsonMarketplace />} />
+        <Route path="/template-detail" element={<TemplateDetail />} />
       </Routes>
 
       <Footer />

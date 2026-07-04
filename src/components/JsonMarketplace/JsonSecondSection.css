@@ -296,27 +296,35 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 40px;
-  padding-bottom: 40px;
+  margin-top: 50px;       /* Upper section se clean alignment space */
+  padding-bottom: 60px;    /* Page footer ke sath bdiya gap ke liye */
+  width: 100%;
 }
 
 .load-more-btn {
-  width: 250px;
-  height: 70px;
+  padding: 0 40px;         /* Dynamic dynamic widths handling */
+  height: 56px;            /* standard high-end interface height */
   border: none;
-  border-radius: 35px;
+  border-radius: 28px;     /* Rounded tablet shape pill pill format */
   background: #f1bb33;
-  font-size: 18px;
-  font-weight: 800;
+  color: #000000;          /* Bold typography contrast */
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 1px;     /* Premium tech branding feel */
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 15px rgba(241, 187, 51, 0.2);
 }
 
 .load-more-btn:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 25px rgba(241, 187, 51, 0.35);
+  transform: translateY(-2px); /* Light natural responsive feedback */
+  background: #e2ae2b;         /* Thoda sa deep tone hover par */
+  box-shadow: 0 8px 25px rgba(241, 187, 51, 0.4);
 }
 
+.load-more-btn:active {
+  transform: translateY(0);    /* Click feel logic */
+}
 /* ==========================================================================
    📱 SYSTEM MEDIA LAYOUT RESPONSIVE ADAPTERS
    ========================================================================== */

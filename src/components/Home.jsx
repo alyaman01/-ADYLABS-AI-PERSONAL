@@ -1,5 +1,7 @@
 import React from 'react';
-// Saare landing page components jo pehle App.jsx mein import the, ab yahan import honge
+import { useNavigate } from 'react-router-dom';
+
+// Saare landing page components
 import Hero from "./hero";
 import Demo from "./demo";
 import DemoVideos from "./DemoVideos";
@@ -23,6 +25,8 @@ import ContactEnquiry from "./ContactEnquiry";
 import LetsTalkCTA from "./LetsTalkCTA";
 
 function Home() {
+  const navigate = useNavigate();
+
   return (
     <>
       <Hero />
@@ -34,7 +38,18 @@ function Home() {
       <Industries/>
       <EasySolutions/>
       <Portfolio/>
-      <JsonMarketplace/>
+      
+      <JsonMarketplace 
+        // 1. Agar niche wale button par click kare toh normal marketplace par jaye
+        onNavigateToMarketplace={() => navigate("/marketplace")} 
+        
+        // 2. Agar kisi CARD par click kare, toh seedha TEMPLATE DETAIL page par jaye usi card ke data ke sath!
+        onSelectTemplate={(filePath) => {
+          navigate("/template-detail", { state: { selectedFile: filePath } });
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }} 
+      />
+      
       <WhyChooseUs/>
       <WorkingProcess/>
       <AboutCompany/>

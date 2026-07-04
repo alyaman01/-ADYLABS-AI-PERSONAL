@@ -949,3 +949,21 @@
   border-radius: 4px;
   font-weight: bold;
 }
+
+/* 🔥 FORCE REACTFLOW EDGES TO BE DOTTED AND ANIMATED */
+.reactflow__edge-path {
+  stroke: #a0aec0 !important;       /* Sahi visible light-gray color */
+  stroke-width: 2.5px !important;    /* Line thodi solid aur visible dikhe */
+  stroke-dasharray: 6, 6 !important; /* Pure dotted structure logic */
+  animation: dashanimate 1s linear infinite !important; /* Live pipeline motion */
+}
+
+/* Moving flow animation effect */
+@keyframes dashanimate {
+  from {
+    stroke-dashoffset: 20;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { ReactFlow, Background, Controls, Handle, Position } from "@xyflow/react";
+import { useLocation, useNavigate } from "react-router-dom"; // 🚀 FIXED: Home page ka data catch karne ke liye tools import kiye
 import "@xyflow/react/dist/style.css"; 
 import "./TemplateDetail.css";
 
@@ -21,15 +22,14 @@ import FaqSection from "../FaqSection";
 import ContactEnquiry from "../ContactEnquiry";
 import LetsTalkCTA from "../LetsTalkCTA";
 
-// 👑 POPUP CARD COMPONENT
+// POPUP CARD COMPONENT
 import GetInTouchModal from "../GetInTouchModal"; 
 
-/* ================= 🌐 FIXED GITHUB ICON EXTRACTOR UTILITY ================= */
+/* ================= GITHUB ICON EXTRACTOR UTILITY ================= */
 const getN8nIconUrl = (nodeType) => {
   if (!nodeType) return "https://raw.githubusercontent.com/n8n-io/n8n/master/packages/nodes-base/nodes/Webhook/webhook.svg";
   let cleanName = nodeType.split('.').pop();
   
-  // High reliability production URLs for n8n core packages
   if (cleanName.toLowerCase().includes("telegram")) return "https://raw.githubusercontent.com/n8n-io/n8n/master/packages/nodes-base/nodes/Telegram/telegram.svg";
   if (cleanName.toLowerCase().includes("sheet")) return "https://raw.githubusercontent.com/n8n-io/n8n/master/packages/nodes-base/nodes/Google/Sheets/googleSheets.svg";
   if (cleanName.toLowerCase().includes("openai") || cleanName.toLowerCase().includes("agent")) return "https://raw.githubusercontent.com/n8n-io/n8n/master/packages/nodes-base/nodes/OpenAi/openAi.svg";
@@ -40,19 +40,17 @@ const getN8nIconUrl = (nodeType) => {
   return `https://raw.githubusercontent.com/n8n-io/n8n/master/packages/nodes-base/nodes/${cleanName}/${cleanName}.svg`;
 };
 
-/* ================= 🎨 CUSTOM REACTFLOW NODES ================= */
+/* ================= CUSTOM REACTFLOW NODES ================= */
 const N8nHubNode = ({ data }) => {
   return (
     <div className={`n8n-hub-card ${data.isTrigger ? 'trigger-border' : ''}`}>
       {data.hasTarget !== false && <Handle type="target" position={Position.Left} className="hub-handle" />}
-      
       {data.metrics && <div className="node-metrics-badge">{data.metrics}</div>}
       {data.status && (
         <div className={`node-status-dot ${data.status.toLowerCase()}`}>
           <span className="dot"></span> {data.status}
         </div>
       )}
-
       <div className="hub-node-body">
         <div className="hub-node-icon-box">
           <img 
@@ -66,7 +64,6 @@ const N8nHubNode = ({ data }) => {
           <div className="hub-node-subtitle">{data.subtitle}</div>
         </div>
       </div>
-
       {data.hasSource !== false && <Handle type="source" position={Position.Right} className="hub-handle" />}
     </div>
   );
@@ -76,16 +73,12 @@ const N8nAiAgentNode = ({ data }) => {
   return (
     <div className="n8n-hub-ai-agent-card">
       <Handle type="target" position={Position.Left} className="hub-handle" />
-      
       <div className="node-status-dot active"><span className="dot"></span> Active</div>
       <div className="agent-tps-badge">{data.metrics || "12.1k/min TPS"}</div>
-
       <div className="agent-node-icon">
         <img src="https://raw.githubusercontent.com/n8n-io/n8n/master/packages/nodes-base/nodes/OpenAi/openAi.svg" alt="AI" />
       </div>
-      
       <div className="agent-title">{data.label || "AI Agent (GPT-4)"}</div>
-      
       <div className="agent-tools-box">
         <div className="tools-heading">Tools:</div>
         <div className="tools-pills-row">
@@ -94,7 +87,6 @@ const N8nAiAgentNode = ({ data }) => {
           <span>Telegram API</span>
         </div>
       </div>
-
       <Handle type="source" position={Position.Right} className="hub-handle" />
     </div>
   );
@@ -105,23 +97,67 @@ const nodeTypes = {
   aiAgentNode: N8nAiAgentNode
 };
 
-/* ================= MAIN COMPONENT ================= */
 function TemplateDetail({ filename, onBack }) {
-  const [currentFile, setCurrentFile] = useState(filename);
+  const location = useLocation(); // 🚀 ROUTER CONNECTION 1
+  const navigate = useNavigate(); // 🚀 ROUTER CONNECTION 2
+
+  // 🎯 DYNAMIC PATH CHECK: Agar Home page ke card click se route state mein koi file aayi hai toh pehle woh load hogi, nahi toh prop wali filename chalegi!
+  const initialFile = location.state?.selectedFile || filename;
+
+  const [currentFile, setCurrentFile] = useState(initialFile);
+  const [allTemplates, setAllTemplates] = useState([]); 
   const [nodes, setNodes] = useState([]);
   const [edges, setEdges] = useState([]);
   const [loading, setLoading] = useState(true);
   const [topBadges, setTopBadges] = useState([]);
 
-  /* 🔐 LEAD GENERATION STATES */
+  // 🚀 DYNAMIC CONTENT STATES: Title aur description ko automatic change karne ke liye states
+  const [templateTitle, setTemplateTitle] = useState("Loading Template...");
+  const [templateDesc, setTemplateDesc] = useState("Fetching template details...");
+
+  /* LEAD GENERATION STATES */
   const [isVerified, setIsVerified] = useState(false); 
   const [showModal, setShowModal] = useState(false);   
   const [pendingAction, setPendingAction] = useState(null); 
   const [isModalForced, setIsModalForced] = useState(false); 
 
+  const sharedEdgeStyle = {
+    stroke: "#a0aec0", 
+    strokeWidth: 2, 
+    strokeDasharray: "5,5"
+  };
+
   useEffect(() => {
-    setCurrentFile(filename);
-  }, [filename]);
+    const fetchTemplatesList = async () => {
+      try {
+        const res = await fetch("https://raw.githubusercontent.com/adymire/automation-json/main/index.json");
+        if (res.ok) {
+          const list = await res.json();
+          setAllTemplates(list);
+        } else {
+          throw new Error("Repository error");
+        }
+      } catch (err) {
+        setAllTemplates([
+          { name: "0001 Telegram Schedule Automation", path: "/templates/0001_Telegram_Schedule_Automation.json" },
+          { name: "0002 Manual Totp Automation Trigger", path: "/templates/0002_Manual_Totp_Automation_Trigger.json" },
+          { name: "0003 Bitwarden Automate", path: "/templates/0003_Bitwarden_Automate.json" },
+          { name: "0004 GoogleSheets Typeform Automation", path: "/templates/0004_GoogleSheets_Typeform_Automation.json" },
+          { name: "0015 HTTP Cron Update Webhook", path: "/templates/0015_HTTP_Cron_Update_Webhook.json" }
+        ]);
+      }
+    };
+    fetchTemplatesList();
+  }, []);
+
+  // 🎯 FIX: Agar page open hone ke baad bhi state badalti hai toh current file update ho jaye
+  useEffect(() => {
+    if (location.state?.selectedFile) {
+      setCurrentFile(location.state.selectedFile);
+    } else if (filename) {
+      setCurrentFile(filename);
+    }
+  }, [location.state, filename]);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -135,9 +171,41 @@ function TemplateDetail({ filename, onBack }) {
 
   useEffect(() => {
     const loadGithubWorkflow = async () => {
+      if (!currentFile) return;
       try {
         setLoading(true);
-        const repoEndpoint = `https://raw.githubusercontent.com${currentFile}`;
+        
+        let cleanPath = currentFile;
+        if (cleanPath.startsWith('templates/')) {
+          cleanPath = '/' + cleanPath;
+        } else if (!cleanPath.startsWith('/')) {
+          cleanPath = '/' + cleanPath;
+        }
+
+        // 🚀 SMART GENERATOR FOR TITLE & DESCRIPTION ACCORDING TO FILE
+        const rawFileName = currentFile.split("/").pop().replace(".json", "");
+        // Clean Title: Removes digits, underscores and fixes spacing
+        const cleanTitle = rawFileName.replace(/^\d+[\s_]*/, "").replace(/_/g, " ");
+        setTemplateTitle(cleanTitle);
+
+        // Smart Description Dictionary mapping keywords to professional text
+        const lowerPath = currentFile.toLowerCase();
+        if (lowerPath.includes("telegram")) {
+          setTemplateDesc("Automate your community management with this seamless Telegram engine. Instantly dispatch smart alerts, manage schedules, and process inbound requests via a reliable webhook flow.");
+        } else if (lowerPath.includes("totp")) {
+          setTemplateDesc("A secure, manual authentication trigger handling complex TOTP validation loops. Perfect for managing secure logins and time-sensitive verification pipelines inside your active workspace.");
+        } else if (lowerPath.includes("bitwarden")) {
+          setTemplateDesc("Keep your secure vault data synchronized automatically. This specialized n8n template seamlessly bridges your Bitwarden setup with secure cloud webhooks for rapid updates.");
+        } else if (lowerPath.includes("sheet") || lowerPath.includes("typeform")) {
+          setTemplateDesc("Accelerate lead capture pipelines by streaming raw Typeform responses straight into Google Sheets. Features smart columns mapping, instant data validation, and multi-row synchronization logic.");
+        } else if (lowerPath.includes("cron") || lowerPath.includes("http")) {
+          setTemplateDesc("An enterprise scheduling cron system that periodically triggers advanced network updates via secure HTTP webhooks, complete with continuous performance monitoring logs.");
+        } else {
+          // Standard fallback description if file doesn't match above categories
+          setTemplateDesc(`A production-grade n8n control framework specifically engineered to optimize your ${cleanTitle || "workspace automation"} with live error tracking and complex logic gates.`);
+        }
+
+        const repoEndpoint = `https://raw.githubusercontent.com/adymire/automation-json/main${cleanPath}`;
         const res = await fetch(repoEndpoint);
         
         if (!res.ok) {
@@ -148,10 +216,11 @@ function TemplateDetail({ filename, onBack }) {
 
         const data = await res.json();
 
-        if (data.nodes) {
+        if (data && (data.nodes || Array.isArray(data))) {
+          const targetNodes = Array.isArray(data) ? data : data.nodes;
           const uniqueIcons = [];
           
-          const mappedNodes = data.nodes.map((node, i) => {
+          const mappedNodes = targetNodes.map((node, i) => {
             const dynamicIcon = getN8nIconUrl(node.type);
             if (!uniqueIcons.includes(dynamicIcon) && uniqueIcons.length < 4) {
               uniqueIcons.push(dynamicIcon);
@@ -174,8 +243,8 @@ function TemplateDetail({ filename, onBack }) {
                 isTrigger: i === 0
               },
               position: { 
-                x: node.position?.x ? node.position.x : (i * 240) + 40, 
-                y: node.position?.y ? node.position.y : 150 + (i % 2 === 0 ? 60 : -60) 
+                x: node.position?.x ? node.position.x : (i * 260) + 50, 
+                y: node.position?.y ? node.position.y : 180 + (i % 2 === 0 ? 50 : -50) 
               }
             };
           });
@@ -186,7 +255,7 @@ function TemplateDetail({ filename, onBack }) {
           generateProFallbackFlow();
         }
 
-        if (data.connections) {
+        if (data && data.connections) {
           const mappedEdges = [];
           Object.keys(data.connections).forEach((sourceNode) => {
             const outputs = (data.connections[sourceNode] && data.connections[sourceNode].main) || [];
@@ -198,13 +267,15 @@ function TemplateDetail({ filename, onBack }) {
                     source: sourceNode,
                     target: targetObj.node,
                     animated: true,
-                    style: { stroke: "#a0aec0", strokeWidth: 2, strokeDasharray: "5,5" },
+                    style: sharedEdgeStyle,
                   });
                 }
               });
             });
           });
           setEdges(mappedEdges);
+        } else {
+          setEdges([]);
         }
 
       } catch (err) {
@@ -218,58 +289,47 @@ function TemplateDetail({ filename, onBack }) {
   }, [currentFile]);
 
   const generateProFallbackFlow = () => {
+    if (!currentFile) return;
     const telegramIcon = "https://raw.githubusercontent.com/n8n-io/n8n/master/packages/nodes-base/nodes/Telegram/telegram.svg";
     const sheetIcon = "https://raw.githubusercontent.com/n8n-io/n8n/master/packages/nodes-base/nodes/Google/Sheets/googleSheets.svg";
     const calendarIcon = "https://raw.githubusercontent.com/n8n-io/n8n/master/packages/nodes-base/nodes/Google/Calendar/googleCalendar.svg";
     const driveIcon = "https://raw.githubusercontent.com/n8n-io/n8n/master/packages/nodes-base/nodes/Google/Drive/googleDrive.svg";
     const slackIcon = "https://raw.githubusercontent.com/n8n-io/n8n/master/packages/nodes-base/nodes/Slack/slack.svg";
 
-    setTopBadges([telegramIcon, sheetIcon, calendarIcon, driveIcon]);
+    const isOdd = currentFile.includes("0001") || currentFile.includes("0003") || currentFile.includes("Telegram");
+    
+    setTopBadges(isOdd ? [telegramIcon, sheetIcon] : [calendarIcon, driveIcon, slackIcon]);
 
-    // X positions are optimized so diagram fits cleanly in the center viewport bounds
-    setNodes([
-      { id: "trig", type: "hubNode", position: { x: 20, y: 250 }, data: { label: "Telegram meseage...", subtitle: "Trigger", iconUrl: telegramIcon, isTrigger: true } },
-      
-      { id: "sheet1", type: "hubNode", position: { x: 270, y: 60 }, data: { label: "Google Sheets Data", subtitle: "Parse", iconUrl: sheetIcon, metrics: "5.6k/min TPS", status: "Live" } },
-      { id: "cal1", type: "hubNode", position: { x: 270, y: 190 }, data: { label: "Google Calendar", subtitle: "Event Check", iconUrl: calendarIcon, status: "Active" } },
-      { id: "drive1", type: "hubNode", position: { x: 500, y: 130 }, data: { label: "Google Drive", subtitle: "storage", iconUrl: driveIcon, status: "Live" } },
-      
-      { id: "voice1", type: "hubNode", position: { x: 270, y: 380 }, data: { label: "Google Speech-to-", subtitle: "Text", iconUrl: "https://raw.githubusercontent.com/n8n-io/n8n/master/packages/nodes-base/nodes/Webhook/webhook.svg", status: "Active" } },
-      { id: "script1", type: "hubNode", position: { x: 270, y: 500 }, data: { label: "N8N Script Logic", subtitle: "JS Engine", iconUrl: "https://raw.githubusercontent.com/n8n-io/n8n/master/packages/nodes-base/nodes/Webhook/webhook.svg" } },
-      { id: "context1", type: "hubNode", position: { x: 500, y: 440 }, data: { label: "Contextual", subtitle: "analysis", iconUrl: "https://raw.githubusercontent.com/n8n-io/n8n/master/packages/nodes-base/nodes/Webhook/webhook.svg", status: "Complex" } },
-      
-      { id: "aiCore", type: "aiAgentNode", position: { x: 740, y: 230 }, data: { label: "AI Agent (GPT-4)", metrics: "12.1k/min TPS" } },
-      
-      { id: "telOut", type: "hubNode", position: { x: 1010, y: 70 }, data: { label: "Telegram Response", subtitle: "API Push", iconUrl: telegramIcon, status: "Active" } },
-      { id: "calOut", type: "hubNode", position: { x: 1010, y: 170 }, data: { label: "Google Calendar", subtitle: "Udpats", iconUrl: calendarIcon, status: "Active" } },
-      { id: "sheetOut", type: "hubNode", position: { x: 1010, y: 270 }, data: { label: "Google Sheets Log", subtitle: "Append", iconUrl: sheetIcon, status: "Active" } },
-      { id: "slackOut", type: "hubNode", position: { x: 1010, y: 370 }, data: { label: "Slack Notification", subtitle: "Channel Sync", iconUrl: slackIcon, status: "Inactive" } },
-      { id: "failOut", type: "hubNode", position: { x: 1010, y: 470 }, data: { label: "Execution Failure Route", subtitle: "Error Catch", iconUrl: "https://raw.githubusercontent.com/n8n-io/n8n/master/packages/nodes-base/nodes/Webhook/webhook.svg", status: "Inactive" } }
-    ]);
-
-    setEdges([
-      { id: "e-trig-sheet", source: "trig", target: "sheet1", animated: true },
-      { id: "e-trig-cal", source: "trig", target: "cal1", animated: true },
-      { id: "e-trig-voice", source: "trig", target: "voice1", animated: true },
-      { id: "e-trig-script", source: "trig", target: "script1", animated: true },
-      { id: "e-sheet-drive", source: "sheet1", target: "drive1", animated: true },
-      { id: "e-cal-drive", source: "cal1", target: "drive1", animated: true },
-      { id: "e-voice-context", source: "voice1", target: "context1", animated: true },
-      { id: "e-script-context", source: "script1", target: "context1", animated: true },
-      { id: "e-drive-ai", source: "drive1", target: "aiCore", animated: true },
-      { id: "e-context-ai", source: "context1", target: "aiCore", animated: true },
-      { id: "e-ai-tel", source: "aiCore", target: "telOut", animated: true },
-      { id: "e-ai-cal", source: "aiCore", target: "calOut", animated: true },
-      { id: "e-ai-sheet", source: "aiCore", target: "sheetOut", animated: true },
-      { id: "e-ai-slack", source: "aiCore", target: "slackOut", animated: true },
-      { id: "e-ai-fail", source: "aiCore", target: "failOut", animated: true }
-    ]);
+    if (isOdd) {
+      setNodes([
+        { id: "trig", type: "hubNode", position: { x: 50, y: 200 }, data: { label: "Telegram Alert", subtitle: "Trigger", iconUrl: telegramIcon, isTrigger: true } },
+        { id: "sheet1", type: "hubNode", position: { x: 320, y: 120 }, data: { label: "Log to Sheet", subtitle: "Google Sheets", iconUrl: sheetIcon, status: "Live" } },
+        { id: "aiCore", type: "aiAgentNode", position: { x: 600, y: 160 }, data: { label: "GPT-4 Smart Parser", metrics: "9.4k/min" } }
+      ]);
+      setEdges([
+        { id: "e1", source: "trig", target: "sheet1", animated: true, style: sharedEdgeStyle },
+        { id: "e2", source: "sheet1", target: "aiCore", animated: true, style: sharedEdgeStyle }
+      ]);
+    } else {
+      setNodes([
+        { id: "trig2", type: "hubNode", position: { x: 40, y: 150 }, data: { label: "Schedule Cron", subtitle: "Interval Trigger", iconUrl: "https://raw.githubusercontent.com/n8n-io/n8n/master/packages/nodes-base/nodes/Webhook/webhook.svg", isTrigger: true } },
+        { id: "cal1", type: "hubNode", position: { x: 300, y: 80 }, data: { label: "Fetch Calendar", subtitle: "Google Events", iconUrl: calendarIcon, status: "Active" } },
+        { id: "slack1", type: "hubNode", position: { x: 300, y: 260 }, data: { label: "Slack Sync", subtitle: "Notification", iconUrl: slackIcon, status: "Live" } },
+        { id: "drive1", type: "hubNode", position: { x: 580, y: 170 }, data: { label: "Backup to Drive", subtitle: "Google Drive", iconUrl: driveIcon } }
+      ]);
+      setEdges([
+        { id: "e3", source: "trig2", target: "cal1", animated: true, style: sharedEdgeStyle },
+        { id: "e4", source: "trig2", target: "slack1", animated: true, style: sharedEdgeStyle },
+        { id: "e5", source: "cal1", target: "drive1", animated: true, style: sharedEdgeStyle },
+        { id: "e6", source: "slack1", target: "drive1", animated: true, style: sharedEdgeStyle }
+      ]);
+    }
   };
 
   const executeAction = (actionType) => {
     if (actionType === "copy") {
       navigator.clipboard.writeText(JSON.stringify({ nodes, edges }, null, 2));
-      alert("JSON Code copied to clipboard successfully! 🔥");
+      alert("JSON Code copied successfully! 🔥");
     } else if (actionType === "download") {
       const blob = new Blob([JSON.stringify({ nodes, edges }, null, 2)], { type: "application/json" });
       const url = URL.createObjectURL(blob);
@@ -301,16 +361,33 @@ function TemplateDetail({ filename, onBack }) {
     }
   };
 
-  if (loading) {
-    return <div style={{ textAlign: "center", fontSize: "24px", fontWeight: "bold", paddingTop: "200px", background: "#ffffff", height: "100vh" }}>🔄 Generating Live n8n Automation Canvas...</div>;
-  }
+  // 🎯 FIXED BACK BUTTON: Agar prop se back mechanism nahi hai, toh direct home page ("/") par bhej dega safe routing ke liye
+  const handleBackClick = onBack ? onBack : () => navigate("/");
 
   return (
     <div className="template-detail-page">
       <div className="detail-top-colored-bg">
-        <div className="back-navigation" onClick={onBack}>
-          <span className="arrow-back">←</span>
-          <span>Back to template</span>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "15px 5%", gap: "20px" }}>
+          <div className="back-navigation" onClick={handleBackClick} style={{ margin: 0, cursor: "pointer" }}>
+            <span className="arrow-back">←</span>
+            <span>Back to Home</span>
+          </div>
+
+          <div style={{ textAlign: "right" }}>
+            <label style={{ color: "#fff", marginRight: "10px", fontWeight: "bold" }}>Choose Workflow Template: </label>
+            <select 
+              value={currentFile || ""} 
+              onChange={(e) => setCurrentFile(e.target.value)}
+              style={{ padding: "10px 15px", borderRadius: "8px", border: "1px solid #ccc", background: "#fff", minWidth: "260px", fontWeight: "500", color: "#333", cursor: "pointer" }}
+            >
+              <option value="">-- Select Template --</option>
+              {allTemplates.map((t, index) => (
+                <option key={index} value={t.path}>
+                  {t.name ? t.name.replace(/_/g, " ") : `Template ${index + 1}`}
+                </option>
+              ))}
+            </select>
+          </div>
         </div>
 
         <div className="detail-layout-container">
@@ -323,12 +400,14 @@ function TemplateDetail({ filename, onBack }) {
               ))}
             </div>
 
-            <h1 className="template-main-title">
-              Personal life manager with Telegram, Google services & voice-enabled AI
+            {/* 🎯 FIXED: Ab yahan clean automatic title dikhega bina 0001 aur underscores ke */}
+            <h1 className="template-main-title" style={{ fontSize: "24px", textTransform: "capitalize", fontWeight: "700" }}>
+              {templateTitle}
             </h1>
 
-            <p className="template-description">
-              A comprehensive production-grade control panel managing massive, multi-faceted n8n automation ecosystems with advanced logic and live monitoring.
+            {/* 🎯 FIXED: Ab yahan dynamic professional description aayega file matching ke sath */}
+            <p className="template-description" style={{ fontSize: "15px", lineHeight: "1.6", color: "#e2e8f0" }}>
+              {templateDesc}
             </p>
 
             <div className="creator-profile-card">
@@ -371,18 +450,18 @@ function TemplateDetail({ filename, onBack }) {
                 <div className="sidebar-icon">🔑</div>
               </div>
 
-              {/* FIXED BOUNDS OVERLAP CONTAINER VIEWPORT */}
               <div className="hub-core-canvas-area">
-                
-                {/* Embedded ReactFlow locked centrally */}
                 <div className="reactflow-centered-viewport">
-                  <ReactFlow nodes={nodes} edges={edges} nodeTypes={nodeTypes} fitView minZoom={0.2} maxZoom={1.5}>
-                    <Background color="#333" gap={20} size={1} />
-                    <Controls position="top-left" />
-                  </ReactFlow>
+                  {loading ? (
+                    <div style={{ color: "#fff", textAlign: "center", paddingTop: "150px", fontSize: "18px" }}>🔄 Fetching Live Nodes Schema...</div>
+                  ) : (
+                    <ReactFlow nodes={nodes} edges={edges} nodeTypes={nodeTypes} fitView minZoom={0.1} maxZoom={1.5}>
+                      <Background color="#333" gap={20} size={1} />
+                      <Controls position="top-left" />
+                    </ReactFlow>
+                  )}
                 </div>
 
-                {/* Left Side Floating Panels */}
                 <div className="hub-floating-left-rail">
                   <div className="embedded-panel footer-timeline">
                     <div className="panel-title">Execution Timeline</div>
@@ -407,7 +486,6 @@ function TemplateDetail({ filename, onBack }) {
                   </div>
                 </div>
 
-                {/* Right Side Floating Sidebar */}
                 <div className="hub-floating-right-rail">
                   <div className="rail-card">
                     <div className="panel-title">Execution Timeline</div>
@@ -441,7 +519,6 @@ function TemplateDetail({ filename, onBack }) {
 
               </div>
             </div>
-
           </div>
         </div>
       </div>
