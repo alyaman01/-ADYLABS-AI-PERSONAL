@@ -2,10 +2,15 @@ import React, { useState, useEffect } from "react";
 import "./GetInTouchModal.css";
 
 function GetInTouchModal({ onClose, onSubmitSuccess, isForced = false }) {
-  const [isOpen, setIsOpen] = useState(true);
+  // 🎯 CHECK: Agar forced hai toh hamesha khulega, varna check karega ki pehle dikha toh nahi chuke session mein
+  const [isOpen, setIsOpen] = useState(() => {
+    if (isForced) return true;
+    const hasShownBefore = localStorage.getItem("mainPopupShown");
+    return hasShownBefore ? false : true;
+  });
+
   const [hasTriggeredSecondTime, setHasTriggeredSecondTime] = useState(false);
 
-  // Form Field States
   const [formData, setFormData] = useState({
     fullName: "",
     emailId: "",
@@ -15,9 +20,24 @@ function GetInTouchModal({ onClose, onSubmitSuccess, isForced = false }) {
     projectDetails: "",
   });
 
+  // ⏱️ 10 SECONDS TIMEOUT LOGIC
+  useEffect(() => {
+    // Agar forced lock wala popup hai, ya pehle se hi dikha chuke hain, toh 10s wala loop nahi chalayenge
+    if (isForced || localStorage.getItem("mainPopupShown")) return;
+
+    let timer;
+    if (!hasTriggeredSecondTime && !isOpen) {
+      timer = setTimeout(() => {
+        setIsOpen(true);
+        setHasTriggeredSecondTime(true); 
+      }, 10000); 
+    }
+
+    return () => clearTimeout(timer);
+  }, [isOpen, hasTriggeredSecondTime, isForced]);
+
   const handleClose = () => {
-    // 🔐 LOCK LOGIC: Agar button click se popup khula hai toh tab tak close nahi hoga jab tak detail fill na ho
-    if (isForced) return;
+    if (isForced) return; // Forced lock mein close allowed nahi hai
 
     if (onClose) {
       onClose();
@@ -25,18 +45,10 @@ function GetInTouchModal({ onClose, onSubmitSuccess, isForced = false }) {
       setIsOpen(false);
     }
 
-    // 2️⃣ Second Trigger Logic (Sirf normal popup users ke liye)
-    if (!hasTriggeredSecondTime && !isForced) {
-      setTimeout(() => {
-        if (onClose) {
-          // Parent is managing state, so we let parent open it if required.
-          // Fallback:
-          onClose();
-        } else {
-          setIsOpen(true);
-        }
-        setHasTriggeredSecondTime(true); 
-      }, 10000); 
+    // 🚩 FLAG SET: Agar user ne normal popup ko ek baar close kar diya, toh use yaad rakho
+    // Aur agar 10-second wala trigger already chal chuka hai ya chalne wala hai, uske baad isko permanent block kar do
+    if (hasTriggeredSecondTime) {
+      localStorage.setItem("mainPopupShown", "true");
     }
   };
 
@@ -46,9 +58,13 @@ function GetInTouchModal({ onClose, onSubmitSuccess, isForced = false }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Lead Data Submitted Successfully:", formData);
+    console.log("Lead Data Submitted:", formData);
     
-    // 🔥 Parent function trigger hoga jo isVerified ko true banayega aur download flow start karega
+    // 🚩 FLAG SET: Agar form submit ho gaya, toh normal popup life mein kabhi mat dikhao dobara
+    if (!isForced) {
+      localStorage.setItem("mainPopupShown", "true");
+    }
+
     if (onSubmitSuccess) {
       onSubmitSuccess();
     } else {
@@ -59,13 +75,9 @@ function GetInTouchModal({ onClose, onSubmitSuccess, isForced = false }) {
   if (!isOpen) return null;
 
   return (
-    /* 🎯 FIX 1: Main overlay click -> Agar forced lock hai toh undefined (disabled), varna normal handleClose */
     <div className="modal-blur-overlay" onClick={isForced ? undefined : handleClose}>
-      
-      {/* 🎯 FIX 2: stopPropagation taaki form inputs par click karne se modal band na ho */}
       <div className="get-in-touch-modal-card" onClick={(e) => e.stopPropagation()}>
         
-        {/* ✕ Close Button: Agar isForced status true hai, toh Cross icon screen se hat jayega */}
         {!isForced && (
           <button className="modal-close-cross" onClick={handleClose}>✕</button>
         )}
@@ -110,64 +122,75 @@ function GetInTouchModal({ onClose, onSubmitSuccess, isForced = false }) {
                 name="contactNumber"
                 placeholder="Enter Contact Number" 
                 required 
+                pattern="[0-9]{10}"
+                title="Please enter a valid 10-digit mobile number"
                 value={formData.contactNumber}
                 onChange={handleChange}
               />
             </div>
           </div>
 
-          {/* Row layout for Custom Select Fields */}
-          <div className="form-row-grid">
-            <div className="form-input-group">
-              <label>Service Required<span className="required-star">*</span></label>
-              <select 
-                name="serviceRequired" 
-                required 
-                value={formData.serviceRequired}
-                onChange={handleChange}
-              >
-                <option value="">Select Your Service</option>
-                <option value="AI Chat Bot">AI Chat Bot Automation</option>
-                <option value="Voice AI Agent">Voice AI Agent Automation</option>
-                <option value="AI Sales Agent">AI Sales Agent Automation</option>
-                <option value="WhatsApp Automation">WhatsApp Automation</option>
-              </select>
-            </div>
+          {!isForced && (
+            <>
+              <div className="form-row-grid">
+                <div className="form-input-group">
+                  <label>Service Required<span className="required-star">*</span></label>
+                  <select 
+                    name="serviceRequired" 
+                    required 
+                    value={formData.serviceRequired}
+                    onChange={handleChange}
+                  >
+                    <option value="">Select Your Service</option>
+                    <option value="AI Chat Bot">AI Chat Bot Automation</option>
+                    <option value="Voice AI Agent">Voice AI Agent Automation</option>
+                    <option value="AI Sales Agent">AI Sales Agent Automation</option>
+                    <option value="WhatsApp Automation">WhatsApp Automation</option>
+                  </select>
+                </div>
 
-            <div className="form-input-group">
-              <label>Budget Range<span className="required-star">*</span></label>
-              <select 
-                name="budgetRange" 
-                required 
-                value={formData.budgetRange}
-                onChange={handleChange}
-              >
-                <option value="">Select Budget Range</option>
-                <option value="1k-3k">$1,000 - $3,000</option>
-                <option value="3k-5k">$3,000 - $5,000</option>
-                <option value="5k+">$5,000+</option>
-              </select>
-            </div>
-          </div>
+                <div className="form-input-group">
+                  <label>Budget Range<span className="required-star">*</span></label>
+                  <select 
+                    name="budgetRange" 
+                    required 
+                    value={formData.budgetRange}
+                    onChange={handleChange}
+                  >
+                    <option value="">Select Budget Range</option>
+                    <option value="1k-3k">$1,000 - $3,000</option>
+                    <option value="3k-5k">$3,000 - $5,000</option>
+                    <option value="5k+">$5,000+</option>
+                  </select>
+                </div>
+              </div>
 
-          <div className="form-input-group">
-            <label>Project Details<span className="required-star">*</span></label>
-            <textarea 
-              name="projectDetails"
-              rows="3" 
-              placeholder="Enter Project Details" 
-              required
-              value={formData.projectDetails}
-              onChange={handleChange}
-            ></textarea>
-          </div>
+              <div className="form-input-group">
+                <label>Project Details<span className="required-star">*</span></label>
+                <textarea 
+                  name="projectDetails"
+                  rows="3" 
+                  placeholder="Enter Project Details" 
+                  required
+                  value={formData.projectDetails}
+                  onChange={handleChange}
+                ></textarea>
+              </div>
+            </>
+          )}
 
-          {/* Bottom Action Footer Control Panel */}
-          <div className="modal-action-footer">
-            <button type="button" className="attach-document-btn">
-              <span className="paperclip-icon">📎</span> Attach Your Document
-            </button>
-            <button type="submit" className="modal-submit-cta">
+          <div className="modal-action-footer" style={{ justifyContent: isForced ? "center" : "space-between", marginTop: "10px" }}>
+            {!isForced && (
+              <button type="button" className="attach-document-btn">
+                <span className="paperclip-icon">📎</span> Attach Your Document
+              </button>
+            )}
+            
+            <button 
+              type="submit" 
+              className="modal-submit-cta" 
+              style={{ width: isForced ? "100%" : "auto" }}
+            >
               {isForced ? "UNLOCK & DOWNLOAD NOW" : "SUBMIT"}
             </button>
           </div>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./JsonMarketplaceButton.css";
 import marketplaceBg from "../../assets/marketplace/jsonHome.png"; 
 import Brands from "../brands";
@@ -19,10 +19,31 @@ function JsonMarketplaced() {
   const [activeTag, setActiveTag] = useState("AI");
   const [searchQuery, setSearchQuery] = useState("");
   
+  // ⏳ SEARCHING LOADER STATES
+  const [isSearching, setIsSearching] = useState(false);
+
   // 🎯 SINGLE PAGE CONTROLLER STATE
   const [selectedTemplate, setSelectedTemplate] = useState(null);
 
   const tags = ["AI", "Sales", "IT ops", "Marketing", "AI Ads", "Social media", "Support"];
+
+  // ⚡ DEBOUNCE EFFECT FOR SEARCHING EFFECT
+  useEffect(() => {
+    if (searchQuery.trim() === "") {
+      setIsSearching(false);
+      return;
+    }
+
+    // Jaise hi user type karna shuru karega, loading chalu
+    setIsSearching(true);
+
+    // 400ms tak agar user ne typing roki, toh loading band ho jayegi (results up-to-date)
+    const delayDebounceFn = setTimeout(() => {
+      setIsSearching(false);
+    }, 450);
+
+    return () => clearTimeout(delayDebounceFn);
+  }, [searchQuery]);
 
   // 🎯 AGAR USER NE CARD PAR CLICK KIYA HAI:
   if (selectedTemplate) {
@@ -47,7 +68,7 @@ function JsonMarketplaced() {
       </div>
 
       {/* 🔍 Search Box Section */}
-      <div className="search-box-container">
+      <div className="search-box-container" style={{ position: 'relative' }}>
         {activeTag && (
           <div className="input-active-tag">
             <span>{activeTag}</span>
@@ -63,12 +84,26 @@ function JsonMarketplaced() {
           className="marketplace-search-input"
         />
 
+        {/* 🔄 DYNAMIC SEARCH ICON / SPINNER */}
         <div className="search-icon-wrapper">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7e7e7e" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-            <circle cx="11" cy="11" r="8"></circle>
-            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-          </svg>
+          {isSearching ? (
+            /* Premium CSS Loader Spinner */
+            <div className="search-spinner-loader"></div>
+          ) : (
+            /* Normal Search Lens Icon */
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7e7e7e" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+          )}
         </div>
+
+        {/* ⚡ OPTIONAL: Choti niche flashing status line bar user ke feedback ke liye */}
+        {isSearching && (
+          <div className="search-status-text" style={{ position: 'absolute', bottom: '-22px', left: '15px', fontSize: '12px', color: '#ff9800', fontWeight: '500', animation: 'pulse 1s infinite' }}>
+            Searching database...
+          </div>
+        )}
       </div>
 
       {/* 🏷️ Filter Pills Category */}
@@ -77,7 +112,12 @@ function JsonMarketplaced() {
           <button
             key={tag}
             className={`filter-pill-btn ${activeTag === tag ? "pill-active" : ""}`}
-            onClick={() => setActiveTag(tag)}
+            onClick={() => {
+              setActiveTag(tag);
+              // Jab category tab change ho tab bhi thoda loading effect de dete hain seamless feel ke liye
+              setIsSearching(true);
+              setTimeout(() => setIsSearching(false), 300);
+            }}
           >
             {tag}
           </button>
@@ -108,7 +148,11 @@ function JsonMarketplaced() {
       {/* Internal Sub Sections */}
       <Brands/>
       
-      <JsonSecondSection onSelectCard={(filename) => setSelectedTemplate(filename)} />
+      {/* Dynamic Results Grid Section */}
+      <JsonSecondSection 
+        searchQuery={searchQuery} 
+        onSelectCard={(filename) => setSelectedTemplate(filename)} 
+      />      
       
       <BonusSection/>
       <PricingBonusTable/>

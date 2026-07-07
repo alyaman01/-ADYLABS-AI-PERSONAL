@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { ReactFlow, Background, Controls, Handle, Position } from "@xyflow/react";
-import { useLocation, useNavigate } from "react-router-dom"; // 🚀 FIXED: Home page ka data catch karne ke liye tools import kiye
+import { useLocation, useNavigate } from "react-router-dom"; 
 import "@xyflow/react/dist/style.css"; 
 import "./TemplateDetail.css";
 
@@ -43,8 +43,13 @@ const getN8nIconUrl = (nodeType) => {
 /* ================= CUSTOM REACTFLOW NODES ================= */
 const N8nHubNode = ({ data }) => {
   return (
-    <div className={`n8n-hub-card ${data.isTrigger ? 'trigger-border' : ''}`}>
-      {data.hasTarget !== false && <Handle type="target" position={Position.Left} className="hub-handle" />}
+    <div className={`n8n-hub-card ${data.isTrigger ? 'trigger-border' : ''}`} style={{ position: 'relative', overflow: 'visible' }}>
+      <Handle 
+        type="target" 
+        position={Position.Left} 
+        id="target-l"
+        style={{ background: '#f59e0b', width: '12px', height: '12px', borderRadius: '50%', left: '-6px', top: '50%', transform: 'translateY(-50%)', zIndex: 999 }} 
+      />
       {data.metrics && <div className="node-metrics-badge">{data.metrics}</div>}
       {data.status && (
         <div className={`node-status-dot ${data.status.toLowerCase()}`}>
@@ -64,15 +69,25 @@ const N8nHubNode = ({ data }) => {
           <div className="hub-node-subtitle">{data.subtitle}</div>
         </div>
       </div>
-      {data.hasSource !== false && <Handle type="source" position={Position.Right} className="hub-handle" />}
+      <Handle 
+        type="source" 
+        position={Position.Right} 
+        id="source-r"
+        style={{ background: '#f59e0b', width: '12px', height: '12px', borderRadius: '50%', right: '-6px', top: '50%', transform: 'translateY(-50%)', zIndex: 999 }} 
+      />
     </div>
   );
 };
 
 const N8nAiAgentNode = ({ data }) => {
   return (
-    <div className="n8n-hub-ai-agent-card">
-      <Handle type="target" position={Position.Left} className="hub-handle" />
+    <div className="n8n-hub-ai-agent-card" style={{ position: 'relative', overflow: 'visible' }}>
+      <Handle 
+        type="target" 
+        position={Position.Left} 
+        id="target-l"
+        style={{ background: '#f59e0b', width: '12px', height: '12px', borderRadius: '50%', left: '-6px', top: '50%', transform: 'translateY(-50%)', zIndex: 999 }} 
+      />
       <div className="node-status-dot active"><span className="dot"></span> Active</div>
       <div className="agent-tps-badge">{data.metrics || "12.1k/min TPS"}</div>
       <div className="agent-node-icon">
@@ -87,7 +102,12 @@ const N8nAiAgentNode = ({ data }) => {
           <span>Telegram API</span>
         </div>
       </div>
-      <Handle type="source" position={Position.Right} className="hub-handle" />
+      <Handle 
+        type="source" 
+        position={Position.Right} 
+        id="source-r"
+        style={{ background: '#f59e0b', width: '12px', height: '12px', borderRadius: '50%', right: '-6px', top: '50%', transform: 'translateY(-50%)', zIndex: 999 }} 
+      />
     </div>
   );
 };
@@ -98,10 +118,9 @@ const nodeTypes = {
 };
 
 function TemplateDetail({ filename, onBack }) {
-  const location = useLocation(); // 🚀 ROUTER CONNECTION 1
-  const navigate = useNavigate(); // 🚀 ROUTER CONNECTION 2
+  const location = useLocation(); 
+  const navigate = useNavigate(); 
 
-  // 🎯 DYNAMIC PATH CHECK: Agar Home page ke card click se route state mein koi file aayi hai toh pehle woh load hogi, nahi toh prop wali filename chalegi!
   const initialFile = location.state?.selectedFile || filename;
 
   const [currentFile, setCurrentFile] = useState(initialFile);
@@ -111,20 +130,18 @@ function TemplateDetail({ filename, onBack }) {
   const [loading, setLoading] = useState(true);
   const [topBadges, setTopBadges] = useState([]);
 
-  // 🚀 DYNAMIC CONTENT STATES: Title aur description ko automatic change karne ke liye states
   const [templateTitle, setTemplateTitle] = useState("Loading Template...");
   const [templateDesc, setTemplateDesc] = useState("Fetching template details...");
 
-  /* LEAD GENERATION STATES */
   const [isVerified, setIsVerified] = useState(false); 
   const [showModal, setShowModal] = useState(false);   
   const [pendingAction, setPendingAction] = useState(null); 
   const [isModalForced, setIsModalForced] = useState(false); 
 
   const sharedEdgeStyle = {
-    stroke: "#a0aec0", 
-    strokeWidth: 2, 
-    strokeDasharray: "5,5"
+    stroke: "#3b82f6", // Pura sky-blue solid/dashed kiya taaki visually pop out ho ske dark mode me
+    strokeWidth: 3, 
+    strokeDasharray: "6,6" 
   };
 
   useEffect(() => {
@@ -150,7 +167,6 @@ function TemplateDetail({ filename, onBack }) {
     fetchTemplatesList();
   }, []);
 
-  // 🎯 FIX: Agar page open hone ke baad bhi state badalti hai toh current file update ho jaye
   useEffect(() => {
     if (location.state?.selectedFile) {
       setCurrentFile(location.state.selectedFile);
@@ -182,13 +198,10 @@ function TemplateDetail({ filename, onBack }) {
           cleanPath = '/' + cleanPath;
         }
 
-        // 🚀 SMART GENERATOR FOR TITLE & DESCRIPTION ACCORDING TO FILE
         const rawFileName = currentFile.split("/").pop().replace(".json", "");
-        // Clean Title: Removes digits, underscores and fixes spacing
         const cleanTitle = rawFileName.replace(/^\d+[\s_]*/, "").replace(/_/g, " ");
         setTemplateTitle(cleanTitle);
 
-        // Smart Description Dictionary mapping keywords to professional text
         const lowerPath = currentFile.toLowerCase();
         if (lowerPath.includes("telegram")) {
           setTemplateDesc("Automate your community management with this seamless Telegram engine. Instantly dispatch smart alerts, manage schedules, and process inbound requests via a reliable webhook flow.");
@@ -201,7 +214,6 @@ function TemplateDetail({ filename, onBack }) {
         } else if (lowerPath.includes("cron") || lowerPath.includes("http")) {
           setTemplateDesc("An enterprise scheduling cron system that periodically triggers advanced network updates via secure HTTP webhooks, complete with continuous performance monitoring logs.");
         } else {
-          // Standard fallback description if file doesn't match above categories
           setTemplateDesc(`A production-grade n8n control framework specifically engineered to optimize your ${cleanTitle || "workspace automation"} with live error tracking and complex logic gates.`);
         }
 
@@ -231,11 +243,13 @@ function TemplateDetail({ filename, onBack }) {
               flowNodeType = "aiAgentNode";
             }
 
+            const nodeNameId = node.name ? node.name.trim() : `node_${i}`;
+
             return {
-              id: node.id || `node_${i}`,
+              id: nodeNameId,
               type: flowNodeType,
               data: { 
-                label: node.name || "Action Node", 
+                label: nodeNameId, 
                 subtitle: node.type ? node.type.split('.').pop() : "n8n Integration",
                 iconUrl: dynamicIcon,
                 status: i === 0 ? "Live" : i % 3 === 0 ? "Complex" : "Active",
@@ -262,10 +276,13 @@ function TemplateDetail({ filename, onBack }) {
             outputs.forEach((targetGroup) => {
               targetGroup.forEach((targetObj) => {
                 if (targetObj && targetObj.node) {
+                  const cleanedSource = sourceNode.trim();
+                  const cleanedTarget = targetObj.node.trim();
+
                   mappedEdges.push({
-                    id: `edge_${sourceNode}_${targetObj.node}`,
-                    source: sourceNode,
-                    target: targetObj.node,
+                    id: `edge_${cleanedSource}_${cleanedTarget}`,
+                    source: cleanedSource,
+                    target: cleanedTarget,
                     animated: true,
                     style: sharedEdgeStyle,
                   });
@@ -302,26 +319,26 @@ function TemplateDetail({ filename, onBack }) {
 
     if (isOdd) {
       setNodes([
-        { id: "trig", type: "hubNode", position: { x: 50, y: 200 }, data: { label: "Telegram Alert", subtitle: "Trigger", iconUrl: telegramIcon, isTrigger: true } },
-        { id: "sheet1", type: "hubNode", position: { x: 320, y: 120 }, data: { label: "Log to Sheet", subtitle: "Google Sheets", iconUrl: sheetIcon, status: "Live" } },
-        { id: "aiCore", type: "aiAgentNode", position: { x: 600, y: 160 }, data: { label: "GPT-4 Smart Parser", metrics: "9.4k/min" } }
+        { id: "Telegram Alert", type: "hubNode", position: { x: 50, y: 200 }, data: { label: "Telegram Alert", subtitle: "Trigger", iconUrl: telegramIcon, isTrigger: true } },
+        { id: "Log to Sheet", type: "hubNode", position: { x: 320, y: 120 }, data: { label: "Log to Sheet", subtitle: "Google Sheets", iconUrl: sheetIcon, status: "Live" } },
+        { id: "GPT-4 Smart Parser", type: "aiAgentNode", position: { x: 600, y: 160 }, data: { label: "GPT-4 Smart Parser", metrics: "9.4k/min" } }
       ]);
       setEdges([
-        { id: "e1", source: "trig", target: "sheet1", animated: true, style: sharedEdgeStyle },
-        { id: "e2", source: "sheet1", target: "aiCore", animated: true, style: sharedEdgeStyle }
+        { id: "e1", source: "Telegram Alert", target: "Log to Sheet", animated: true, style: sharedEdgeStyle },
+        { id: "e2", source: "Log to Sheet", target: "GPT-4 Smart Parser", animated: true, style: sharedEdgeStyle }
       ]);
     } else {
       setNodes([
-        { id: "trig2", type: "hubNode", position: { x: 40, y: 150 }, data: { label: "Schedule Cron", subtitle: "Interval Trigger", iconUrl: "https://raw.githubusercontent.com/n8n-io/n8n/master/packages/nodes-base/nodes/Webhook/webhook.svg", isTrigger: true } },
-        { id: "cal1", type: "hubNode", position: { x: 300, y: 80 }, data: { label: "Fetch Calendar", subtitle: "Google Events", iconUrl: calendarIcon, status: "Active" } },
-        { id: "slack1", type: "hubNode", position: { x: 300, y: 260 }, data: { label: "Slack Sync", subtitle: "Notification", iconUrl: slackIcon, status: "Live" } },
-        { id: "drive1", type: "hubNode", position: { x: 580, y: 170 }, data: { label: "Backup to Drive", subtitle: "Google Drive", iconUrl: driveIcon } }
+        { id: "Schedule Cron", type: "hubNode", position: { x: 40, y: 150 }, data: { label: "Schedule Cron", subtitle: "Interval Trigger", iconUrl: "https://raw.githubusercontent.com/n8n-io/n8n/master/packages/nodes-base/nodes/Webhook/webhook.svg", isTrigger: true } },
+        { id: "Fetch Calendar", type: "hubNode", position: { x: 300, y: 80 }, data: { label: "Fetch Calendar", subtitle: "Google Events", iconUrl: calendarIcon, status: "Active" } },
+        { id: "Slack Sync", type: "hubNode", position: { x: 300, y: 260 }, data: { label: "Slack Sync", subtitle: "Notification", iconUrl: slackIcon, status: "Live" } },
+        { id: "Backup to Drive", type: "hubNode", position: { x: 580, y: 170 }, data: { label: "Backup to Drive", subtitle: "Google Drive", iconUrl: driveIcon } }
       ]);
       setEdges([
-        { id: "e3", source: "trig2", target: "cal1", animated: true, style: sharedEdgeStyle },
-        { id: "e4", source: "trig2", target: "slack1", animated: true, style: sharedEdgeStyle },
-        { id: "e5", source: "cal1", target: "drive1", animated: true, style: sharedEdgeStyle },
-        { id: "e6", source: "slack1", target: "drive1", animated: true, style: sharedEdgeStyle }
+        { id: "e3", source: "Schedule Cron", target: "Fetch Calendar", animated: true, style: sharedEdgeStyle },
+        { id: "e4", source: "Schedule Cron", target: "Slack Sync", animated: true, style: sharedEdgeStyle },
+        { id: "e5", source: "Fetch Calendar", target: "Backup to Drive", animated: true, style: sharedEdgeStyle },
+        { id: "e6", source: "Slack Sync", target: "Backup to Drive", animated: true, style: sharedEdgeStyle }
       ]);
     }
   };
@@ -361,7 +378,6 @@ function TemplateDetail({ filename, onBack }) {
     }
   };
 
-  // 🎯 FIXED BACK BUTTON: Agar prop se back mechanism nahi hai, toh direct home page ("/") par bhej dega safe routing ke liye
   const handleBackClick = onBack ? onBack : () => navigate("/");
 
   return (
@@ -370,11 +386,10 @@ function TemplateDetail({ filename, onBack }) {
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "15px 5%", gap: "20px" }}>
           <div className="back-navigation" onClick={handleBackClick} style={{ margin: 0, cursor: "pointer" }}>
             <span className="arrow-back">←</span>
-            <span>Back to Home</span>
+            <span>Back to Template</span>
           </div>
 
           <div style={{ textAlign: "right" }}>
-            <label style={{ color: "#fff", marginRight: "10px", fontWeight: "bold" }}>Choose Workflow Template: </label>
             <select 
               value={currentFile || ""} 
               onChange={(e) => setCurrentFile(e.target.value)}
@@ -400,13 +415,11 @@ function TemplateDetail({ filename, onBack }) {
               ))}
             </div>
 
-            {/* 🎯 FIXED: Ab yahan clean automatic title dikhega bina 0001 aur underscores ke */}
             <h1 className="template-main-title" style={{ fontSize: "24px", textTransform: "capitalize", fontWeight: "700" }}>
               {templateTitle}
             </h1>
 
-            {/* 🎯 FIXED: Ab yahan dynamic professional description aayega file matching ke sath */}
-            <p className="template-description" style={{ fontSize: "15px", lineHeight: "1.6", color: "#e2e8f0" }}>
+            <p className="template-description" style={{ fontSize: "15px", lineHeight: "1.6", color: "#949698" }}>
               {templateDesc}
             </p>
 
@@ -436,87 +449,31 @@ function TemplateDetail({ filename, onBack }) {
               </div>
               <div className="hub-header-center">N8N Central Automation Hub</div>
               <div className="hub-header-right">
-                <span className="hub-bell">🔔</span>
-                <img src={ProfileImg} alt="User" className="hub-user-pfp" />
+                
               </div>
             </div>
 
             <div className="hub-workspace-body">
-              <div className="hub-mini-sidebar">
-                <div className="sidebar-icon active">🏠</div>
-                <div className="sidebar-icon">📂</div>
-                <div className="sidebar-icon">📈</div>
-                <div className="sidebar-icon">⚙️</div>
-                <div className="sidebar-icon">🔑</div>
-              </div>
-
-              <div className="hub-core-canvas-area">
-                <div className="reactflow-centered-viewport">
+              {/* 🚀 FORCE FIXED HEIGHT CONTROLLER TO STOP CANVAS COLLAPSE */}
+              <div className="hub-core-canvas-area" style={{ width: "100%", height: "450px", minHeight: "450px", padding: 0, position: "relative", overflow: "visible" }}>
+                <div className="reactflow-centered-viewport" style={{ width: "100%", height: "100%", position: "absolute", top: 0, left: 0 }}>
                   {loading ? (
                     <div style={{ color: "#fff", textAlign: "center", paddingTop: "150px", fontSize: "18px" }}>🔄 Fetching Live Nodes Schema...</div>
                   ) : (
-                    <ReactFlow nodes={nodes} edges={edges} nodeTypes={nodeTypes} fitView minZoom={0.1} maxZoom={1.5}>
+                    <ReactFlow 
+                      nodes={nodes} 
+                      edges={edges} 
+                      nodeTypes={nodeTypes} 
+                      fitView 
+                      fitViewOptions={{ padding: 0.3 }}
+                      minZoom={0.1} 
+                      maxZoom={1.5}
+                    >
                       <Background color="#333" gap={20} size={1} />
                       <Controls position="top-left" />
                     </ReactFlow>
                   )}
                 </div>
-
-                <div className="hub-floating-left-rail">
-                  <div className="embedded-panel footer-timeline">
-                    <div className="panel-title">Execution Timeline</div>
-                    <div className="panel-subtitle">Live graph</div>
-                    <div className="mock-sparkline">
-                      <div className="bar" style={{ height: '30%' }}></div>
-                      <div className="bar" style={{ height: '50%' }}></div>
-                      <div className="bar" style={{ height: '45%' }}></div>
-                      <div className="bar" style={{ height: '85%' }}></div>
-                      <div className="bar" style={{ height: '70%' }}></div>
-                      <div className="bar" style={{ height: '95%' }}></div>
-                    </div>
-                  </div>
-
-                  <div className="embedded-panel footer-logs">
-                    <div className="panel-title">Execution Logs</div>
-                    <div className="logs-terminal-stream">
-                      <div><span className="time">[09:55 PM]</span> Streaming logs...</div>
-                      <div><span className="time">[03:17 AM]</span> Sheets sync update...</div>
-                      <div><span className="time">[01:10 AM]</span> Context Analysis OK.</div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="hub-floating-right-rail">
-                  <div className="rail-card">
-                    <div className="panel-title">Execution Timeline</div>
-                    <div className="mock-chart-graphic">⚡ Pipeline Stable</div>
-                  </div>
-
-                  <div className="rail-card">
-                    <div className="panel-title">Execution Logs</div>
-                    <div className="mini-logs-list">
-                      <div className="log-row success">● 09:55 PM - Active stream</div>
-                      <div className="log-row success">● 08:15 AM - Webhook fired</div>
-                      <div className="log-row fail">● 04:12 AM - Timeout trace</div>
-                    </div>
-                  </div>
-
-                  <div className="rail-card">
-                    <div className="panel-title">Credential Status</div>
-                    <div className="credential-pill-row">
-                      <span className="status-lbl green">Live: Active</span>
-                    </div>
-                  </div>
-
-                  <div className="rail-card">
-                    <div className="panel-title">Resource Usage</div>
-                    <div className="usage-progress-bar">
-                      <div className="fill" style={{ width: '65%' }}></div>
-                    </div>
-                    <span className="usage-txt">CPU: 65% | Mem: 2.1GB</span>
-                  </div>
-                </div>
-
               </div>
             </div>
           </div>
