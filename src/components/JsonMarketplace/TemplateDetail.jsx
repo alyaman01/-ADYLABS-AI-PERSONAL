@@ -130,6 +130,9 @@ function TemplateDetail({ filename, onBack }) {
   const [loading, setLoading] = useState(true);
   const [topBadges, setTopBadges] = useState([]);
 
+  // 🎯 Raw JSON structural storage for copy/download triggers
+  const [rawWorkflowJson, setRawWorkflowJson] = useState(null);
+
   const [templateTitle, setTemplateTitle] = useState("Loading Template...");
   const [templateDesc, setTemplateDesc] = useState("Fetching template details...");
 
@@ -138,8 +141,11 @@ function TemplateDetail({ filename, onBack }) {
   const [pendingAction, setPendingAction] = useState(null); 
   const [isModalForced, setIsModalForced] = useState(false); 
 
+  // ✋ Pan mode tracking
+  const [isPanMode, setIsPanMode] = useState(false);
+
   const sharedEdgeStyle = {
-    stroke: "#3b82f6", // Pura sky-blue solid/dashed kiya taaki visually pop out ho ske dark mode me
+    stroke: "#3b82f6", 
     strokeWidth: 3, 
     strokeDasharray: "6,6" 
   };
@@ -174,16 +180,6 @@ function TemplateDetail({ filename, onBack }) {
       setCurrentFile(filename);
     }
   }, [location.state, filename]);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      if (!isVerified) {
-        setIsModalForced(false); 
-        setShowModal(true);
-      }
-    }, 3000);
-    return () => clearTimeout(timer);
-  }, [isVerified, currentFile]);
 
   useEffect(() => {
     const loadGithubWorkflow = async () => {
@@ -227,6 +223,7 @@ function TemplateDetail({ filename, onBack }) {
         }
 
         const data = await res.json();
+        setRawWorkflowJson(data); 
 
         if (data && (data.nodes || Array.isArray(data))) {
           const targetNodes = Array.isArray(data) ? data : data.nodes;
@@ -317,45 +314,54 @@ function TemplateDetail({ filename, onBack }) {
     
     setTopBadges(isOdd ? [telegramIcon, sheetIcon] : [calendarIcon, driveIcon, slackIcon]);
 
-    if (isOdd) {
-      setNodes([
-        { id: "Telegram Alert", type: "hubNode", position: { x: 50, y: 200 }, data: { label: "Telegram Alert", subtitle: "Trigger", iconUrl: telegramIcon, isTrigger: true } },
-        { id: "Log to Sheet", type: "hubNode", position: { x: 320, y: 120 }, data: { label: "Log to Sheet", subtitle: "Google Sheets", iconUrl: sheetIcon, status: "Live" } },
-        { id: "GPT-4 Smart Parser", type: "aiAgentNode", position: { x: 600, y: 160 }, data: { label: "GPT-4 Smart Parser", metrics: "9.4k/min" } }
-      ]);
-      setEdges([
-        { id: "e1", source: "Telegram Alert", target: "Log to Sheet", animated: true, style: sharedEdgeStyle },
-        { id: "e2", source: "Log to Sheet", target: "GPT-4 Smart Parser", animated: true, style: sharedEdgeStyle }
-      ]);
-    } else {
-      setNodes([
-        { id: "Schedule Cron", type: "hubNode", position: { x: 40, y: 150 }, data: { label: "Schedule Cron", subtitle: "Interval Trigger", iconUrl: "https://raw.githubusercontent.com/n8n-io/n8n/master/packages/nodes-base/nodes/Webhook/webhook.svg", isTrigger: true } },
-        { id: "Fetch Calendar", type: "hubNode", position: { x: 300, y: 80 }, data: { label: "Fetch Calendar", subtitle: "Google Events", iconUrl: calendarIcon, status: "Active" } },
-        { id: "Slack Sync", type: "hubNode", position: { x: 300, y: 260 }, data: { label: "Slack Sync", subtitle: "Notification", iconUrl: slackIcon, status: "Live" } },
-        { id: "Backup to Drive", type: "hubNode", position: { x: 580, y: 170 }, data: { label: "Backup to Drive", subtitle: "Google Drive", iconUrl: driveIcon } }
-      ]);
-      setEdges([
-        { id: "e3", source: "Schedule Cron", target: "Fetch Calendar", animated: true, style: sharedEdgeStyle },
-        { id: "e4", source: "Schedule Cron", target: "Slack Sync", animated: true, style: sharedEdgeStyle },
-        { id: "e5", source: "Fetch Calendar", target: "Backup to Drive", animated: true, style: sharedEdgeStyle },
-        { id: "e6", source: "Slack Sync", target: "Backup to Drive", animated: true, style: sharedEdgeStyle }
-      ]);
-    }
+    const fallbackNodes = isOdd ? [
+      { id: "Telegram Alert", type: "hubNode", position: { x: 50, y: 200 }, data: { label: "Telegram Alert", subtitle: "Trigger", iconUrl: telegramIcon, isTrigger: true } },
+      { id: "Log to Sheet", type: "hubNode", position: { x: 320, y: 120 }, data: { label: "Log to Sheet", subtitle: "Google Sheets", iconUrl: sheetIcon, status: "Live" } },
+      { id: "GPT-4 Smart Parser", type: "aiAgentNode", position: { x: 600, y: 160 }, data: { label: "GPT-4 Smart Parser", metrics: "9.4k/min" } }
+    ] : [
+      { id: "Schedule Cron", type: "hubNode", position: { x: 40, y: 150 }, data: { label: "Schedule Cron", subtitle: "Interval Trigger", iconUrl: "https://raw.githubusercontent.com/n8n-io/n8n/master/packages/nodes-base/nodes/Webhook/webhook.svg", isTrigger: true } },
+      { id: "Fetch Calendar", type: "hubNode", position: { x: 300, y: 80 }, data: { label: "Fetch Calendar", subtitle: "Google Events", iconUrl: calendarIcon, status: "Active" } },
+      { id: "Slack Sync", type: "hubNode", position: { x: 300, y: 260 }, data: { label: "Slack Sync", subtitle: "Notification", iconUrl: slackIcon, status: "Live" } },
+      { id: "Backup to Drive", type: "hubNode", position: { x: 580, y: 170 }, data: { label: "Backup to Drive", subtitle: "Google Drive", iconUrl: driveIcon } }
+    ];
+
+    const fallbackEdges = isOdd ? [
+      { id: "e1", source: "Telegram Alert", target: "Log to Sheet", animated: true, style: sharedEdgeStyle },
+      { id: "e2", source: "Log to Sheet", target: "GPT-4 Smart Parser", animated: true, style: sharedEdgeStyle }
+    ] : [
+      { id: "e3", source: "Schedule Cron", target: "Fetch Calendar", animated: true, style: sharedEdgeStyle },
+      { id: "e4", source: "Schedule Cron", target: "Slack Sync", animated: true, style: sharedEdgeStyle },
+      { id: "e5", source: "Fetch Calendar", target: "Backup to Drive", animated: true, style: sharedEdgeStyle },
+      { id: "e6", source: "Slack Sync", target: "Backup to Drive", animated: true, style: sharedEdgeStyle }
+    ];
+
+    setNodes(fallbackNodes);
+    setEdges(fallbackEdges);
+    setRawWorkflowJson({ nodes: fallbackNodes, connections: fallbackEdges });
   };
 
+  // 🎯 ACTIONS EXECUTION ENGINE
   const executeAction = (actionType) => {
+    const finalDataToExport = rawWorkflowJson ? rawWorkflowJson : { nodes, edges };
+    const stringifiedData = JSON.stringify(finalDataToExport, null, 2);
+
     if (actionType === "copy") {
-      navigator.clipboard.writeText(JSON.stringify({ nodes, edges }, null, 2));
-      alert("JSON Code copied successfully! 🔥");
+      navigator.clipboard.writeText(stringifiedData)
+        .then(() => alert("JSON Code copied successfully to clipboard! 🔥"))
+        .catch(() => alert("Failed to copy JSON. Please try again."));
     } else if (actionType === "download") {
-      const blob = new Blob([JSON.stringify({ nodes, edges }, null, 2)], { type: "application/json" });
+      const blob = new Blob([stringifiedData], { type: "application/json" });
       const url = URL.createObjectURL(blob);
       const link = document.createElement("a");
       link.href = url;
-      link.download = `${currentFile ? currentFile.split("/").pop().replace(".json", "") : "n8n-template"}.json`;
+      
+      const fileExportName = currentFile ? currentFile.split("/").pop().replace(".json", "") : "n8n_automation_schema";
+      link.download = `${fileExportName}.json`;
+      
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
+      URL.revokeObjectURL(url);
     }
   };
 
@@ -448,14 +454,75 @@ function TemplateDetail({ filename, onBack }) {
                 <span className="hub-brand-name">n8n</span>
               </div>
               <div className="hub-header-center">N8N Central Automation Hub</div>
-              <div className="hub-header-right">
-                
-              </div>
+              <div className="hub-header-right"></div>
             </div>
 
             <div className="hub-workspace-body">
-              {/* 🚀 FORCE FIXED HEIGHT CONTROLLER TO STOP CANVAS COLLAPSE */}
               <div className="hub-core-canvas-area" style={{ width: "100%", height: "450px", minHeight: "450px", padding: 0, position: "relative", overflow: "visible" }}>
+                
+                {/* 🎯 PREMIUM CONTROLS FLOATING SIDEBAR (WITH CUSTOM OUTLINED SVGs MATCHING ORIGINAL SHAPES) */}
+                <div className="canvas-custom-controls-floating" style={{ position: "absolute", top: "15px", left: "15px", display: "flex", flexDirection: "column", gap: "8px", zIndex: 100 }}>
+                  
+                  {/* PLUS ICON (ZOOM IN) */}
+                  <button 
+                    title="Zoom In" 
+                    className="ctrl-f-btn" 
+                    onClick={() => document.querySelector('.react-flow__controls-zoomin')?.click()} 
+                    style={{ cursor: "pointer", background: "#2a2a2a", border: "1px solid #555", borderRadius: "8px", width: "36px", height: "36px", display: "flex", alignItems: "center", justifyContent: "center" }}
+                  >
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                      <line x1="12" y1="5" x2="12" y2="19"></line>
+                      <line x1="5" y1="12" x2="19" y2="12"></line>
+                    </svg>
+                  </button>
+
+                  {/* MINUS ICON (ZOOM OUT) */}
+                  <button 
+                    title="Zoom Out" 
+                    className="ctrl-f-btn" 
+                    onClick={() => document.querySelector('.react-flow__controls-zoomout')?.click()} 
+                    style={{ cursor: "pointer", background: "#2a2a2a", border: "1px solid #555", borderRadius: "8px", width: "36px", height: "36px", display: "flex", alignItems: "center", justifyContent: "center" }}
+                  >
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                      <line x1="5" y1="12" x2="19" y2="12"></line>
+                    </svg>
+                  </button>
+
+                  {/* SCREEN / SQUARE ICON (FIT VIEW) */}
+                  <button 
+                    title="Fit View Window" 
+                    className="ctrl-f-btn" 
+                    onClick={() => document.querySelector('.react-flow__controls-fitview')?.click()} 
+                    style={{ cursor: "pointer", background: "#2a2a2a", border: "1px solid #555", borderRadius: "8px", width: "36px", height: "36px", display: "flex", alignItems: "center", justifyContent: "center" }}
+                  >
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                      <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                    </svg>
+                  </button>
+
+                  {/* LOCK / HAND PAN SWITCH */}
+                  <button 
+                    title="Toggle Drag/Pan Lock" 
+                    className={`ctrl-f-btn ${isPanMode ? 'active-tool' : ''}`} 
+                    onClick={() => setIsPanMode(!isPanMode)} 
+                    style={{ cursor: "pointer", background: isPanMode ? "#ff9800" : "#2a2a2a", border: isPanMode ? "1px solid #fff" : "1px solid #555", borderRadius: "8px", width: "36px", height: "36px", display: "flex", alignItems: "center", justifyContent: "center" }}
+                  >
+                    {isPanMode ? (
+                      /* UNLOCKED / HAND MODE STATE SVG */
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                        <path d="M7 11V7a5 5 0 0 1 9.9-1"></path>
+                      </svg>
+                    ) : (
+                      /* LOCKED STATE SVG */
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                      </svg>
+                    )}
+                  </button>
+                </div>
+
                 <div className="reactflow-centered-viewport" style={{ width: "100%", height: "100%", position: "absolute", top: 0, left: 0 }}>
                   {loading ? (
                     <div style={{ color: "#fff", textAlign: "center", paddingTop: "150px", fontSize: "18px" }}>🔄 Fetching Live Nodes Schema...</div>
@@ -468,9 +535,11 @@ function TemplateDetail({ filename, onBack }) {
                       fitViewOptions={{ padding: 0.3 }}
                       minZoom={0.1} 
                       maxZoom={1.5}
+                      panOnDrag={isPanMode} 
+                      selectionOnDrag={!isPanMode}
                     >
                       <Background color="#333" gap={20} size={1} />
-                      <Controls position="top-left" />
+                      <Controls position="top-left" style={{ display: "none" }} /> 
                     </ReactFlow>
                   )}
                 </div>

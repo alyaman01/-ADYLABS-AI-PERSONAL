@@ -1,16 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./GetInTouchModal.css";
 
 function GetInTouchModal({ onClose, onSubmitSuccess, isForced = false }) {
-  // 🎯 CHECK: Agar forced hai toh hamesha khulega, varna check karega ki pehle dikha toh nahi chuke session mein
-  const [isOpen, setIsOpen] = useState(() => {
-    if (isForced) return true;
-    const hasShownBefore = localStorage.getItem("mainPopupShown");
-    return hasShownBefore ? false : true;
-  });
-
-  const [hasTriggeredSecondTime, setHasTriggeredSecondTime] = useState(false);
-
   const [formData, setFormData] = useState({
     fullName: "",
     emailId: "",
@@ -20,36 +11,9 @@ function GetInTouchModal({ onClose, onSubmitSuccess, isForced = false }) {
     projectDetails: "",
   });
 
-  // ⏱️ 10 SECONDS TIMEOUT LOGIC
-  useEffect(() => {
-    // Agar forced lock wala popup hai, ya pehle se hi dikha chuke hain, toh 10s wala loop nahi chalayenge
-    if (isForced || localStorage.getItem("mainPopupShown")) return;
-
-    let timer;
-    if (!hasTriggeredSecondTime && !isOpen) {
-      timer = setTimeout(() => {
-        setIsOpen(true);
-        setHasTriggeredSecondTime(true); 
-      }, 10000); 
-    }
-
-    return () => clearTimeout(timer);
-  }, [isOpen, hasTriggeredSecondTime, isForced]);
-
   const handleClose = () => {
-    if (isForced) return; // Forced lock mein close allowed nahi hai
-
-    if (onClose) {
-      onClose();
-    } else {
-      setIsOpen(false);
-    }
-
-    // 🚩 FLAG SET: Agar user ne normal popup ko ek baar close kar diya, toh use yaad rakho
-    // Aur agar 10-second wala trigger already chal chuka hai ya chalne wala hai, uske baad isko permanent block kar do
-    if (hasTriggeredSecondTime) {
-      localStorage.setItem("mainPopupShown", "true");
-    }
+    if (isForced) return; // Forced lock mein background click ya cross se close allowed nahi hai
+    if (onClose) onClose();
   };
 
   const handleChange = (e) => {
@@ -59,25 +23,14 @@ function GetInTouchModal({ onClose, onSubmitSuccess, isForced = false }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Lead Data Submitted:", formData);
-    
-    // 🚩 FLAG SET: Agar form submit ho gaya, toh normal popup life mein kabhi mat dikhao dobara
-    if (!isForced) {
-      localStorage.setItem("mainPopupShown", "true");
-    }
-
-    if (onSubmitSuccess) {
-      onSubmitSuccess();
-    } else {
-      setIsOpen(false);
-    }
+    if (onSubmitSuccess) onSubmitSuccess();
   };
 
-  if (!isOpen) return null;
-
   return (
-    <div className="modal-blur-overlay" onClick={isForced ? undefined : handleClose}>
+    <div className="modal-blur-overlay" onClick={handleClose}>
       <div className="get-in-touch-modal-card" onClick={(e) => e.stopPropagation()}>
         
+        {/* Agar forced lock nahi hai tabhi cross icon dikhao */}
         {!isForced && (
           <button className="modal-close-cross" onClick={handleClose}>✕</button>
         )}
@@ -130,6 +83,7 @@ function GetInTouchModal({ onClose, onSubmitSuccess, isForced = false }) {
             </div>
           </div>
 
+          {/* 🎯 CONDITION: Agar forced (Copy/Download click) hai toh niche ki extra details chipa do */}
           {!isForced && (
             <>
               <div className="form-row-grid">
